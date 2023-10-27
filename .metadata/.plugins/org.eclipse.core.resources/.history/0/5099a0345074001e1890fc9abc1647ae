@@ -1,0 +1,5 @@
+package com.pandey.entities;
+
+public class Person {
+
+}

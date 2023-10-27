@@ -1,0 +1,9 @@
+package in.pandey.beans;
+
+public class ATM {
+
+	public ATM() {
+		System.out.println("ATM : Constructor Executed..");
+	}
+
+}
