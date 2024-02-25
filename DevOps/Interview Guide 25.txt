@@ -1,0 +1,292 @@
+===========================================
+Q-1) Self Introduction Of DevOps Engineer
+===========================================
+
+=> I am ashok having 4+ yrs exp as a Devops engineer with AWS cloud
+
+=> Currently i am working for XXX company
+
+=> Coming to my project, i am working  on fullstack based application (insurance)
+
+			Frontend : Angular
+
+			Backend : Spring Boot with microservices
+
+			Database : Oracle
+
+
+=> We are using AWS cloud platform to maintain required infrastrucute for application
+
+		EC2  : Virtual machines
+
+		LBR : To distribute load
+
+		ASG : To scale up & scale down
+
+		S3 : To store application files
+
+		RDS : To create database
+
+		VPC : For isolated network
+
+		Cloud Watch : To monitor resources in cloud
+
+		Route 53 : Domain mapping
+
+		IAM : Identity & Access Mgmt
+
+
+=> We are using several devops tools to automate project build and deployment process
+
+Git Hub : Source code repo server
+
+Maven : Build tool for spring boot app (backend)
+
+NPM : Build tool for angular app
+
+SonarQube : To perform code review
+
+Nexus : Artifactory Servers
+
+Docker : For containerization 
+
+K8S : For Orchestration
+
+Jenkins : CI CD server
+
+Prometheus & Grafana  : for k8s resources monitoring
+
+EFK : Logs  monitoring
+
+JIRA : For project management
+
+Terraform : To provision infrastructure in AWS
+
+Ansible : For configuration mgmt
+
+
+
+===================
+Project Name : IES
+===================
+
+=> IES stands for Integrated Eligibility System
+
+=> Client : New Jersey State Gov (USA)
+
+=> It is an intranet application will be accessed only in DHS offices
+
+Note: Intranet means we can't access this app with public network
+
+=> This application is used to provide insurance plans for new jersey state citizens.
+
+=> Citizens should visit nearest DHS office to apply for the plan
+
+=> IES supports below insurance plans
+
+		1) SNAP : Food Plan
+
+		2) CCAP : Child Care
+		
+		3) Medicare : Health Plan (age >= 65)
+		
+		4) Medicaid : Health Plan
+		
+		5) QHP : Commercial Health Plan
+
+
+Note: Every Plan will have some business conditions. If citizen data matching with business conditions then citizen will be approved for the plan otherwise citizen will be denied for the plan.
+
+==========================
+Roles & Responsibilities
+==========================
+
+1) Creating Git Hub Repositories based on dev team requests
+
+2) Role Based Access for Git Repositories
+
+3) Setup Shared Libraries in Nexus Repo
+
+4) Writing Docker files
+
+5) Creating k8s manifest ymls
+
+6) Creating Jenkins Pipelines
+
+7) Monitoring Jenkins Pipelines
+
+8) Env Creation (DEV, SIT, UAT and PROD)
+
+9) Infrastructure provisioning using Terraform
+
+10) Writing playbooks for configuration mgmt
+
+11) Working with cloud services
+
+12) Cluster Monitoring & application monitoring
+
+
+====================
+Projects to mention
+====================
+
+1) Job Portal (Name : monster -> foundit)
+
+2) e-Learning platform
+
+
+===================
+Resume Building
+===================
+
+Note:  Create new email id and take new phno to apply for jobs
+
+
+Section-1) Name + Email + Phno
+
+Section-2) Professional Summary 
+
+			- Your experience with devops tools
+			- Your experience with cloud services
+			- Your experience with operating systems
+
+Section-3) Technical Skills
+
+			- Technologies
+
+Section-4) Educational Qualifiacation (Highest degree)
+
+Project-5) Project (s)
+
+		- Project Name
+		- Project Description (Optional)
+		- Project Duration 
+		- Project Tech Stack
+		- Your Roles & Responsibilities
+
+Note: To keep more than one project we need to repeat section-5		
+
+6) Personal Details
+
+		- Your Gender
+		- DOB
+		- Marriage Status
+
+7) Declartion Note & Thankyou Note
+
+
+====================
+How to cover gap ?
+====================
+
+If you have 3 years gap 
+
+		1 Project : Nov-2020 to till date (project duration)
+
+If you have 3 years gap 
+
+		1 project : May-2020 to Dec-2022
+
+		2 project : Jan-2023 to till date
+
+If you have 4 years gap
+
+		Mar-2019 to Feb - 2020 : Attended trainings	(upskill)
+
+		Mar-2020 to till date : IT exp
+
+			1 project : July-2020 to Sep-2022
+
+			2 project : Oct-2022 to till date
+
+
+If you have 5 years gap
+
+		Mar-2018 to April - 2019 : Attended trainings	(upskill)
+
+		May-2020 to till date : IT Experience
+
+			1 project : July-2020 to Sep-2022
+
+			2 project : Oct-2022 to till date
+
+
+If you have more than 5 years gap
+
+		- I have done business for 3 years (restaurant) and closed it due to loss
+
+		- from 3 years i am working in IT
+
+		- For ladies (marriage & kids)	- maternity
+
+
+###### Note: To prove our exp we need to experience documents from consultancy
+
+========================================================
+What are the day to day activities of DevOps Engineer ?
+========================================================
+
+=> First Thing we need to check is our email inbox
+
+=> If required we need to provide replies to those mails
+
+=> Check JIRA dashboard (any tickets assigned)
+
+=> Join stand-up call to discuss action plan for today
+
+=> Tickets assignment will happen in stand-up call / after stand-up call
+
+=> We will be working with below types of tasks as a devops engineer
+
+				- Repo Creation / Branch creations/ RBACs
+				- Build new Env (Dev/SIT/UAT/PILOT/PROD)
+				- Access Permissions
+				- Infrastructure provisioning
+				- Pipeline creation/execution
+				- Monitoring
+				- Trouble Shooting
+				- Infra Backup Plan
+				- Automation through scripts
+				- KT Documentation
+				- R & D
+				- In House Trainings
+				- Conducting KT sessions
+
+
+Note: We will store our documents at below locations
+
+				-> Git Hub Repo
+				-> Sharepoint
+				-> Confluence pages
+
+=> Check calender for meetings schedule
+
+				- Meeting with our team 
+				- Meeting with Onshore team
+				- Meeting with Dev Team
+
+=> Join status call to give work updates to scrum master
+
+				- What we have done for today
+				- What we are working on
+				- When our task will be completed
+				- Any challenges to complete the task
+
+========================================================================
+
+
+Project-1 : Git Hub + Maven + Docker + K8S + Jenkins (springboot)
+
+					- CI Job
+					- CD Job
+
+Project-2 : Git Hub + Maven + Sonar + Nexus + Docker + K8S + Jenkins + Ansible 
+			(springboot)
+
+Project-3 : Angular/React App
+
+Project-4 : Microservices Deployment (fullstack)
+
+
+
+

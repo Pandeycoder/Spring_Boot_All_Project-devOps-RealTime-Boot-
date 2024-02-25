@@ -1,0 +1,73 @@
+
+==========
+JMETER
+==========
+
+=> It is an open source software developed using Java
+
+=> JMETER s/w developed by Apache Org
+
+=> JMETER is used to implement performance testing for the application
+
+=> Performance Testing is used to identify stability and responsiveness of the application
+
+=> Performance testing is used to identify bottlenecks of the application
+
+=================================================================
+By using JMETER we can provide below statistics to the client
+=================================================================
+
+1) How many users can access our application at a time ?
+
+2) What is Avg Response time of our application ?
+
+3) When our application will fail
+
+
+==================
+Download JMETER 
+=================
+
+URL : https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.zip
+
+=> Exract JMETER zip file and run jmeter.bat file available in bin directory
+
+
+====================
+Creating Test Plan
+====================
+
+Step-1 : Right Click on Test plan & Add Thread Group
+
+Step-2 : Right Click on Thread Group -> Add Sampler => Add HTTP Request
+
+Step-3 : Configure API information in HTTP Request
+
+Step-4 : Right Click on Thread Group -> Add Listeners
+
+				- Summary Report
+
+				- View Results Tree
+
+Step-5 : Save Test Plan and execute it
+
+Step-6 : Monitor View Results Tree & Summary Results
+
+============================
+How to execute JMETER test
+============================
+
+=> We need to create JMETER test in GUI mode and we should execute it in CLI mode.
+
+
+Note: It is not recommended to run JMETER test in GUI mode.
+
+
+Syntax To Run JMETER Test : jmeter -n -t [jmx file] -l [results file]
+
+	ex:  jmeter -n -t ashokit_test_plan_1.jmx -l ashokit_test_results.jtl
+
+
+=> After test is executed we can see result.jtl file
+
+=> Import results file into summary report in JEMTER GUI to see the resutls.

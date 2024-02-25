@@ -1,0 +1,145 @@
+
+
+Docker Whatsapp Group : https://chat.whatsapp.com/Gpf1oR8CYZv3ADC1hnfZx8
+
+==========================
+Application Architecture
+==========================
+
+1) frontend (user interface) : Angular / React / Vue JS
+
+2) backend : Java / .Net / Python / PHP
+
+3) database : Oracle / MySQL / SQL Server
+
+=======================
+Application Tech Stack
+=======================
+
+Frontend : Angular 13v
+
+Backend : Java 17v
+
+Database : MySQL 8.5v
+
+Tomcat : 9.0v
+
+=========================================
+Environment Setup To run our application
+=========================================
+
+1) Take one machine (physical / virtual)
+
+2) Install Angular 13v
+
+3) Install Java 17v
+
+4) Install Tomcat Server 9.0v
+
+5) Install MySQL DB Server 8.5v
+
+=========================
+Application Environments
+=========================
+
+1) DEV : Developers will use it for integration testing
+
+2) SIT : Testing team will use it for system integration testing
+
+3) UAT : Client will use it for user acceptance testing
+
+4) PILOT : Pre Production environment
+
+5) PROD : Live Environment (end users can access our application running in prod)
+
+
+=================================
+Challenges in Deployment Process
+=================================
+
+1) Multiple Environments Setup
+
+2) Setting up all required dependencies (softwares) in all machines
+
+3) Version Conflicts
+
+4) Environment Maintainence
+
+5) Environment issues
+
+==========
+Docker
+=========
+
+-> It is free and open source software
+
+-> It is used for Containerization
+
+-> Containerization means package our "application code + required dependenices" as single unit for execution.
+
+-> If we use Docker in our project then we can run our project in any system without bothering about underlying softwares.
+
+====================
+Docker Architecture
+====================
+
+1) Dockerfile : It contains set of instructions to build docker image
+
+2) Docker Image : It is a package which contains code + dependencies
+
+3) Docker Registry : It is a place where we can store our docker images
+
+4) Docker Container : When we run docker image then docker container will be created. Our application will execute inside docker container.
+
+Note: Every Docker container is one virtual machine.
+
+
+=============
+Docker Setup
+=============
+
+https://github.com/ashokitschool/DevOps-Documents/blob/main/Docker-Setup.md
+
+=================
+Docker Commands
+================
+
+docker images : To display list of docker images available in our system
+
+docker ps : To display list of docker containers running in our system
+
+docker pull <image-id / image-name> : To download docker image
+
+docker run <image-id / image-name> : To run docker image (container creation)
+
+docker rmi <image-id/name> : To delete docker image
+
+docker rm <container-id> : To delete docker container
+
+docker system prune -a : delete stopped container and unused images
+
+docker run hello-world 
+
+=======================================
+Running Spring Boot App using Docker
+=======================================
+
+docker pull ashokit/spring-boot-rest-api
+
+docker run -d -p 9090:9090 ashokit/spring-boot-rest-api
+
+docker ps
+
+docker logs <container-id>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,736 @@
+#########################
+EC2 Service
+#########################
+
+-> EC2 stands for "Elastic Compute Cloud"
+
+-> EC2 is most demanded service in AWS cloud
+
+-> EC2 is used to create Virtual Machines in AWS cloud
+
+-> EC2 VM is called as EC2 instance
+
+			EC2 Instance = Computer / Server / VM / Virtual machine
+
+-> EC2 instances are re-sizable (we can change configuration)
+
+-> EC2 is a regional service
+
+-> EC2 is a paid service
+
+-> EC2 instances minimum billing period is 1 hour
+
+Note: To encourage learners, AWS provided EC2 instances (t2.micro type) free for 1 year 
+	  (Monthly 750 hours)
+
+-> When we create EC2 instance, AWS will provide default storage using EBS.
+
+				EBS Max Size : 16 TB (16000 GB)
+
+				Windows VM : 30 GB (free of cost, default)
+				Linux VM : 8 GB (free of cost, default)
+
+
+-> For EC2 instance, AWS will provide default VPC.
+
+-> To create EC2 instance, we need to choose AMI (Amazon machine image)
+
+-> Key-Pair is used to secure EC2 instance.
+
+-> Key Pair contains public key and private key
+
+Note: One Key-Pair we can use for Multiple EC2 instances irrespective of OS
+
+-> For EC2 instance we will attach firewall Security rules using Security Group
+
+			
+				Windows VM => RDP : 3389
+
+				Linux VM => SSH : 22
+
+				HTTP => HTTP : 80
+
+				HTTPS => HTTPS : 443
+
+Note: One security group we can attach to multiple EC2 instances.
+
+########### Lab Task : Launch Windows VM and Connect to it using RDP Client ############
+
+
+
+==========================
+Launch Linux VM using EC2
+==========================
+
+1) Create Linux VM
+
+2) Connect to Linux VM using MobaXterm
+
+
+======================
+Types of IP's in AWS
+======================
+
+1) Public IP ( It is dynamic IP, it is used to connect with EC2 VM from outside)
+
+Note: When we re-start EC2 VM then Public IP gets changed.
+
+2) Private IP ( It is fixed IP, it is used internally in AWS cloud )
+
+Note: When we re-start EC2 VM then Private IP will not change. It is fixed and used for internal purpose.
+
+3) Elastic IP ( It is fixed Public IP, It is chargeble )
+
+Note: When we create and attach Elastic IP to ec2 instance then it will become fixed public ip for that instance. Even if we re-start the machine that IP will remain same.
+
+######################### Lab Task on EC2 IP addresses ###################
+
+1) Create EC2 Instance (Amazon Linux)
+
+2) Observe IPs associated with that Machine
+		
+			=> Public IP
+			=> Private IP
+
+3) Stop the EC2 instance and Observe IPs associated with that Machine
+
+			=> Public IP will be removed
+			=> Private IP remains same
+
+4) Create Elastic IP and associate that Elastic IP to ec2 instance
+
+5) Observe IPs associated with that Machine (Elastic IP will become Public IP)
+
+6) Re-Start the EC2 instance and Observe IPs associated with that Machine
+
+			=> Public IP remains same
+			=> Private IP remains same
+
+7) De-Associate Elastic IP from EC2 (Action -> Networking -> De-Assocate Elastic IP)
+
+8) Release Elastic IP back to AWS cloud (Elastic IP -> Actions -> Release)
+
+****** Note: Elastic IPs are chargeble, If we are not using then we have to release them to AWS ***********
+
+================================================================================
+
+==========================
+EC2 Instances Categories
+==========================
+
+1) On-Demand Instances
+
+2) Reserved Instances
+
+3) Spot instances
+
+4) Dedicated Host Instances
+
+=======================
+On-Demand Instances
+=======================
+
+=> Whenever we want then we can create it
+
+=> Fixed Price (Hourly Based)
+
+=> Pay for use
+
+=> No Prior Payments
+
+=> No Commitment
+
+
+====================
+Reserved Instances
+====================
+
+=> It is like advanced booking for Ec2 instances
+
+=> Longterm Commitment
+
+=> Commitement 1 year or 3 years
+
+=> AWS will provide discount when we go for longterm commitment
+
+=> Prior Payment option is available (Partial Payment also available)
+
+===============
+Spot Instances
+==============
+
+=> It is like bidding or auction
+
+=> AWS will offer High Capacity systems for Low Price
+
+
+==========================
+Dedicated Host Instances
+==========================
+
+=> It is physical instance that AWS will provide to customers
+
+=> These are very costly instances
+
+
+===================
+EC2 Instance Types
+===================
+
+1) General Purpose Instances
+
+2) Compute Optimized
+
+3) Memory Optimized
+
+4) Storage Optimized
+
+5) Accelarated Computing
+
+
+========================
+What is AMI in AWS ?
+==========================
+
+=> AMI stands for Amazon Machine Image
+
+=> AMI contains set of configurations to launch virtual machines
+
+			a) Windows AMIs
+			b) Linux AMIs
+			c) Mac AMIs
+
+=> AWS provided several Quick Start AMIs to launch Virtual Machines.
+
+=> In AWS, we can create our own AMIs also.
+
+=> By Default our AMI visibility is Private (We can make it as public)
+
+
+############# AMI Lab Task ##############
+
+1) Create AMI from existing EC2 VM
+
+2) Check AMI display in AMI Dashboard
+
+3) Change AMI visibility to Public (It will be available for all AWS users)  (Optional)
+
+4) Launch New EC2 instance using our AMI
+
+5) Connect to new ec2 vm using MobaXterm
+
+
+
+########################
+EBS Volumes & Snapshots
+########################
+
+=> EBS stands for Elastic Block Store
+
+=> EBS is a block level storage device that can be associated with EC2 instance
+
+=> EBS providing both Primary and Secondary Storage for EC2 instances
+
+=> EBS volumes are divided into 2 categories
+
+			1) Root Volumes
+			2) Additional Volumes
+
+=> When we launch EC2 VM then by default EBS Root Volume will be attached to our EC2 instance
+
+				For Windows  by default : 30 GB space in Root Volume
+
+				For Linux  by default : 8 GB space in Root Volume
+
+
+		########  Note: EBS Volume max size is 16 TB (16000 GB) ######
+
+
+=> EBS root volume is mandatory to Launch any EC2 instance.
+
+=> If we detach EBS root volume from EC2 instance then we can't start that Instance.
+
+
+=> We can create Additional EBS volumes and we can attach / detach with EC2 instances.
+
+=> Additional EBS volumes are optional Volumes.
+
+
+*** One EC2 instance can have multiple EBS volumes
+
+*** One EBS volume can be attached with only one EC2 instance at a time.
+
+*** EBS Volumes are AVailability Zone Specific ***
+
+=================
+EBS Volume Types
+==================
+
+=> We have 5 types of EBS volumes
+
+1) General Purpose (Min: 1 GiB, Max: 16384 GiB)
+
+2) Provisioned IOPS (Min: 4 GiB, Max: 16384 GiB)
+
+Note: Provisioned IOPS (io2) supports 65 TB
+
+3) Cold HDD (Min: 125 GiB, Max: 16384 GiB)
+
+4) Throughput Optimized  (Min: 125 GiB, Max: 16384 GiB)
+
+5) Magnetic (standard)   ( Min: 1 GiB, Max: 1024 GiB )
+
+
+###################
+Today's Lab Task
+###################
+
+1) Create 2 EC2 Linux instances with Amazon Linux 2 AMI 
+    (They will have EBS root volumes with 8 GB)
+
+2) Create Additional EBS volume with 12 GB (check AZ for VMs and create EBS Vol in same AZ)
+
+3) Attach EBS Additional volume of 12 GB to EC2 VM-1 for storing data
+
+4) Connect to EC2 VM-1 instance and verify volumes (EBS both volumes shud display)
+
+			$ lsblk
+			
+			Root Vol : /dev/xvda
+			Addn Vol : /dev/xvdf
+			
+5) Create a directory and mount EBS Additional volume to created directory & create files
+
+			$ sudo mkfs -t ext4 /dev/xvdf
+
+			$ mkdir dir1
+
+			$ sudo mount /dev/xvdf dir1
+
+			$ cd dir1
+
+			$ touch f1.txt f2.txt
+
+6) Detach EBS Additional volume from EC2 VM-1
+
+7) Attach previously created EBS Additional volume to EC2 VM-2
+
+8) Connect to EC2 VM-2 instance and verify volumes (EBS volume shud display)
+
+9) Create a directory and mount EBS Additional volume to created directory
+
+			$ sudo mkfs -t ext4 /dev/xvdf
+
+			$ mkdir dir2
+
+			$ sudo mount /dev/xvdf dir2
+
+			$ ls -l dir2
+
+10) Verify data which stored previously in EBS Addn Vol available or not
+ (it should present)
+
+11) Stop Instances and delete volumes
+
+
+
+
+
+=================
+EBS - Snapshots
+=================
+
+=> Snapshots are used for Volume Backups
+
+=> Snapshots are Regional Specific (Volumes are AZ specific)
+
+=> From volume we can create snapshot and from snapshot we can create volume
+
+			Volume ====> Snapshot =====> Volume
+
+=> Snapshots can't be attached with EC2 instance (Only Volumes we can attach with EC2)
+
+
+
+##########################################
+Static WebSite Hosting using EC2 instance
+##########################################
+
+=> Website : Collection of web pages
+
+=> We have 2 types of websites
+
+		1) Static Website (Same content for all users)
+
+		2) Dynamic Website (Content based on user)
+
+=> In order to run a  website we need Webserver
+
+=> Webserver is a software which provides runtime environment(platform) to run web applications.
+
+
+===========================
+Install Web Server (Httpd)
+===========================
+
+$ sudo yum update -y
+
+$ sudo yum install httpd
+
+$ sudo systemctl start httpd
+
+Note: Enable HTTP in Security Group Inbound rules
+
+=> Access our website using EC2 vm public ip (we should be able to see Test web page)
+
+=> We can change content of our website using below commands
+
+$ cd /var/www/html
+
+$ sudo vi index.html
+
+<h1> Welcome to Ashok IT <h1>
+
+<h2> Contact Us : + 91 - 9985296677 </h2>
+
+=> Access our website using EC2 vm public ip (we should be able to see our content in web page)
+
+=========================
+What is User Data in EC2
+=========================
+
+=> User Data is used to execute the script when ec2 instance launched for first time
+
+=> We can say user data is default script to execute when EC2 instance is launched.
+
+Note: If we stop and start ec2 machine then User data will not execute.
+
+
+
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Life Insurance Server - 1</h1></html>" > index.html
+service httpd start
+
+####################################
+
+
+=> When we run our application in Single Server then we may get below issues
+
+1) Burden on Server
+
+2) Slow Responses
+
+3) Server can crash
+
+4) App downtime
+
+5) Effect on Brand Value
+
+6) Revenue Loss
+
+=> To overcome these issues we will go for Load Balancing.
+
+
+######################
+Load Balancing in EC2
+######################
+
+-> Load Balancing is the process of distributing application load to multiple servers
+
+-> Instead of deploying our application in one server, we will deploy in multiple servers
+
+-> All the servers will be connected to Load Balancer
+
+-> LBR will distribute traffic to all connected servers using Round Robin algorithm
+
+==================================
+Process to Setup Load Balancer
+==================================
+
+1) Create Security Group with below Protocols in Inbound Rules
+
+		SSH - 22
+		HTTP - 80
+
+	SGName : ashokit_Security_group
+
+
+2) Create first EC2 instance (EC2-1) and Host Web Application
+
+Note: Configure below script as 'User Data' at the time of launching the instance
+
+#! /bin/bash
+
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Life Insurance Server - 1</h1></html>" > index.html
+service httpd start
+
+3) Create second EC2 instance (EC2-2) and host web application
+
+Note: Configure below script as 'User Data' at the time of launching the instance
+
+#! /bin/bash
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Life Insurance Server - 2</h1></html>" > index.html
+service httpd start
+
+4) Create Load Balancer ( ALB ) and attach both EC2 instances as one target group
+
+		Scheme : Internet facing
+
+		Select : New Target Group (Add both EC2 instances)
+
+		Listner : HTTP : 80
+
+		Security Group : ashokit_Security_Group
+
+Note: Once Load Balancer created, DNS will be generated (it will take upto 3 mins)
+
+
+5) Send a request to Load Balancer DNS URL and see the response 
+
+ (it should distribute traffic to both servers)
+
+
+Note
+++++++++++
+1) DELETE Load balancer
+2) Delete EC2 instances
+
+###############################
+Types of Load Balancers in AWS
+###############################
+
+
+-> We have 4 types of Load balancers in AWS
+
+1) Application Load Balancer
+
+2) Network Load Balancer
+
+3) Gateway Load Balancer
+
+4) Classic Load Balancer (Will be retiering on Aug 15, 2022)
+
+
+-> When you want to deal with HTTP and HTTPS requests then Application Load Balancer is recommended. Application Load Balancer supports path based routing.
+
+-> When you have static ip address and wants to process millions of requests per second then go for Network Load Balancer (This gives ultra performance)
+
+-> When your application dealing with third party services then go for Gateway Load Balancer
+
+
+######################
+Microservices
+#####################
+
+-> In realtime, project will be developed in 2 ways
+
+1) Monolith Architecture based project
+
+2) Microservices Architecture based project
+
+
+-> Monolith Architecture means all the fuctionalities will be developed in single project
+-> If we change some code then it may effect on another fucntionality
+-> The maintenence will become very difficult when we follow monolith architecture
+
+-> To overcome the problems of Monolith Architecture, now a days people are using Microservices Architecture in the Realtime.
+
+-> In Microservices architecture, project functionality will be divided into multiple services
+-> Every service is a seperate project
+-> When we change functionality of one service it will not effect on another service
+-> Every service will be running as a seperate project in seperate server
+-> Easy to maintain
+
+
+
+######################################
+Setup LBR with multiple Target Groups
+######################################
+
+
+-> Create Security Group with SSH-22 and HTTP-80 Protocols
+
+1) Create EC2 Instance-1 For Flights (Flights-Server-1) 
+
+#! /bin/bash
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Flights Server - 1</h1></html>" > index.html
+service httpd start
+
+2) Create EC2 Instance-2 for Flights  (Flights-Server-2)
+
+#! /bin/bash
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Flights Server - 2</h1></html>" > index.html
+service httpd start
+
+
+-> Create "Flights Target Group" with Flights EC2 instances
+ 
+3) Create EC2 instance-1 for Trains (Trains-Server-1)
+
+#! /bin/bash
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Trains Server - 1</h1></html>" > index.html
+service httpd start
+
+
+4) Create EC2 Instance-2 for Trains (Trains-Server-2)
+
+#! /bin/bash
+sudo su
+yum install httpd -y
+cd /var/www/html
+echo "<html><h1>Trains Server - 2</h1></html>" > index.html
+service httpd start
+
+
+-> Create "TrainsTargetGroup" for Trains EC2 instances
+
+-> Create Application Load Balancer 
+
+-> Configure Routing in Application Balancer to route the request to "Target Group" based on URL
+
+	(At the time of LBR creation choose existing target group as Flights-TargetGroup)
+
+	#######  AfFter Load Balacner Created We need to configure Routing Rules ########
+
+(Go to LBR -> Listeners -> Click on View/Edit Rules -> Click on + Symbol -> CLick on Insert Rule -> Add the rule)
+
+
+Note: In this scenario i have added query string rule
+
+	Rule-1 ==>	Key : type, value = flights ==> Forward it to "Flights-TargetGroup"
+
+	Rule-2 ==> Key : type, value = trains ==> Forward it to "Trains-TargetGroup"
+
+
+Default ALB URL : http://makemytriplbr-1672601111.ap-south-1.elb.amazonaws.com/
+
+
+=========================
+URLS with Query String
+========================
+
+URL-1 : http://makemytripalb-1456632845.ap-south-1.elb.amazonaws.com?type=trains
+
+URL-2 : http://makemytripalb-1456632845.ap-south-1.elb.amazonaws.com?type=flights
+
+======
+Note
+=====
+
+-> After practise Delete Target Groups, LBR and EC2 instances to avoid billing
+
+================
+Auto Scaling
+=================
+
+=> AWS Auto Scaling monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost.
+
+=> Using AWS Auto Scaling, it’s easy to setup application scaling for multiple resources across multiple services in minutes. 
+
+=> Amazon EC2 Auto Scaling helps you ensure that you have the correct number of Amazon EC2 instances available to handle the load for your application.
+
+=> The process of increasing and decreasing no.of ec2 instances based on the load is called as Auto Scaling.
+
+=============================
+Advantages with Auto Scaling
+=============================
+
+1) Fault Tolerenece : Detect when an instance is unhealthy, terminate it, and launch an instance to replace it.
+
+2) Availability : Ensure that your application always has the right amount of capacity to handle the current traffic demand.
+
+3) Cost Management : Save money by dynamically launching instances when they are needed and terminate them when they aren't needed.
+
+=================================
+How to setup Auto Scaling Group
+=================================
+
+1) Create Launch Template
+
+2) Create AutoScaling Group with Launch Template
+
+3) Configure Desired, Min and Max Capacity
+
+4) Attach AutoScaling Group to particular Target Group
+
+5) Configure Scaling Policy
+
+
+=======================
+Summary For Revision
+======================
+
+1) What is EC2 
+
+2) What is Key Pair
+
+3) What is Security Group (Firewalls Protocol)
+
+4) Inbound Rules & Outbound Rules
+
+5) Launching Windows VM using EC2
+
+6) Launching Linux VM using EC2
+
+7) Connecting to EC2 VM using MobaXterm and Putty
+
+8) Instance Types & Families
+
+9) Types of IPs in AWS (Public, Private and Elastic IP)
+
+10) What is AMI & How to create our own AMIs
+
+11) What is EBS (Elastic Block Storage)
+
+12) EBS Volumes (Root & Additional Volumes)
+
+13) EBS Volume Types
+
+14) Snapshots & Life Cycle Manager
+
+15) How to copy the data from one EC2 instance to another EC2 instance ?
+
+16) How to host static website using EC2 instance (httpd webserver)
+
+17) What is User Data in EC2 ?
+
+18) What is Load Balancer ?
+
+19) What is Target Group ?
+
+20) Monlith Vs Microservices
+
+21) LBR with Multiple Target Groups ( Routing Rules )
+
+22) Types of Load Balancer
+
+23) Auto Scaling
+
+
+
+
+
+
+
+
+
+
+
+

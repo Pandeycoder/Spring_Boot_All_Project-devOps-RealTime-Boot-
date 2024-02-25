@@ -1,0 +1,222 @@
+
+=============================
+Build & Deployment Process
+=============================
+
+1) Take latest source code from git repo
+
+2) Compile Source code
+
+3) Execute Unit Test cases
+
+4) Package our application as jar or war
+
+5) Build Docker Image 
+
+6) Create Docker Container
+
+
+==================================================
+Challenges with Manual Build & Deployment Process
+==================================================
+
+1) Multiple times we need to build & deploy code 
+
+2) Repeated task
+
+3) Error Prone
+
+4) Time Taking Process
+
+
+Note: To overcome above challenges we need to automate project build & deployment process.
+
+=> To automate project build & deployment process we can use Jenkins.
+
+====================
+What is Jenkins ?
+====================
+
+-> It is a free and open source software
+
+-> Jenkins developed using Java language
+
+-> Using Jenkins we can automate build & deployment process
+
+-> Using Jenkins we can achieve CI & CD
+
+CI : Continuous integration
+
+CD : Continous Delivery / Deployment.
+
+
+===========================
+Jenkins Setup in Linux VM
+===========================
+
+Step-1 : Create EC2 VM in AWS Cloud (Amazon Linux)
+
+		instance_type : t2.medium (4 GB RAM)
+
+Step-2 : Connect with EC2 VM using MobaXterm
+
+Step-3 : Install Git Client software
+
+		$ sudo yum install git -y
+
+Step-4 : Install Maven
+
+		$ sudo yum install maven -y
+
+Step-5 : Install Jenkins
+
+		URL : https://www.jenkins.io/doc/book/installing/linux/
+
+Step-6 : Enable 8080 port number in EC2 VM Security Group Inbound Rules
+
+
+Step-7 : Access Jenkins Server in browser
+
+		URL : http://public-ip:8080/
+
+Step-8 : Copy jenkins admin password to unlock jenkins
+
+		$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Step-9 : Create user account and complete setup
+
+
+=================================
+Install Docker in Jenkins Server
+=================================
+
+# Install Docker
+$ sudo yum update -y
+$ sudo yum install docker -y
+$ sudo service docker start
+
+# Add jenkins user to docker group
+$ sudo usermod -aG docker jenkins
+
+# Restart Jenkins
+$ sudo systemctl restart jenkins
+
+==============================================
+Jenkins Job : Git + Maven + docker + Jenkins
+==============================================
+
+=> Our Jenkins job should perform below work
+
+Step-0 : Create Jenkins Free Style Project
+
+Step-1 : Configure Source Code Management
+
+		Git Repo : https://github.com/ashokitschool/spring-boot-docker-app.git
+
+Step-2 : Configure Build Trigger as Maven Goals
+
+			clean package
+
+Step-3 : Configure Build Trigger to Stop & Delete running containers
+
+		docker stop $(docker ps -qa)
+		docker rm $(docker ps -qa)
+		
+
+Step-4 : Build Docker image
+
+		docker build -t sbapp .
+
+Step-5 : Create Docker Container using Docker image
+
+		docker run -d -p 9090:8080 sbapp
+
+
+Note: We are configuring host port as 9090 so enable 9090 port number in EC2 VM security group to access our application.
+
+		App URL : http://public-ip:9090/
+
+
+
+
+==================
+JENKINS Pipeline
+==================
+
+=> We can create jenkins jobs in 2 ways
+
+	1) Free Style Project (GUI)
+
+	2) Pipeline 
+
+		- Scripted Pipeline (Groovy)
+
+		- Declarative Pipeline
+
+=======================
+Declarative Pipeline
+======================
+
+pipeline {
+	agent any
+	stages {
+		stage('Git Clone'){
+			steps {
+			    git branch: 'main', url: 'https://github.com/ashokitschool/spring-boot-docker-app.git'
+			}
+		}
+		stage('Maven Build'){
+			steps{
+			  sh 'mvn clean package'
+			}
+		}		
+		
+		stage('Docker Image'){
+		    steps{
+		        sh 'docker build -t sbapp .'
+		    }
+		}
+		
+		stage('Deploy'){
+		    steps{
+		        sh 'docker run -d -p 9090:8080 sbapp'
+		    }
+		}		
+	}
+}
+
+=====================
+Realtime Work Flow
+=====================
+
+Step-1 : Dev Team member will send request to DevOps team to create git repo for the project
+
+Step-2 : DevOps team will create git repo and will share git repo url to the dev team
+
+Step-3 : Dev Team member will create project folder structure and will push to git repo
+
+Step-4 : Dev Team member will send request to DevOps team to create Jenkins Pipeline
+
+Step-5 : DevOps team will create Jenkins pipeline and will send confirmation to Dev Team
+
+Step-6 : Dev Team member will run jenkins pipeline and will check build & deployment working as expected or not.
+
+Note: If Jenkins Piepeline not working then we will inform to DevOps team to fix the issue.
+
+
+
+
+
+🔥 *Jenkins Summary* 🔥
+
+1) What is Build & Deployment Process
+2) Challenges with Manual Build & Deployment process
+3) What is CI CD
+4) What is Jenkins
+5) Jenkins Setup in Linux VM
+6) Automated Build & Deployment Process
+7) Jenkins Job Creation (Freestyle)
+8) Jenkins Pipeline (Declarative)
+9) Git + Maven + Docker + Jenkins - Integration
+10) Realtime Workflow
+

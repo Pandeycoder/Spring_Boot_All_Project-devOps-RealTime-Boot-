@@ -1,0 +1,492 @@
+Whatsapp Group For Class Updates : https://chat.whatsapp.com/KcTMyeLPRSr1IVmKvkEMvn
+
+============================
+Course Name : 14-DEVOPS-AWS
+============================
+
+=>  Pre-Requisites : Your time + Your Intrest
+
+=>  Course Content : 6 Modules
+
+	Module-1 : DevOps Introduction
+
+	Module-2 : Linux OS + Shell Scripting
+
+	Module-3 : DevOps Tools (20 Tools)
+
+	Module-4 : AWS Cloud (15+ Services)
+
+	Module-5 : Projects Setup
+
+	Module-6 : Interview Guide
+
+
+=============
+Course Info
+=============
+
+Course Code : 14-DEVOPS-AWS
+
+Duration : 4 Months
+
+Class Timings: 6:00 PM - 7:30 PM IST (Mon - Sat)
+
+Class Mode : Online Classes ( zoom )
+
+Daily Class Notes will shared (soft copy materials) - Life time
+
+Daily class recording video will be shared (videos - 1 year acces)
+
+Course Fee : 16,000 INR
+
+
+#### We will create one whatsapp group for enrolled students for discussion ####s
+
+
+Note: Every day last 15 mins for Doubts clarifications
+
+
+Note: After this course completion, you can attend interviews with 3 to 4 years of experince.
+
+
+=================
+Operating System
+================
+
+1) Linux OS
+2) Shell Scripting
+
+=============
+DevOps Tools
+=============
+
+1) Maven, Gradle & NPM : Build Tools
+
+2) Git Hub & BitBucket : Source Code Repository Servers
+
+3) Nexus & JFrog : Artifactory Servers (to store jar or war files)
+
+4) SonarQube : Code Review Software
+
+5) Tomcat & JBoss : WebServer For Deployment
+
+6) Docker : Containerization Software ( package code + dependencies )
+
+7) Kubernetes : Orchestration Software ( to manage containers )
+
+8) Jenkins : CI CD Software ( To automate build + deployment process)
+
+9) Grafana + Promethues & Nagios : Monitoring Tools 
+
+10) EFK Stack : To monitor application logs -> (Elasticsearch + FluentD + Kibana)
+
+11) JIRA : Project Management Software
+
+12) Terraform : To automate Infrastructure creation 
+
+13) Ansible : Configuration Management
+
+
+==========
+AWS Cloud
+=========
+
+1) What is Cloud Computing
+2) Cloud Advantages
+3) AWS Introduction
+4) AWS Account Creation
+
+5) EC2 (EBS + LBR + ASG) : To create Virtual machines
+6) RDS : To create Relational Databases
+7) S3 : Storage Service (Unlimited)
+8) Route 53 : Domain Mapping Service
+9) VPC : Virtual Private Cloud (Network)
+10) IAM : Identity and Access Management
+11) Elastic Bean Stack : PaaS Platform 
+12) ECS : To run Docker containers
+13) EKS : To run k8s cluster
+14) Cloud Watch : To monitor cloud resources
+15) SNS : Notifications
+16) Lambdas : Serverless computing
+17) Cloud Front : Edge Locations
+
+
+=================
+Software Project
+=================
+
+=> Collection of programs is called as Software Project
+
+================================
+Why we need Software Project ?
+================================
+
+=> To reduce human efforts
+
+Ex: Net Banking, Ticket Booking, Online Training platforms etc....
+
+======================
+Project Architecture
+======================
+
+=> Software Project Contains 3 Layers
+
+1) Frontend : User interface (Presentation layer)
+
+2) Backend : Business Layer (Business logic)
+
+3) Database : To store data
+
+======================
+Frontend Technologies
+======================
+
+	1) HTML & CSS
+	2) Java Script
+	3) BootStrap
+	4) Angular / React JS
+
+=====================
+Backend Technologies
+=====================
+
+	1) Java
+	2) .Net
+	3) Python
+	4) PHP
+	5) Node JS
+
+===========
+Databases
+===========
+
+	1) Oracle
+	2) MySQL
+	3) PostGres
+	4) SQL Server
+	5) Mongo DB
+	6) Casandra etc....
+
+
+===================
+What is DevOps ?
+==================
+
+	DevOps = Development + Operations
+
+=> DevOps is a culture
+
+=> DevOps is a process
+
+=> DevOps is set of practices
+
+=> DevOps process is used to establish colloboration between Development team & Operations team.
+
+=> The main aim of DevOps is to deliver projects to clients with high quality in less time.
+
+==========================
+What is DevOps Life Cycle
+=========================
+
+=> We have 7 C's in DevOps life cycle
+
+1) Continuous Planning
+
+2) Continuous Development
+
+3) Continuous Integration
+
+4) Continuous Testing
+
+5) Continuous Deployment
+
+6) Continuous Monitoring
+
+7) Continuous Feedback
+
+=============================================
+Roles & Responsibilities of DevOps Engineer
+=============================================
+
+1) Setup Infrastructure (Ex: machines, servers, storage, security & network) :: Terraform
+
+2) Configuration Management :: Ansible
+
+3) Setup Source Code Repositories to integrate developers code :: Git Hub / BitBucket 
+
+4) Setup Aritifact Repositories to store build artifacts (jar/war) : Nexus / JFrog
+
+5) Manage Role Based Access (RBAC)
+
+6) Create CI CD Pipelines :: Jenkins
+
+7) Perform Build & Deployment :: Maven, Docker and Kubernetes
+
+8) Generate Code Review Report :: SonarQube
+
+9) Monitor CI CD pipelines 
+
+10) Monitor Infrastructure : Prometheus and Grafana
+
+11) Centralize application Logs :: EFK Stack
+
+12) Issues fixing
+
+
+
+================
+What is SDLC ?
+================
+
+=> SDLC stands for Software Development LifeCycle
+
+=> SDLC represents Software Project Development process from starting to ending
+
+=> We have several stages in SDLC process
+
+1) Requirements Gathering
+
+2) Analyze Requirements
+
+3) Planning
+
+4) Implementation (Development)
+
+5) Testing
+
+6) Deployment
+
+7) Monitoring
+
+
+=> We have several SDLC methodologies
+
+1) Waterfall Model
+
+2) Agile Model
+
+
+===============
+Waterfall Model
+===============
+
+=> It is a linear process to develop and deliver the application
+
+=> All stages will happen one after other
+
+=> Requirements are fixed
+
+=> Budget is fixed
+
+=> Client involvment is very less
+
+=> Client will see the project only at the end
+
+Note: If client don't like our delivery then total money wasted and time wasted.
+
+=============
+Agile Model
+=============
+
+=> Agile is an iterative approach to develop and deliver the application
+
+=> Planning + Development + Testing + Deployment + Feedback is continuous process in Agile.
+
+=> We will deliver project to client in Multiple Releases (Sprints)
+
+=> Client involement is very high in project
+
+=> Client feedback is very important to proceed further
+
+=> Requirements are not fixed
+
+=> Budget is not fixed
+
+####  Ex: Client provided 100 requirements for development ####
+
+Sprint - 1 :: 30 requirements : plan + develop + test + deliver + take feedback
+
+Sprint - 2 :: 30 requirements : plan + develop + test + deliver + take feedback
+
+Sprint - 3 :: 30 requirements : plan + develop + test + deliver + take feedback
+
+Sprint - 4 :: 10 requirements : plan + develop + test + deliver + take feedback
+
+
+==========================
+What is Infrastructure ?
+==========================
+
+The resources that are required to run our business is called as Infrastructure
+
+Ex: Machines, Servers, Databases, Power, Network, Storage, Security & Monitoring
+
+=> Challenges with IT infrastructure
+
+	1) Security
+
+	2) Scalability
+
+	3) Availability
+
+	4) Network Issues
+
+	5) Diaster Recovery
+
+
+=> Purchasing Infrastructure is costly
+
+=> Managing Infrastructure is risky
+
+=> To overcome the above problems of Infrastructure management, now a days companies are preffering Cloud Computing.
+
+
+========================
+What is Cloud Computing 
+=========================
+
+=> It is the process of delivering IT resources on demand basis over the internet with Pay as you go model.
+
+=> Pay as you go model means use the resources and pay bill for using them just like our post paid bill / electricity bill/ credit bills etc...
+
+=================
+Cloud Providers
+================
+
+=> Companies which are providing IT resources over internet are called as Cloud Providers
+
+	1) Amazon => AWS Cloud
+
+	2) Microsoft => Azure Cloud
+
+	3) Google => GCP Cloud
+
+	4) IBM => IBM Cloud
+
+	5) Oracle => Oracle cloud
+
+============================
+Cloud Computing Advantages
+===========================
+
+1) Pay as you go
+
+2) Low cost
+
+3) Scalability
+
+4) Availability
+
+5) Reliability
+
+6) Unlimited Storage
+
+7) Security
+
+8) Backup
+
+
+=======================
+What is AWS Cloud ?
+=======================
+
+=> AWS stands for "Amazon Web Services"
+
+=> AWS started in the year of 2006
+
+=> 190+ countries are using AWS cloud infrastructure to run their businesses.
+
+==========================
+AWS Global Infrastructure
+==========================
+
+=> AWS maintaining their infrastructure using Regions & Availability Zones
+
+	31 - Regions (Geographical Location)
+
+	99 - Az's (Data Centers)
+
+=> Datacenter means Server Room
+
+
+##### AWS account Setup : https://youtu.be/xi-JDeceLeI ######
+
+
+==========
+Revision
+==========
+
+1) DevOps with AWS Course Introduction
+
+2) Pre-Requisites to learn DevOps with AWS
+
+3) Course Content (Route map)
+
+4) DevOps Tools Overview
+
+5) AWS Services Overview
+
+6) What is Software Project & Why 
+
+7) Software Project Architecture
+
+8) What is Frontend & Frontend Technologies
+
+9) What is Backend & Backend Technologies
+
+10) What is Database
+
+11) Development Team Roles & Responsibilities
+
+12) Testing Team Roles & Responsibilities
+
+13) DevOps Team Roles & Responsibilities
+
+14) What is DevOps & Why DevOps ?
+
+15) DevOps life cycle (7C's of DevOps)
+
+16) What is SDLC
+
+17) What is Waterfall Model
+
+18) What is Agile Model
+
+19) What is infrastructure
+
+20) What are the challenges with On-Prem infrastructure
+
+21) What is Cloud Computing
+
+22) Cloud Advantages
+
+23) AWS Cloud Introduction
+
+24) AWS Account Setup
+
+
+
+
+
+
+
+
+
+=> Module-1 : DevOps Introduction (Completed)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

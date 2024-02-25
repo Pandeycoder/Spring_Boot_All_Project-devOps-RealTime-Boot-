@@ -1,0 +1,176 @@
+#################################
+RDS (Relational Database Service)
+#################################
+
+-> Every application will contain 3 layers
+
+			1) Front End (User interface)
+
+			2) Back End (Business Logic)
+
+			3) Database
+
+-> End users will communicate with our application using frontend (user interface).
+
+-> When end-user perform some operation in the front-end then it will send request to backend. Backend contains business logic of the application.
+
+-> Backend logic will communicate with Database to perform DB operations.
+
+	(insert / update / retrieve / delete)
+
+###########################################
+Challenges with Database Setup on our own
+###########################################
+
+1) Setup Machine to install Database Server
+2) Purchase Database Server License
+3) Install Database Server in our Machine
+4) Setup Network for our machine
+5) Setup power for machine
+6) Setup a server room to keep our machines
+7) Setup AC for room for cool temperature
+8) Setup Security for room
+9) Setup Database backups
+10) Disaster Recovery
+
+-> If we use AWS cloud, then AWS will take care of all the above works which are required to setup Database for our application.
+
+-> In AWS, we have RDS service to create and setup database required for our applications.
+
+-> We just need to pay the money and use Database using AWS RDS service. DB setup and maintenence will be taken care by AWS people.
+
+##### RDS is full managed by AWS #####
+
+** Using RDS we can Easily set up, operate, and scale a relational database in the cloud ***
+
+######################################
+Steps to create MYSQL DB using AWS RDS
+######################################
+
+1) Login into AWS management console
+
+2) Goto RDS Service
+
+3) Click on 'Create Database'
+
+		Choose a database creation method : Easy Create
+		Engine Option : MySQL
+		Template : Free Tier
+		DB instance Identifier : ihis (Note : you can give anything)
+		Username : admin
+		Password : Choose a passord
+	
+
+4) Click on 'Create Database' (It will take few minutes of time to create)
+
+	Note: Notedown username and password of the database
+
+5) Once Database created, it will provide database Endpoint URL to access
+
+6) Change Database to Public Access
+
+7) Enable All Traffic in Security Group attached to Database.
+
+###################
+MySQL DB Properties
+###################
+
+Endpoint : database-1.cbair9bd9y7d.ap-south-1.rds.amazonaws.com
+Uname : admin
+Pwd : ashokitdevdb
+Port : 3306 (it is default port for mysql db)
+
+
+
+Note: We need to provide DB properties to project development team / testing team
+
+#############################
+Steps to test MYSQL DB Setup
+#############################
+
+1) Download and install Visual Studio using below link
+
+	Link : https://aka.ms/vs/17/release/vc_redist.x64.exe
+
+2) Download and install MySQL Workbench using below link
+
+	Link : https://dev.mysql.com/downloads/workbench/
+
+3) Create Database Connection in MySQL workbench using Database properties
+
+4) Once we are able to connect with Database then we can execute below queries in Workbench
+
+###############
+MySQL Queries
+###############
+
+show databases;
+
+create database sbidb;
+
+use sbidb;
+
+show tables;
+
+create table emp_dtls(emp_id integer(10), emp_name varchar(20), emp_salary integer(10));
+
+insert into emp_dtls values(101, 'Raju', 5000);
+insert into emp_dtls values(102, 'Rani', 6000);
+insert into emp_dtls values(103, 'Ashok', 7000);
+
+select * from emp_dtls;
+
+
+####################################
+Working with MySQL client in Ubuntu
+####################################
+
+$ sudo apt-get update
+
+$ sudo apt-get install mysql-client
+
+$ mysql -h <endpoint> -u <username> -p (click enter and give password)
+
+
+##########################################
+Working with MySQL client in AMAZON Linux
+##########################################
+
+$ sudo yum update
+
+$ sudo yum install mysql
+
+$ mysql -h <endpoint-url> -u <username> -p (click enter and give password)
+
+-h : It represents host (DB edpoint URL)
+
+-u : It represents DB username
+
+-p : It represents DB password
+
+
+Ex:   mysql -h database-1.cbair9bd9y7d.ap-south-1.rds.amazonaws.com -u admin -p
+
+
+=> We can execute below queries to see the data which we have inserted previously using Workbench.
+
+show databases;
+
+use sbidb;
+
+show tables;
+
+select * from emp_dtls;
+
+
+#################################
+Spring Boot App with AWS RDS DB
+#################################
+
+URL : https://youtu.be/GSu1g9jvFhY
+
+
+
+
+
+

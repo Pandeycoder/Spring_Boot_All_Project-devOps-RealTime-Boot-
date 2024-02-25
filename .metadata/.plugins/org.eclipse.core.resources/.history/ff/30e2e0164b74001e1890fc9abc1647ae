@@ -1,8 +1,0 @@
-spring.datasource.urls=jdbc:oracle:thin:@localhost:1521:xe
- spring.datasource.username=pandey
- spring.datasource.password=coder
- spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
- 
- spring.jpa.show-sql=true
- spring.jpa.properties.hibernate.format_sql=true
- spring.jpa.hibernate.ddl-auto=update

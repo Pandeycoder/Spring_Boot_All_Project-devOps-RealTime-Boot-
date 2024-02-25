@@ -1,0 +1,22 @@
+==========================
+Benefit Issuance Module
+==========================
+
+=> This module is responsible to send benefit amount to citizens who got approved for the plan.
+
+=> This module is having batch to generate Benefit Issuance details in a csv file
+
+=> BI batch will execute every month using schedular
+
+=================
+Sample CSV File
+=================
+sno,ssn,dob,benefit-amt,plan-name,accnum
+1,797979,10-Nov-1998,$300.00,SNAP,7979797979
+2,686868,10-Jan-1991,$250.00,CCAP,66969690
+3,687979,1-Jan-1995,$345.00,Medicare,46474646
+
+
+=> BI module will generate CSV file like above and it will send that file to bank application.
+
+=> Bank application will read that CSV file data and it will process that data (sending amount to given account number).

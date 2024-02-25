@@ -1,0 +1,965 @@
+
+==========================
+Application Architecture
+==========================
+
+1) Frontend : User Interface
+
+2) Backend : Business Logic
+
+3) Database : Persistence Store (data)
+
+
+===========================
+Tech Stack Of Application
+===========================
+
+Frontend Technology : Angular 13
+
+Backend Technology : Java 17
+
+Database : MySQL 8.5
+
+WebServer : Tomcat 9.0
+
+==========================
+Application Environments
+==========================
+
+1) DEV
+2) SIT
+3) UAT
+4) PILOT
+5) PROD
+
+
+=> As a devops enginner we are responsible to setup infrastructure to run our application
+
+=> We need to install all required softwares (dependencies) to run our application
+
+Note: We need to setup dependencies in all environments to run our application.
+
+Note: There is a chance to get enviromental issues.
+
+
+=> To simplify application execution in any machine we can use Docker
+
+==================
+What is Docker ?
+==================
+
+=> Docker is a free software
+
+=> Docker is used for containerization
+
+=> With the help of containerization we can run our app in any machine.
+
+	Container = App Code + Required Dependencies
+
+=> Docker will take care of dependencies installation required for app execution.
+
+=> We can application portable using Docker.
+
+=====================
+Docker Architecture
+=====================
+
+1) Dockerfile
+2) Docker Image
+3) Docker Registry
+4) Docker Container
+
+
+=> Dockerfile is used to specify where is app code and what dependencies are required for our application execution.
+
+Note: Dockerfile is required to build docker image.
+
+=> Docker Image is a package which contains code + dependencies
+
+=> Docker Registry is used to store Docker Images.
+
+=> Docker Container is used to run our application. 
+
+Note: When we run docker image then docker container will start. Docker container is a Linux virtual machine.
+
+=============================
+Install Docker in Linux VM
+=============================
+
+Step-1 : Create EC2 VM (amazon linux)
+
+Step-2 : Execute below commands
+
+# Install Docker
+$ sudo yum update -y
+$ sudo yum install docker -y
+$ sudo service docker start
+
+# Add ec2-user user to docker group
+$ sudo usermod -aG docker ec2-user
+
+# Exit from terminal and Connect again (press R)
+$ exit
+
+# Verify Docker installation
+
+$ docker -v
+
+==================
+Docker Commands
+==================
+
+docker images : To display docker images available in our system
+
+docker ps : To display running docker containers in our system
+
+docker ps -a : To display running & stopped container
+
+docker pull <image-id> : To download docker image from docker registry
+
+docker rmi <image-id> : To delete docker image
+
+docker run <image-id> : To create docker container
+
+docker stop <container-id> : To stop running container
+
+docker rm <container-id> : To remove stopped container
+
+######## Running hello-world docker image ########
+
+$ docker run hello-world
+
+########## Running spring boot app docker image ##########
+
+$ docker pull ashokit/spring-boot-rest-api
+
+$ docker run -d -p 9090:9090 ashokit/spring-boot-rest-api
+
+Note: Enable 9090 in security group inbound rules
+
+App URL : http://public-ip:9090/welcome/ashok
+
+############################################################
+
+# Getting container logs
+$ docker logs <container-id>
+
+# Remove stopped containers and un-used images
+$ docker system prune -a
+
+
+===========
+Dockerfile
+===========
+
+=> Dockerfile contains set of instructions to build docker image
+
+=> Dockerfile contains below keywords
+
+		1) FROM
+		2) MAINTAINER
+		3) RUN
+		4) CMD
+		5) COPY
+		6) ADD
+		7) WORKDIR
+		8) EXPOSE
+		9) ENTRYPOINT
+		10) USER
+
+======
+FROM
+======
+
+=> It is used to specify base image for our application
+
+Ex:
+
+FROM openjdk:17
+
+FROM python:3.3
+
+FROM node:16.0
+
+FROM mysql:8.5
+
+============
+MAINTAINER
+============
+
+=> MAINTAINER is used to specify who is author of this Dockerfile
+
+EX:
+
+MAINTAINER  Ashok <ashok.b@oracle.com>
+
+=====
+RUN 
+=====
+
+=> RUN keyword is used to specify instructions to execute at the time of docker image creation.
+
+EX:
+
+RUN 'git clone <repo>'
+RUN 'mvn clean package'
+
+Note: We can write multiple RUN instructions in single docker file and all those instructions will be processed in the order.
+
+=====
+CMD
+=====
+
+=> CMD keyword is used to specify instructions to execute at the time of docker container creation.
+
+EX:
+
+CMD 'java -jar app.jar'
+
+Note: We can write multiple CMD instructions in single docker file but docker will process only last CMD instruction.
+
+
+========
+COPY
+=========
+
+=> It is used to copy files from host machine to container machine
+
+EX:
+
+COPY target/app.jar  /usr/app/app.jar
+
+COPY target/webapp.war /usr/app/tomcat/webapp/
+
+COPY app.py  /usr/app/
+
+
+=============
+ADD Keyword
+=============
+
+=> It is also used to copy files from source to destination.
+
+EX: 
+
+ADD  target/app.jar  /usr/app/app.jar
+
+ADD  <http-url>  /usr/app/app.jar
+
+Note: ADD keyword will support for URL as source.
+
+==========
+WORKDIR
+==========
+
+=> It is used to set working directory (directory navigation)
+
+EX:
+
+WORKDIR /usr/app
+
+Note: Once WORKDIR is executed the remaining dockerfile keywords will execute from workdir path.
+
+======
+USER
+======
+
+=> It is used to set USER to run commands
+
+========
+EXPOSE
+========
+
+=> It is used to specify on which port number our application will run in container
+
+Ex:
+
+EXPOSE 8080
+
+Note: It is only to provide inforation. We can't change container port using EXPOSE.
+
+===========
+ENTRYPOINT
+===========
+
+=> Entrypoint is used to execute instructions when docker contianer is creating.
+
+Note:
+
+Ex: 
+
+ENTRYPOINT["java", "-jar", "app.jar"]
+
+ENTRYPOINT["python", "app.py"]
+
+====================
+sample Dockerfile
+====================
+
+FROM ubuntu
+
+MAINTAINER Ashok <ashokit@gmail.com>
+
+RUN echo 'hello-run-1'
+RUN echo 'hello-run-2'
+
+CMD echo 'Hi-cmd-1'
+CMD echo 'Hi-cmd-2'
+
+===========================
+
+# Create Docker Image
+$ docker build -t <image-name> .
+
+# List Docker Images
+$ docker images
+
+# Run docker image
+$ docker run <image-id>
+
+========================================
+How to push docker image to docker hub
+========================================
+
+$ docker build -t <image-name> .
+
+$ docker tag <img-name> <tag-name>
+
+$ docker images
+
+$ docker login
+
+$ docker push <tag-name>
+
+===================================
+Can we change Dockerfile name ?
+==================================
+
+Yes, we can do that.
+
+Note: We need to pass modified file name as input to build docker image
+
+	$ docker build -t <img-name> -f <file-name> .
+
+
+====================================
+Dockerizing Java Web Application
+====================================
+
+=> Java web app will be packaged as a 'war' file
+
+=> To run war file we need a webserver (Ex: Tomcat)
+
+=> War file we need to deploy in tomcat server 'webapps' folder
+
+
+=============  Dockerfile for Java web app ================
+
+FROM tomcat:8.0.20-jre8
+
+MAINTAINER Ashok <ashok@oracle.com>
+
+EXPOSE 8080
+
+COPY target/maven-web-app.war /usr/local/tomcat/webapps/
+
+==========================================================
+
+Java Web App Git Repo : https://github.com/ashokitschool/maven-web-app.git
+
+$ git clone https://github.com/ashokitschool/maven-web-app.git
+
+$ cd maven-web-app
+
+$ mvn clean package
+
+$ ls -l target
+
+$ docker build -t <img-name> .
+
+$ docker images
+
+$ docker run -d -p <host-port:container-port> <img-name>
+
+=> Enable host port number in security group and access our application
+
+		URL : http://public-ip:host-port/maven-web-app/
+
+
+============================================
+Can we get into docker container machine ?	
+===========================================
+
+Yes, using below commands
+
+$ docker ps
+
+$ docker exec -it <container-id> /bin/bash
+
+$ pwd
+
+$ ls -l webapps
+
+$ exit
+
+
+==========================================
+Dockerizing Java Spring Boot Application
+==========================================
+
+=> Spring Boot is a java based framework to develop applications
+
+=> Spring boot applications will be packaged as a jar file
+
+=> To run spring boot application we need to run Jar file.
+
+		$ java -jar <jar-file-name>
+
+Note: Spring Boot uses Tomcat as embedded server with 8080 as port number.	
+
+
+============== Dockerfile For Spring Boot App ======================
+
+FROM openjdk:17
+
+MAINTAINER Ashok <ashok@oracle.com>
+
+COPY target/sbapp.jar /usr/app/
+
+WORKDIR /usr/app/
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "sbapp.jar"]
+
+======================================================================
+
+Spring Boot App Git Repo : https://github.com/ashokitschool/spring-boot-docker-app.git
+
+$ git clone https://github.com/ashokitschool/spring-boot-docker-app.git
+
+$ cd spring-boot-docker-app
+
+$ mvn clean package
+
+$ ls -l target
+
+$ docker build -t sbapp .
+
+$ docker images
+
+$ docker run -d -p 9090:8080 sbapp
+
+$ docker ps
+
+
+Note: Enable 9090 in security group
+
+=> Access application with URL
+
+			URL : http://public-ip:host-port/
+
+
+=====================================
+Dockerize Python Flask Application
+=====================================
+
+=> Python is a scripting language
+
+=> We don't need any build tool for python app
+
+=> Directley we can run python programs
+
+=> Flask is a python library to develop rest apis in python.
+
+=> To download flask library we will use 'python pip software'
+
+Note: We will configure dependencies in requirements.txt
+
+
+=============== Dockerfile for Python Flask App =================
+
+FROM python:3.6
+
+MAINTAINER Ashok Bollepalli "ashokitschool@gmail.com"
+
+COPY . /app
+
+WORKDIR /app
+
+EXPOSE 5000
+
+RUN pip install -r requirements.txt
+
+ENTRYPOINT ["python", "app.py"]
+
+======================================================================================
+
+Python App Git Repo : https://github.com/ashokitschool/python-flask-docker-app.git
+
+
+$ git clone https://github.com/ashokitschool/python-flask-docker-app.git
+
+$ cd python-flask-docker-app
+
+$ docker build -t <img-name> .
+
+$ docker run -d -p 5000:5000 <img-name>
+
+$ docker ps
+
+
+Note: Enable 5000 in security group
+
+=> Access application with URL
+
+			URL : http://public-ip:host-port/
+
+
+=======================================================================================
+
+Task : Dockerize Angular & React Applications
+
+=======================================================================================
+
+
+1) Application Architecture
+2) Tech Stack of application
+3) Challenges in Application Deployments
+4) App Environments
+5) Containerization
+6) Docker
+7) Docker Architecture
+8) What is Dockerfile
+9) Dockerfile Keywords
+10) How to build Docker images
+11) How to push docker img to docker registry
+12) How to pull docker images
+13) How to run docker images
+14) Port mapping & detached mode
+15) Container Logs
+16) Java web app with Docker
+17) Spring Boot App with Docker
+18) Python App with Docker
+
+================
+Docker Network
+===============
+
+=> Network is all about communication
+
+=> Docker network is used to provide isolated network for containers
+
+=> If we run 2 containers under same network then one contianer can communicate with another container.
+
+=> By default we have 3 networks in Docker
+
+			1) bridge
+			2) host
+			3) none
+
+=> Bridge network is used to run standalone containers. This will assign one IP for container. This is default network driver for our container.
+
+=> Host network is used to run standalone container. This will not assign any ip for our container.
+
+=> None means no network will be available.
+
+=> We can use 2 other networks also in docker
+
+				1) Overlay
+				2) MacvLan
+
+=> Overlay network is used for Orchestration purpose (Docker Swarm)
+
+=> Macvlan network will assign physical Ip for our container.				
+
+
+# Display docker networks
+$ docker network ls
+
+# create docker network
+$ docker network create ashokit-nw
+
+# remove docker network
+$ docker network rm ashokit-nw
+
+# inspect docker network
+$ docker network inspect ashokit-nw
+
+# Create Docker container with custom network
+$ docker run -d --network ashokit-nw -p 9090:8080 sbapp
+
+
+1) Docker Network
+2) Docker Compose
+3) Docker Volumes
+4) Docker Swarm
+
+===============
+Docker Compose
+===============
+
+=> It is used to manage Multi - Container Based applications
+
+=> Now a days projects are developing based on Microservices architecture.
+
+=> Microservices means multiple backend apis will be avialable
+
+Ex:
+
+HOTELS-API
+TRAINS-API
+CABS-API
+FLIGHTS-API
+
+=> For every API we need to create seperate container.
+
+Note: When we have multiple containers like this management will become very difficult (create / stop / start)
+
+=> To overcome these problems we will use Docker Compose.
+
+=> In docker compose, using single command we can create / stop / start multiple containers at a time.
+
+=> For Docker Compose we need to provide containers information in YML file i.e docker-compose.yml
+
+=> docker-compose.yml file contains all containers information.
+
+=> The default file name is docker-compose.yml (we can change it).
+
+===========================docker-compose.yml==========================
+
+version : It represents compose yml version
+
+services: It represents containers info (image-name, port mapping etc..)
+
+networks: Represents docker network to run our containers
+
+volumes : Represents containers storage location
+
+=======================================================================
+
+======================
+Docker Compose Setup
+======================
+
+# Download docker compose
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# Give permission
+$ sudo chmod +x /usr/local/bin/docker-compose
+
+# Check docker compose is installed or not
+$ docker-compose --version
+
+================================================
+Spring Boot with MySQL DB Using Docker Compose
+================================================
+
+version: "3"
+services:
+  application:
+    image: sbapp
+    ports:
+     - 8080:8080
+    networks:
+     - ashokit-sbapp-nw
+    depends_on:
+     - mysqldb
+    volumes:
+     - /data/sb-app
+  mysqldb:
+    image: mysql:5.7
+    networks:
+     - ashokit-sbapp-nw
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=sbms
+    volumes:
+     - /data/mysql
+networks:
+  ashokit-sbapp-nw:
+
+ ================================
+ Application Execution Process
+ ================================
+
+# clone git repo
+$ git clone https://github.com/ashokitschool/spring-boot-mysql-docker-compose.git
+
+# go inside project directory
+$ cd spring-boot-mysql-docker-compose
+
+# build project using maven
+$ mvn clean package
+
+# build docker image
+$ docker build -t spring-boot-mysql-app .
+
+# check docker images
+$ docker images
+
+# create containers using docker-compose 
+$ docker-compose up -d
+
+# check docker containers
+$ docker compose ps
+
+### Access application & insert few records for testing.
+	
+		URL : http://public-ip:8080/
+
+# go inside db container 
+$ docker exec -it <db-container-name> /bin/bash
+
+# connect to mysql-db
+$ mysql -h localhost -u root -proot
+
+# check databases
+$ show databases;
+
+# select database
+$ use sbms;
+
+# show tables
+$ show tables;
+
+# select table data
+$ select * from book;
+
+# comeout from mysql-db & from container
+$ exit
+$ exit
+
+
+
+====================================
+Stateful Vs Stateless Containers
+====================================
+
+Stateless container : Data will be deleted after container got deleted
+
+Stateful Container : Data will be maintained permanently
+
+Note: Docker Containers are stateless container (by default)
+
+Note: In above springboot application we are using mysql db to store the data. When we re-create containers we lost our data (This is not accepted in realtime).
+
+=> Even if we deploy latest code or if we re-create containers we should not loose our data. 
+
+=> To maintain data permenently we need to make our container as Stateful Container.
+
+=> To make container as stateful, we need to use Docker Volumes concept.
+
+
+================
+Docker Volumes
+================
+
+=> Volumes are used to persist the data which is generated by Docker container
+
+=> Volumes are used to avoid data loss
+
+=> Using Volumes we can make container as statefull container
+
+=> We have 3 types of volumes in Docker
+
+			1) Anonymous Volume ( No Name )
+			2) Named Volume 
+			3) Bind Mounts
+
+# Display docker volumes
+$ docker volume ls
+
+# Create Docker Volume
+$ docker volume create <vol-name>
+
+# Inspect Docker Volume
+$ docker volume inspect <vol-name>
+
+# Remove Docker Volume
+$ docker volume rm <vol-name>
+
+# Remove all volumes
+$ docker system prune --volumes
+
+====================================================
+Making Docker Container Statefull using Bind Mount
+====================================================
+
+=> Create a directory on host machine
+
+$ mkdir app
+
+=> Map 'app' directory to container in docker-compose.yml file like below
+
+version: "3"
+services:
+  application:
+    image: spring-boot-mysql-app
+    ports:
+      - "8080:8080"
+    networks:
+      - springboot-db-net
+    depends_on:
+      - mysqldb
+    volumes:
+      - /data/springboot-app
+
+  mysqldb:
+    image: mysql:5.7
+    networks:
+      - springboot-db-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sbms
+    volumes:
+      - ./app:/var/lib/mysql
+networks:
+  springboot-db-net:
+
+=> Start Docker Compose Service 
+
+$ docker-compose up -d
+
+=> Access the application and insert data
+
+=> Delete Docker Compose service using below command
+
+$ docker-compose down
+
+=> Again start Docker Compose service 
+
+$ docker-compose up -d
+
+=> Access application and see data (it should be available)
+
+
+==================
+Docker Swarm
+==================
+
+-> It is a container orchestration platform
+
+-> Orchestration means managing processes
+
+-> Docker Swarm is used to setup Docker Cluster
+
+-> Cluster means group of servers
+
+-> We will setup Master and Worker nodes using Docker Swarm cluster
+
+-> Master Node will schedule the tasks (containers) and manage the nodes and node failures
+
+-> Worker nodes will perform the action (containers will run here) based on master node instructions
+
+-> Docker swarm is embedded in Docker engine ( No need to install Docker Swarm Seperatley )
+
+
+
+==================
+Swarm Features
+==================
+1) Cluster Management
+2) Decentralize design
+3) Declarative service model
+4) Scaling
+5) Load Balancing
+
+============================
+Docker Swarm Cluster Setup
+============================
+
+-> Create 3 EC2 instances (ubuntu) & install docker in all 3 instances using below 2 commands
+
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+
+Note: Enable 2377 port in security group for Swarm Cluster Communications
+
+
+1  - Master Node
+2  - Worker Nodes
+
+
+-> Connect to Master Machine and execute below command
+
+# Initialize docker swarm cluster
+$ sudo docker swarm init --advertise-addr <private-ip-of-master-node>
+
+Ex : $ sudo docker swarm init --advertise-addr 172.31.41.217
+
+# Get Join token from master  (this token is used by workers to join with master)
+$ sudo docker swarm join-token worker
+
+Note: Copy the token and execute in all worker nodes with sudo permission
+
+Ex: sudo docker swarm join --token SWMTKN-1-4pkn4fiwm09haue0v633s6snitq693p1h7d1774c8y0hfl9yz9-8l7vptikm0x29shtkhn0ki8wz 172.31.37.100:2377
+
+-> In Docker swarm we need to deploy our application as a service.
+
+====================
+Docker Swarm Service
+====================
+
+-> Service is collection of one or more containers of same image
+
+-> There are 2 types of services in docker swarm
+
+1) Replica (default mode)
+2) global
+
+
+$ sudo docker service create --name <serviceName> -p <hostPort>:<containerPort> <imageName>
+
+Ex :  $ sudo docker service create --name java-web-app -p 8080:8080 ashokit/javawebapp
+
+Note: By default 1 replica will be created
+
+
+Note: We can access our application using below URL pattern
+
+	URL : http://master-node-public-ip:8080/java-web-app/
+
+
+# check the services created
+$ sudo docker service ls 
+
+# we can scale docker service
+$ docker service scale <serviceName>=<no.of.replicas>
+
+# inspect docker service
+$ sudo docker service inspect --pretty <service-name>
+
+# see service details
+$ sudo docker service ps <service-name>
+
+# Remove one node from swarm cluster
+$ sudo docker swarm leave
+
+# remove docker service 
+$ sudo docker service rm <service-name>
+
+
+
+
+
+*Docker summary*
+
+1) What is Docker
+2) Docker Advantages
+3) Docker Architecture
+4) Dockerfile & keywords
+5) Docker Images
+6) Docker Registry
+7) Docker Containers
+8) Docker Network
+9) Docker Volumes
+10) Docker Compose
+11) Docker Swarm
+12) Java Web App + Docker
+13) Spring Boot + Docker
+14) Python Flask + Docker
+15) Angular + Docker
+16) React JS + Docker
+17) DOT Net + Docker
+18) Spring Boot + MySQL + Docker Compose

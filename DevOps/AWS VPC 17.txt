@@ -1,0 +1,506 @@
+
+################################
+VPC : Virtual Private Cloud
+################################
+
+
+=> VPC stands for Virtual Private Cloud. 
+
+=> It is a virtual network environment provided by cloud computing platforms like Amazon Web Services (AWS), Google Cloud Platform (GCP), and Microsoft Azure. 
+
+=> A VPC allows users to create and manage their own isolated virtual networks within the cloud.
+
+
+=> In a VPC, users can define their own IP address range, subnets, route tables, and network gateways. It provides control over network configuration, such as setting up access control policies, firewall rules, and network traffic routing.
+
+
+=> Overall, a VPC provides a flexible and secure network environment that enables users to build and manage their cloud-based applications and infrastructure with greater control and customization.
+
+
+
+###################
+VPC Terminology
+##################
+
+1) VPC 
+2) CIDR Blocks
+3) Subnets (public and private)
+4) Route Tables
+5) Internet Gateway
+6) NAT Gateway
+7) VPC Peering
+8) Security Groups
+9) NACL
+
+
+###################
+Types of IP's
+###################
+
+=> There are several types of IP (Internet Protocol) addresses used in computer networks. Here are the most common types:
+
+1) IPV4
+2) IPV6
+3) Public IP
+4) Priate IP
+5) Dynamic IP
+6) Static IP Address
+
+Note: Earlier we have only IPV4 
+
+-> IP ranges we will do with CIDR
+
+-> CIDR stands for Class less inter domain range
+
+Note: These CIDR classes are required for only public ips and not required for private ips
+
+-> Daily billions of new devices launching and they are using internet 
+
+-> If a device wants to use internet then ip is mandatory (we are running out of ips)
+
+-> To overcome this 1PV4 problem IPV6 came into picture
+
+
+=========
+IPV4
+=========
+
+=> IPv4 addresses are 32-bit numeric addresses written in four sets of numbers separated by periods (e.g : 192.168.0.1)
+
+=> It is the most widely used IP version and supports approximately 4.3 billion unique addresses
+
+=> However, due to the increasing number of devices connected to the internet, IPv4 addresses are running out, leading to the adoption of IPv6.
+
+===========
+IPV6
+===========
+
+=> IPv6 addresses are 128-bit alphanumeric addresses written in eight sets of four hexadecimal digits separated by colons (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334)
+
+=> IPv6 provides a significantly larger address space than IPv4, with approximately 340 undecillion unique addresses.
+
+=> It was introduced to overcome the IPv4 address exhaustion issue and support the growing number of internet-connected devices.
+
+==========
+PUblic Ip
+===========
+
+A public IP address is a unique address assigned to a device connected to the internet. It allows the device to communicate with other devices and services on the internet. Public IP addresses are routable across the internet and are typically assigned by Internet Service Providers (ISPs) or cloud providers
+
+===========
+Private IP
+===========
+
+A private IP address is an address used within a private network, such as a home or office network. These addresses are not routable on the internet and are reserved for local use. Private IP addresses provide internal communication within a network, and devices with private IP addresses can access the internet through a network address translation (NAT) mechanism.
+
+============
+Dynamic IP
+===========
+
+Dynamic IP Address: A dynamic IP address is an IP address that is assigned to a device temporarily by a DHCP (Dynamic Host Configuration Protocol) server. The assignment of dynamic IP addresses is typically managed by ISPs, and the addresses can change over time when the device reconnects to the network. This type of address is commonly used in home internet connections.
+
+===========
+Static IP
+===========
+
+Static IP Address: A static IP address is an IP address that is manually assigned to a device and remains fixed, unlike dynamic IP addresses. Static IP addresses are often used for servers, network devices, or services that require a consistent address for easy access. They are usually configured manually on the device or assigned by the network administrator.
+
+==================
+VPC Sizing
+==================
+
+-> Sizing will be calculated in 2 power
+
+-> If we give range as /16
+
+10.0.0.1/16 = > 2 power (32-16) => 2 Power 16 => 65,536
+10.0.0.1/32 = > 2 power (32-32) => 2 Power 0  => 1
+10.0.0.1/31 = > 2 power (32-31) => 2 Power 1  => 2
+10.0.0.1/30 = > 2 power (32-30) => 2 Power 2  => 4
+10.0.0.1/29 = > 2 power (32-29) => 2 Power 3  => 8
+10.0.0.1/28 = > 2 power (32-28) => 2 Power 4  => 16 (AWS supports from /28)
+
+=> /29  to /32 AWS won't support
+
+-> We can start giving subnet ranges from /16 to /28
+
+-> Recommended to use /24 
+
+	10.0.0.1/24 = > 2 power (32-24) => 2 Power 8 => 256
+
+Note: /24 we will get 256 IPs those are sufficient for our usecases in realtime
+
+
+##########################
+VPC Lab Task For Today
+##########################
+
+1) Create VPC  
+
+  (It will create one Route Table by default name it as ashokit-private-rt)
+
+		CIDR : 10.0.0.0/16
+
+2) Create 2 Subnets  (Public and Private Subnets)
+
+	public Subnet CIDR : 10.0.0.0/24 
+
+	private Subnet CIDR : 10.0.1.0/24
+
+3) Create Internet Gateway and Attach to our VPC
+
+4) Create one new Route Table (Name it as public Route Table)
+
+5) Peform Subnet Association with Route Tables 
+
+		=> public-rt => public-sn 
+
+		=> private-rt => private-sn
+
+6) Attach IGW to Public Route Table so that associated subnet will become public
+
+7) Create One EC2 VM in public subnet and another EC2 vm in private subnet.
+
+8) Test connectivity of both vms using MobaXterm.
+
+Note: We should be able to connect with EC2 vm created in public sn and we shouldn't be able to connect with EC2 vm created in private subnet.
+
+
+
+=====================
+Step-1 : Create VPC
+=====================
+
+-> Create a VPC
+
+-> CIDR Block : 10.0.0.0/16
+
+-> Select No IPV6 CIDR blok
+
+-> Select Default Tenancy
+
+-> Create VPC
+
+Note: After creating VPC verify its details
+
+(DNS hostnames -> Disabled)
+
+
+Note: One Route Table will be created for VPC by default. Rename it as "Ashokit-Private-Route-Table"
+
+===========================
+Step-2 : Create 2 Subnets
+===========================
+
+-----------------------
+Create Subnet-1
+----------------------
+-> Create Subnet
+
+   Name : public-subnet-az-1
+
+-> select availability zone as 1a
+
+-> CIDR Block : 10.0.0.0/24  (It will take 256 ips)   
+
+------------------------
+Create Subnet-2
+-------------------------
+-> Create Subnet
+
+   Name : private-subnet-az-1b
+
+-> select availability zone as 1b
+
+-> CIDR Block : 10.0.1.0/24  (It will take 256 ips)  
+
+
+Note: Every subnet will have Route Table and NACL
+
+-> AWS will reserve 5 ips in every subnet (we will get only 251)
+
+=================================
+Stpe-3 : Create Internet gateway
+=================================
+Note: By default one IGW will be available and it will be attached to default VPC
+
+-> Create custom Internet Gateway (ashokit-vpc-igw)
+
+-> Attach this IGW to VPC (we can attach IGW to only one VPC)
+
+=================================
+Step-4 : Create Route Table
+=================================
+
+Note: When we create VPC, we will get only route table by default. It is called as Main route table. 
+
+Note : Change existing route table name  'ashokit-vpc-private-rt'
+
+-> Create one new Route Table (ashokit-vpc-public-rt)
+-> Choose vpc and create it
+
+Now We have 2 route tables
+
+-> Goto route table and attach route tables to subnets  (Subnets association for Route Tables)
+
+Private Route Table should have Private Subnet
+Public Route Table should have Public Subnet
+
+
+==========================================
+Step-5 : Making Subnet as public
+==========================================
+
+-> Goto public Route Table -> Edit Routes
+
+-> Add Destination as 0.0.0.0/0 and Target as IGW -> Save
+
+-> Subnet Associations -> Edit SNET -> Select Public Subnet
+
+======================================
+Step - 6 : Create EC2 (Public EC2)
+======================================
+-> Choose AMI
+-> Select VPC
+-> Select Public Subnet
+-> Assign Public IP as Enable
+-> Add SSH and Http Protocols
+-> Download KeyPair
+-> Launch Instance
+
+Note: Goto VPC and Enable DNS Host Enable
+
+========================================
+Step - 7 : Create EC2 (Private EC2)
+========================================
+-> Choose AMI
+-> Select VPC
+-> Select Private Subnet
+-> Assign Public IP as Enable
+-> Add SSH (source : custom, Range : 10.0.0.0/16)
+-> Download KeyPair
+-> Launch Instance
+
+=================================
+Step - 8 : Test EC2 Connections
+=================================
+
+-> Connect to Public EC2 using MobaXterm (It should allow to connect)
+
+-> Connect to Private EC2 using MobaXterm (It shouldn't allow to connect)
+
+
+=================================================================================
+Step - 9 : Connect with 'private-ec2' from 'public-ec2' using 'ssh' connection
+=================================================================================
+
+Note: As both Ec2 instances are available under same VPC, we should be able to access one machine from another machine.
+
+----------------------
+Procedure to access
+----------------------
+
+-> Upload pem file into public-ec2 machine (in mobaxterm we have upload option)
+
+-> Execute  below command to provide permission to access pem file
+
+		$ chmod 400 <pem-file-name>
+
+-> Execute below command to make ssh connection from public-ec2 to private-ec2
+
+		$ ssh -i "pem-file-name"  ec2-user@private-ec2-vm-private-ip
+
+	Ex: ssh -i "ashokitnewkey.pem" ec2-user@65.2.73.111
+
+Note: It should establish connection (this is internal connection)			
+
+-> Try to ping google from private ec2 (it should not allow because igw is not available)
+
+
+=============================
+VPC with NAT Gateway Lab Task
+=============================
+
+1) Create NAT gateway in public subnet 
+
+2) Add NAT gateway in 'private-subnet-routute-table'
+
+3) After NAT Gateway, we should be able to ping google from 'private-ec2' also
+
+Note: Delete Elastic IP and NAT Gateway after practise
+
+
+#######################
+What is VPC Peering
+#######################
+
+VPC Peering: IPV4 or IPV6 traffic routes between VPCs created to establish communication between one or more multiple VPCs.
+
+=======================
+AWS definition: 
+=======================
+
+=> “A VPC peering connection is a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses.
+
+=>  Instances in either VPC can communicate with each other as if they are within the same network. “
+
+1) Through VPC Peering, traffic stays within the AWS network and not go over the internet.
+
+2) Non-overlapping CIDRs – The 2 VPCs you are trying to peer, must have a mutually exclusive set of IP ranges.
+
+3) Transitive VPC Peering – not allowed i.e
+
+(If VPC A & B have peered and VPC A & C have peered, VPC B & C cannot share contents until there is an exclusive peering done between VPC B & C)
+
+===========================
+Will VPC Peering Cost me?
+===========================
+
+No. VPC itself won’t cost you, however, the resources deployed inside the VPC and data transfers are done will cost you.
+
+==================================================
+Let’s create VPC Peering to enable communication
+==================================================
+
+To establish the connection, lets create VPC peering
+
+=> On the left navigation panel under VPC -> Peering Connections:
+
+VPC (Requester) = ashokit_aws_custom_vpc
+
+VPC (Accepter) = default_vpc
+
+=> Now you would see the status Pending Acceptance which means, Requestor has sent a request to the peer now target VPC needs to accept the request.
+
+=> Go to VPC Peering -> Click on Actions -> Accept Request
+
+=> Now we need to make entries in Route Tables
+
+Now navigate to Route Tables, in Default VPC RT(Route Table) -> Edit routes
+
+##########  Default VPC Route Table should have 3 routes #########
+
+(Local + all traffic with IGW + ashokit_aws_custom_vpc IP Range)
+
+172.31.0.0/16 - local
+0.0.0.0/0 - Internet-gateway
+10.0.0.0/16 - vpc peering  (We need to add this)
+
+########### Custom VPC Route Table should have 3 routes #########
+
+(Local + All traffic with IGW + Default VPC IP Range)
+
+10.0.0.0/16 - local
+0.0.0.0/0 - Internet-gateway
+172.31.0.0/16 - vpc  (We need to add this)
+
+########### Allow Traffic in VPC Security Groups ###########
+
+Edit Security Group of Default and Custom VPC to allow traffic from each other
+
+Default VPC Security Group looks like
+SSH - 22 - all 
+All Traffic 
+
+
+Custom VPC Security Group would look like
+SSH - 22 - all 
+All Traffic 
+
+
+
+==========================Test VPC Peering Connectivity ==========================
+
+# Ping default-vpc EC2-VM private IP from ashokit-custom-vpc vm
+$ ping <private-ip>
+
+
+# Ping ashokit-vpc EC2-VM private IP from default-vpc vm
+$ ping <private-ip>
+
+
+===============================================================
+Q ) What is the difference between NACL and Security Groups ?
+===============================================================
+
+================
+Security Group
+================
+
+-> Security Group acts as a Firewall to secure our resources
+
+-> Security Group contains Inbound Rules & Outbound Rules
+
+			inbound rules ---> incoming traffic
+			outbound rules ---> outgoing traffic
+	
+-> In One security group we can add 50 Rules
+
+-> Security Group supports only Allow rules (by default all rules are denied)
+
+-> We can't configure deny rule in security group
+
+	Ex : 172.32.31.90 ----> don't accept request from this IP (we can't do this in SG)
+
+-> Security Groups are applicable at the resource level (manually we have to attach SG to resource)
+
+-> Multiple Security Groups can be attached to single instance & one instance can have 5 security groups
+
+-> Security Groups are statefull 
+(Any changes applied to incoming rules then those changes will be applicable for Outgoing Rules also)
+
+-> In Security Group we can configure Rule destination as CIDR and IP
+
+->  Security Group acts as First Level of defense for Outgoing traffic
+
+======
+NACL
+======
+
+-> NACL stands for Network Access Control List
+
+-> NACL acts as a firewall for our Subnets in VPC
+
+-> NACL applicable at the subnet level
+
+-> NACL rules are applicable for all the resources which are part of that Subnet
+
+-> NACL rules are stateless 
+(Any changes applied to incoming rules will not be applicable for outgoing rules, we need to do that manually)
+
+-> In NACL we can configure both Allow & Deny rules
+
+	Ex: We can block particual IP address (192.168.2.4) to connect with EC2 instance
+
+-> One subnet can have only one NACL
+
+	Note: One NACL can be added to multiple subnets
+
+-> NACL supports rule destination as only CIDR
+
+-> NACL acts as first level of Defense for Incoming Traffic 
+
+( Security Group acts as First Level of defense for Outgoing traffic )
+
+===========================================================================
+
+
+
+
+
+
+		   
+
+
+
+
+
+
+
+
+
+
+
+
+
+

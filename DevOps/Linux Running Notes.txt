@@ -1,0 +1,1347 @@
+======================================
+Module-2 : Linux OS + Shell Scripting
+======================================
+
+=> Operating System is a platform which is used to communicate with computers
+
+=> Operating System acts as mediator between users and computers
+
+=> Operating System is mandatory to use a computer
+
+=> There is no use of computer which doesn't have Operating System
+
+=> Using Operating System we can run applications in Computer
+
+	Ex: Notepad, Calc, Paint, Browser, VLC Player
+
+=> There are several Operating Systems available in the market
+
+		1) Windows OS
+
+		2) Linux OS
+
+		3) Mac OS
+
+============
+Windows OS
+============
+
+-> Developed by Microsoft Company
+
+-> It is GUI Based (Graphical User interface)
+
+-> Easy to use
+
+-> Highly recommended for personal use
+
+   Ex: Watching Movies, Playing Games, Browsing, Storing personal data ....
+
+-> Security features are very less (we need to install Anti Virus softwares)
+
+-> Windows is Licensed Operating System.
+
+-> Windows is single user based OS
+
+==========
+Linux OS
+==========
+
+-> It is free and open source operating system
+
+-> Multi User Based Operating System (multiple users can access at a time)
+
+-> Anti Virus S/w not required for Linux Machines
+
+-> Highly recommended for Server Environments
+
+	Ex: Database, Jenkins, SonarQube, Nexus, Docker, k8s.....
+
+-> Linux is CLI based (Command Line Interface)
+
+=================
+History of Linux
+=================
+
+-> Developed by Linus Torvalds
+
+-> Earlier "Linus Torvalds" used Unix OS and he faced some challenges with Unix OS and he reported to company to change Unix OS but Company rejected his suggetions.
+
+-> Linus Torvalds started developing his own operating by using "Minux OS"
+
+	(Li) nus + Mi (nux) ===> Linux
+
+-> After developing Linux OS "Linux Torvalds" released Linux OS into market for free of cost along with source code.
+
+-> Several Companies downloaded Linux OS source code and modified according to their requirement and released into market with their own brand names. Those are called as Linux Distributions / Flavours .
+
+			1) Amazon Linux
+			2) Ubuntu Linux
+			3) CentOS Linux	
+			4) Debian Linux
+			5) Fedora Linux
+			6) SUSE Linux
+			7) Kali Linux
+			8) RED HAT Linux etc..
+
+
+1) What is Operating System
+
+2) What is Windows OS
+
+3) Linux OS
+
+4) Linux History
+
+5) Linux Distributions
+
+==================================
+Environment Setup to Learn Linux
+=================================
+
+1) Create Account in AWS Cloud & Login into that
+
+2) Create Linux Virtual Machine using EC2 service
+
+3) Connect with Linux VM using MobaXterm software (Windows Users)
+
+4) Practice Linux Commands
+
+===============
+Linux Commands
+===============
+
+whoami : Displays logged in username
+
+date : displays current date
+
+cal : displays calendar
+
+clear : Clear screen
+
+pwd : Display present working directory
+
+cd : change directory
+
+mkdir : To create directory (folder)
+
+rmdir : To remove empty directory
+
+Note: To remove non-empty directory we will use below command
+
+	rm -r <dirname>
+
+ls : List files & directories available in present working directory
+
+	ls -l  : Long listing of the files & directories in alphabetical order
+
+	ls -lr : Long listing of the files & directories in reverse of alphabetical order
+
+	ls -lt : Display latest files on top
+	
+	ls -ltr : Display old files on top
+
+	ls -la : To display hidden files
+
+	ls -li : To display files with inode numbers
+
+mv : To rename/move files & directories
+
+touch : To create empty files
+
+rm : Remove file
+
+cat : To create files with data, append data to file and display file content
+
+	cat > f1.txt : Create new file with data
+
+	cat f1.txt : Print file content from top to bottom
+
+	cat -n f1.txt : Print file content with line numbers
+
+	cat >> f1.txt : Append data to existing file
+
+
+tac : To print file content from bottom to top
+
+	tac f1.txt
+
+cp : Top copy data from one file to another file
+
+	cp f1.txt f2.txt
+
+
+Note: How to copy more than one file data to another file
+
+	cat m1.txt m2.txt > m3.txt : Copy two files data to 3rd file
+
+
+wc : word count (it will display no.oflines, no.of words and no.of characters in given file)
+
+	wc m3.txt
+
+
+head : Display first 10 lines of the file
+
+ 	head devops.txt (print first 10 lines)
+
+	head -n 15 devops.txt (print first 15 lines)
+
+	head -n 30 devops.tx (print first 30 lines)
+	
+
+tail : Display last 10 lines of the file
+
+	tail devops.txt (print last 10 lines)
+
+	tail -n 15 devops.txt (print last 15 lines)
+
+	tail -n 30 devops.tx (print last 30 lines)
+
+	tail -n +5 devops.txt (print from 5th line to last line)
+
+
+
+=======================
+Text Editors in Linux
+=======================
+
+vi : visual editor
+
+=> Using vi we can edit files in linux
+
+	$ vi linux.txt
+
+Insert mode : To insert/modify data we should go to insert mode (press i)
+
+Esc Mode : After modifications completed we should press Esc key
+
+Save and Close : Press :wq to save the changes and close the file.
+
+Close without Saving : press :q! for closing file without saving the changes
+
+============
+SED command
+===========
+
+=> SED stands for Stream Editor
+
+=> SED command is used for replacement or substitution 
+
+=> We can replace one word with another word using SED command without opening file
+	
+	$ sed 's/linux/unix/' linux.txt
+
+Note: by default sed command will give output to terminal but it won't make changes to original file. To make changes to original file we need to use -i in sed command
+
+	$ sed -i 's/linux/unix/' linux.txt
+
+
+	# delete last line of the file
+	$ sed -i '$d' linux.txt	
+
+	# Delete second line of the file
+	$ sed -i '2d' linux.txt
+
+	# Delete from second line to till last line
+	$ sed -i '2, $d' linux.txt
+
+=============
+grep command
+=============
+
+=> Grep stands for global regular expression print
+
+=> It is used for file content search based on given pattern
+
+
+# Pattern Matching print
+$ grep "keyword" filename
+
+# Pattern Matching by ignoring case sensitive
+$ grep -i 'devops' mydata.txt
+
+# Print matching pattern lines along with line numbers
+$ grep -n 'DEVOPS' mydata.txt
+
+# invert match (print lines which doesn't have given pattern)
+$ grep -v 'DEVOPS' mydata.txt
+
+
+================================
+Working with Zip files in Linux
+================================
+
+Syntax to create To zip file : $ zip <zip-file-name> <files-to-add>
+
+# Create zip file (all .txt files will be added to notes.zip file)
+$ zip notes *.txt
+
+# Print content of zip file
+$ zip -sf notes.zip
+
+# Add new file to existing zip
+$ zip notes f1.txt
+
+# Delete file from zip
+$ zip -d notes f1.txt
+
+# Unzip the files from zip file
+$ unzip <zip-file-name>
+
+# Create zip file with encryption (set password)
+$ zip -e <filename> <files-to-add>
+
+
+###### Note: man command is used to get documentation about linux commands #####
+
+$ man vi
+
+$ man ls
+
+$ man zip
+
+
+##########################
+02 - Aug - 2023 (Wednesday)
+###########################
+
+===========================
+locate and find commands
+==========================
+
+=> locate and find commands are used for file search
+
+=> locate command will search for the files in locate database.
+
+	$ sudo yum install locate
+
+	$ locate 'apache'
+
+
+=> find command is used for more advanced search in linux os
+	
+
+# search for the file under home directory
+$ sudo find /home -name f1.txt
+
+# find empty files under home directory
+$ sudo find /home -type f -empty
+
+# find empty directories under home directory
+$ sudo find /home -type d -empty
+
+
+========================
+Users & Groups in Linux
+========================
+
+=> Linux is Multi User Based OS
+
+=> We can create Multiple User accounts in Linux Machine
+
+=> In Every Linux Machine by default one 'root' user account will be available
+
+		root user => super user / Administrator
+
+Note: Root user will have all priviliges to perform any operation.
+
+=> When we launch EC2 instance using "Amazon Linux AMI" we will get 'ec2-user' by default.
+
+Note: For every user one home directory will be created in Linux machine under 'home' directory
+
+	ec2-user => /home/ec2-user
+
+	ashok => /home/ashok
+
+	raju => /home/raju
+
+	rani => /home/rani
+
+
+=> To get user account information we can use 'id' command in linux machine
+
+	$ id <uname>
+
+# switch to root user account
+$ sudo su -
+
+# logout from root user account
+$ exit
+
+
+====================================
+Working with User Accounts in Linux
+===================================
+
+# swith to root user 
+$ sudo su -
+
+# Create New User Account
+$ useradd <uname>
+
+# Set Password for user account
+$ passwd <uname>
+
+# Display users we have created
+$ cat /etc/passwd
+
+# Delete User (it won't delete user home directory)
+$ userdel <uname>
+
+# Delete user along with user home directory
+$ userdel <uname> --remove
+
+# switch to user account
+$ su <uname>
+
+=====================================
+Working with User Groups in Linux
+=====================================
+
+# Display all user-groups available in Linux
+
+$ cat /etc/group
+
+Note: When we create user in linux machine, it will create user account + user-group
+
+# Create New User-Group
+$ groupadd <group-name>
+
+# Add user to user-group
+$ usermod -aG <group-name> <user-name>
+
+# Remove user from user-group
+$ gpasswd -d <user-name> <group-name>
+
+# Display users belongs to user-group
+$ sudo lid -g <group-name>
+
+# Rename user-group
+$ groupmod -g <new-name> <existing-name>
+
+# Rename user
+$ usermod -l <new-name> <existing-name>
+
+# Delete User Group
+$ groupdel <group-name>
+
+
+
+################
+03-Aug-2023(Thu)
+################
+
+
+
+==========================
+File Permissions In Linux
+==========================
+
+=> In Linux VM everything is treated as file (Ex: normal files, directory files)
+
+=> We can secure our files using File Permissions
+
+=> We have 3 types of file permissions
+
+	1) READ (r)
+
+	2) WRITE (w)
+
+	3) EXECUTE (x)
+
+
+=> File Permissions are divided into 3 sections
+
+	1) User Permissions (rwx)
+	2) OWNER Group Permissions(rwx)
+	3) OTHERS Permissions (rwx)
+
+	Ex:  rwxrwxrwx
+
+
+=> To change file permissions in linux we can use 'chmod' command
+
+
+Note: "+" is used to add permission and  " - " is used to remove permission
+
+
+# Adding write permission for user on f1.txt file
+$ chmod u+w f1.txt
+
+# Adding execute permission for group
+$ chmod g+x f1.txt
+
+# Remove write permission for group
+$ chmod g-w f1.txt
+
+# Add write and execute permission for others
+$ chmod o+wx f1.txt
+
+# Remove all permissions for others
+$ chmod o-rwx f1.txt
+
+===================================
+File Permissions in Numeric Format
+===================================
+
+0 : No Permission
+
+1 : Execute
+
+2 : Write
+
+3 : Write + Execute => 2 + 1
+
+4 : Read
+
+5 : Read + Execute => 4 + 1
+
+6 : Read + Write => 4 + 2
+
+7 : Read + Write + Execute => 4 + 2 + 1
+
+
+$ chmod 777 f1.xt
+$ chmod 445 f1.txt
+$ chmod 655 f1.txt
+$ chmod 444 f1.txt
+
+Q-1) What are default file permissions in Linux in numeric format ?
+
+Q-2) What are default directory permissions in Linux in numeric format ?
+
+
+
+============================
+Working with chown command
+===========================
+
+=> chown command is used to change file owner and file group
+
+# making ashok as owner for f1.txt file
+$ sudo chown ashok f1.txt
+
+# making dbteam as owner group for f1.txt file
+$ sudo chown :dbteam f1.txt
+
+# Changing owner and group at a time
+$ sudo chown ashok:ashok f1.txt
+
+Note: We can use userid and group id also in chown command instead of names.
+
+
+
+#################
+04-Aug-2023
+###############
+
+===========================
+Hard Links and Soft Links
+===========================
+
+=> In Linux we can create Link files (similar to shortcuts in windows)
+
+=> We have 2 types of links in Linux
+
+	1) Hard Link
+
+	2) Soft Link
+
+---------------------------
+Syntax To create Hard Link
+--------------------------
+
+$ ln <orginal-file> <link-file>
+
+$ touch m1.txt
+
+$ ln m1.txt m10.txt
+
+$ cat > m1.txt
+
+$ cat m10.txt
+
+$ ls -li
+
+Note-1: original file and link file will have same inode number
+
+Note-2: When we write data to original file then it will reflect in link file also.
+
+Note-3: When we delete original file link file is not effected (hard link)
+
+---------------------------
+Syntax To create soft Link
+---------------------------
+
+$ ln -s <original-file> <link-file>
+
+$ touch f1.txt
+
+$ ln -s f1.txt f10.txt
+
+$ ls -li
+
+$ cat > f1.txt
+
+$ cat > f10.txt
+
+$ rm f1.txt
+
+$ ls -li
+
+Note: When we remove original file then soft link file will become dangling. We can't access it.
+
+=============================
+Process Management in Linux
+============================
+
+=> Process represents running application
+
+=> In Windows machine we can see running processes using "Task Manager"
+
+=> In Linux machine we can see running process using ps command
+
+$ ps
+
+$ top
+
+=> To kill process in linux machine we will use kill command
+
+	$ kill -9 <process-id>
+
+=====================
+Networking Commands
+=====================
+
+# To get ip address of machine
+$ ifconfig
+
+# To check connectivity
+$ ping <ip>
+$ ping www.google.com
+$ ping www.facebook.com
+
+# To download files using url
+$ wget <url>
+$ wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.zip
+
+# To send HTTP Request to URL
+$ curl <url>
+
+
+========================
+Utility Commands
+========================
+
+# Display memory details
+$ free
+
+# Install htop command
+$ sudo yum insall htop
+
+# memory details with dynamic view
+$ htop
+
+# Display OS information
+$ cat /etc/os-release
+
+# Display Kernel Version
+$ uname -r
+
+# Check all Users Login history In Linux
+$ lastlog
+
+# Check Specific User login history
+$ last <uname>
+
+# Get last 3 login details
+$ last -3
+
+
+===========================
+Package Managers in Linux
+===========================
+
+=> Package Managers are used to install softwares in Linux Machines
+
+=> We have several package managers in linux
+
+1) yum (Yellow Dog updater & modified)
+
+	Ex: Amazon Linux, RED HAT Linux, CentOS
+
+2) apt  (Advanced Packaged Tool)
+
+	Ex: Ubuntu
+
+3) dnf  (Dandified YUM package) 
+	
+	Ex: It is replacing yum in latest versions of centos
+
+
+# Install Java in Amazon Linux
+$ sudo yum install java
+
+# Check Java version
+$ java -version
+
+# Install Maven in Amazon Linux
+$ sudo yum install maven
+
+# Check Maven version
+$ mvn -v
+
+# Install git client in Amazon Linux
+$ sudo yum install git
+
+# Check Git version
+$ git -v
+
+# check path of packages we installed
+$ whereis java
+$ whereis mvn
+$ whereis git
+
+
+=========================
+What is a Sudoers File?
+========================
+
+=> A Sudoers file is just like any other file on a Linux Operating System. 
+
+=> It plays a vital role in managing what a “User” or “Users in a Group” can do on the system.
+
+======================
+Why the name Sudoers?
+======================
+
+=> The word Sudo is the abbreviation of the term “Super User Do”. 
+
+=> The users with Sudo permission are called as Sudo Users. 
+
+=> Management of all these sudo users is done through a file called as Sudoers File. 
+
+=> This file also lives in the /etc directory just like any other configuration file.
+
+$ sudo cat /etc/sudoers
+
+##### User Privilege Specification #####
+
+root ALL = (ALL:ALL) ALL
+
+Note: ‘#’ indicates comment in the file, OS will ignore this line while executing.
+
+Syntax : User <space> OnHost = (Runas-User:Group) <space> Commands
+
+Example: root ALL = (ALL:ALL) ALL
+
+Read it as — User Root can Run Any Command as Any User from Any Group on Any Host.
+
+
+→ The first ALL is used to define HOSTS. We can define Hostname/Ip-Address instead of ALL. ALL means any host.
+
+→ Second ALL : Third ALL is User:Group. Instead of ALL we can define User or User with the group like User:Group. ALL:ALL means All users and All groups.
+
+→ Last ALL is the Command. Instead of ALL, we can define a command or set of commands. ALL means all commands.
+
+#### To put it very simple, it is “who where = (as_whom) what”. ####
+
+
+=> Tnother example to clearly understand the fields in the syntax:
+
+Example : ashok ALL = (root) /usr/bin/cat /etc/shadow
+
+Read this as — User “ashok” can Run the command “/usr/bin/cat /etc/shadow” as ROOT user on all the HOSTS.
+
+
+## Edit sudoers file
+$ sudo visudo
+
+## close sudeors file
+$ ctrl + x
+
+=================================
+What is .bashrc file in linux ?
+=================================
+
+=> It is used to configure environment variables in Linux Machines
+
+	Ex: Java Path, Maven Path etc....
+
+=> For every user account one .bashrc file will be available under user home directory
+
+=> .bashrc file is hidden file. To see this we need to execute 'ls -la'	
+
+
+=========================
+What is .ssh in linux ?
+==========================
+
+=> This is hidden directory which contains authorized_keys (pem file public key)
+
+=> We can get our authorized_key using below command
+
+$ cat .ssh/authorized_keys
+
+
+1) What is Operating System
+2) Windows OS
+3) Linux OS
+4) Linux Distributions (200+)
+5) Linux Virtual Machine Setup in AWS
+6) Connect with Linux VM using MobaXterm
+7) Connect with Linux VM using Putty
+8) Linux commands
+9) Working with Directories
+10) Working with Files
+11) Text Editors (vi & sed)
+12) Pattern Matching (grep)
+13) head & tail
+15) User Management 
+16) Group Management
+17) File Permissions (chmod)
+18) Ownership (chown)
+19) find and locate 
+20) Working with zip files
+21) Network commands
+22) Package Managers
+23) Sudoers file
+24) .bashrc file
+25) .ssh Authorized keys
+
+
+====================
+Linux Architecture
+====================
+
+1) Applications / Commands
+
+2) Shell : It is mediator between application/users and kernel. It will verify command syntax.
+
+3) Kernel : It is mediator between Shell and Linux Hardware components
+
+4) Hardware
+
+=================
+Shell Scripting
+=================
+
+=> Scripting means writing set of commands in a file and executing them.
+
+=> Scripting is used to automate our daily routine tasks in the project.
+
+    Ex: delete temp files, take files backup, archive log files, monitor servers etc..
+
+=> Shell script file will have .sh extension
+
+=> We can execute shell script file like below
+
+	$ sh <file-name>
+
+=========
+Script-1
+========
+
+whoami
+pwd
+date
+ls -l
+touch f2.txt
+ls -l
+
+=========
+Script-2
+========
+
+echo "Welcome to Ashok IT";
+
+echo "DevOps Course is Running"
+
+=========
+Script-3
+========
+
+echo "Enter Your Name";
+
+read name
+
+echo "Good Evening $name"
+
+=========
+Script-4
+========
+
+echo "Enter first number"
+
+read a
+
+echo "Enter second number"
+
+read b
+
+let sum=$(($a+$b))
+
+echo "Sum is $sum"
+
+
+========
+
+1) Variables  : To store the data
+
+2) Command Line Arguments : To supply input for script file
+
+3) Control Statements : To control execution of script file
+
+	3.1) if - elif
+	3.2) for loop
+	3.3) while loop
+
+4) functions : To divide large task into smaller tasks
+
+
+===========
+Variables
+===========
+
+=> Variables are used to store the data
+
+=> Variables are key-value pairs
+
+	a=10
+	b=20
+	name=ashok
+
+=> Variables are divided into 2 types
+
+	1) Environment Variables / System Variables
+
+		$ echo $USER
+		$ echo $SHELL
+
+	2) User Defined Variables
+
+		a=10
+		b=20
+		name=ashok
+
+
+===================
+Variable Rules
+===================
+
+1) We should not use special symbools like -, @, # etc in variable name
+
+2) Variable name shouldn't start with digit
+
+Note: It is recommended to take variable name as UPPERCASE character in scripting.
+
+
+=======================
+Command Line Arguments
+=======================
+
+=> The arguments which we will pass to script file at the time of execution
+
+ex:
+	$ sh script5.sh ashok it
+
+=> We can access command line arguments in script file like below
+
+$#  => No.of Args supplied
+
+$0  => Script file name
+
+$1  => First Cmd Argument
+
+$2  => Second CMD Argument
+
+$3  => Third cmd argument
+
+$*  => All Cmd arguments
+
+============
+Script-6
+============
+
+echo "No.of Args Supplied : $#"
+
+echo "First Arg : $1"
+
+echo "Second Arg: $2"
+
+echo "All Args : $*"
+
+##### Execution :: $ sh script6.sh ashok it
+
+==========
+Script-7
+=========
+
+echo "First Arg : $1"
+
+echo "Second Arg: $2"
+
+let result=$(($1*$2))
+
+echo "Multiply Result : $result"
+
+##### Execution :: $ sh script7.sh 2 4
+
+====================
+Control Statements
+====================
+
+=> Script will execute from top to bottom in forward direction (this is default behaviour) 
+
+=> If we want to control script execution flow then we have to use "Control Statements"
+
+
+=======================
+Conditional statements
+=======================
+
+=> Conditional statements are used to execute commands based on given condition
+
+Syntax:
+
+if [ condition ]
+then
+	stmts;
+else
+	stmts;
+fi
+
+=> As per above syntax if given condition satisifed then if statments will execute othewise else statements will execute.
+
+Note: If we want to check more than one conditon then "if - elif - else - fi"
+
+
+============
+script - 8
+============
+
+echo "Enter your name"
+read name
+
+if [ $name == 'raju' ]; then
+        echo "Hello, $name"
+
+elif [ $name == 'rani' ]; then
+        echo "Hi, $name"
+else
+       echo "Bye, $name"
+fi
+
+====================
+Looping Statements
+====================
+
+=> Loops are used to execute statements / commands multiple times
+
+Ex: print "hello" message for 1000 times (we can't write echo "hello" for 1000 times).
+
+
+1) for loop  (Range based loop)
+
+2) while loop (Conditional Based loop)
+
+
+===================================
+for loop example (1 to 10 numbers)
+===================================
+
+for((i=1; i<=10; i++))
+do
+        echo "$i"
+done
+
+============================
+print numbers from 10 to 1
+============================
+for((i=10; i>=1; i--))
+do
+        echo "$i"
+done
+
+
+===========
+while loop
+===========
+
+=> Print numbers from 10 to 1 using while loop
+
+i=10
+
+while [ $i -ge 1 ]
+do
+echo "$i"
+let i--;
+done
+
+=> Print numbers from 1 to 10 using while loop
+
+
+i=1
+
+while [ $i -le 10 ]
+do
+        echo "$i"
+
+   let i++
+
+done
+
+
+===========
+Functions
+===========
+
+=> Functions are used to perform some action / task.
+
+=> The big task can be divided into smaller tasks using functions.
+
+=> Functions are re-usable
+
+-------
+Syntax
+-------
+
+# write the function
+function functionName ( ) {
+	// body 
+}
+
+# call the function
+functionName
+
+
+===================================================================================
+Q) Write shell script to take file name as input and print content of that file
+===================================================================================
+
+---------------------------
+approach-1 (read command)
+---------------------------
+
+function readFileData(){
+        echo "enter file name"
+        read filename
+        echo "#### file reading start #####"
+        cat $filename
+        echo "##### file reading end #####"
+}
+
+#calling function
+readFileData
+
+----------------------
+approach-2 (cmd arg)
+----------------------
+
+filename=$1
+
+function readFileData(){
+        echo "#### file reading start #####"
+        cat $filename
+        echo "##### file reading end #####"
+}
+
+#calling function
+readFileData
+
+
+===========================================================================
+Q) Check presence of given file, if it is not available create that file
+============================================================================
+
+# file checking
+
+echo "Enter file name"
+
+read filename
+
+if [ -f "$filename" ] ; then
+  echo "File alredy exist"
+
+else
+  echo "File not available, hence creating"
+  touch $filename
+
+echo "File created...."
+fi
+
+
+===================================================================================
+Q) Check presence of given directory, if it is not available create that directory
+===================================================================================
+
+# file checking
+
+echo "Enter directory name"
+
+read dirname
+
+if [ -d "$dirname" ] ; then
+  echo "Directory alredy exist"
+
+else
+  echo "Directory not available, hence creating"
+  mkdir $dirname
+
+echo "directory created...."
+fi
+
+===========================
+Shell Script Assignments
+===========================
+
+Task-1 : Take a number from user and check given number is +ve or -ve
+Task-2 : Take a number from user and check given number is even or odd 
+Task-3  : Take a number from user and check given number is prime number or not
+Task-4  : Take a number from user and print multiplication table of given number like below
+
+5 * 1 = 5
+5 * 2 = 10
+5 * 3 = 15
+..
+5 * 10 = 50
+
+=========
+Summary
+=========
+
+1) What is Shell
+2) What is Kernel
+3) What is Scripting
+4) Why we need Scripting
+5) Writing Shell Script files (.sh extension)
+6) Executing shell script files ($ sh filename)
+7) Variables
+8) Taking input using shell script
+9) Commandline arguments
+10) Conditional Statements (if-elif-else-fi)
+11) Working with Loops (for and while)
+
+
+====================
+CRON JOBS in Linux
+====================
+
+=> CRON is a utility in linux which is used to schedule jobs execution
+
+	Ex: Run shell script (sysbackup.sh) file for every 1 hour
+
+=> In Realtime we will have several jobs for execution on hourly/daily/weekly/monthly/yearly basis
+
+	1) Take files backup
+	2) Delete temp files
+	3) Monitor system resources
+	4) Send alerts etc...
+
+==========================
+What is CROND in Linux?
+==========================
+
+=> CROND is a background process in Linux (Dameon Thread)
+
+=> CROND will check for cron schedules every minute. If any job is scheduled then crond will execute that job based on given schedule.
+
+
+=================
+CRON JOB Syntax
+=================
+
+	* * * * * <command/script-file>
+
+Note: Read CRON expression from left to right
+
+=> First * will represent Minutes ( 0 - 59 )
+
+=> Second * will represent hour ( 0 - 23 )
+
+=> Third * will represent day of month ( 1 - 31 )
+
+=> Fourth * will represent month of year ( 1 - 12)
+
+=> Fift * will represent day of week ( 0 - 6 or Mon, Tues, Wed... Sun)
+
+========================
+Sample CRON Expressions
+=======================
+
+Run for every 15 mins ::    */15  * * * * <script1.sh>
+
+Run every day @5:00 PM ::   0  17  * * * <script1.sh>
+
+Run every month first day @9:00 AM ::  0 9 1 * *  <script1.sh>
+
+
+#### Cron Expression Generator ::  https://crontab.cronhub.io/ ####
+
+
+=========================
+What is crontab file ?
+=========================
+
+=> crontab file is used to configure cronjobs for execution
+
+=> In Linux machine, for every user account one crontab file will be available.
+
+# Open crontab file
+
+$ crontab -e
+
+# Display cronjobs schedule
+
+$ crontab -l
+
+# Remove Crontab file
+
+$ crontab -r
+
+==================
+CRON Job practice
+==================
+
+1) Launch Linux Machine with Ubuntu AMI
+
+2) Connect with Ubuntu Machine using MobaXterm
+
+3) Create shell script file (Ex: task.sh)
+
+$ vi task.sh
+
+touch /home/ubuntu/f1.txt
+touch /home/ubunut/f2.txt
+
+4) Give Execute permission for shell script file
+
+	$ chmod +x task.sh
+
+5) Open crontab file and configure job schedule
+
+	$ crontab -e
+
+6) Configure cronjob like below and close that file
+
+	*/1 * * * * /bin/bash /home/ubuntu/task.sh
+
+7) After one minute check present working directory 
+
+	$ ls - l
+
+Note: files should be created.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

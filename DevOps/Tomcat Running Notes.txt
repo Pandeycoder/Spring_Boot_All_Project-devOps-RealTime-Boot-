@@ -1,0 +1,158 @@
+
+===========
+WebServers
+===========
+
+=> Server is a software which is used to run Web Applications
+
+=> Server is responsible to handle user requests & responses
+
+=> Users can access our web application by sending request to server
+
+=> We have several servers in the market to run our web applications
+
+			a) Tomcat
+			b) JBoss
+			c) Glasfish
+			d) Weblogic
+			e) WebSphere
+
+==============
+Tomcat Server
+=============
+
+=> Tomcat is a web server developed by Apache Organization
+
+=> Tomcat server developed using Java language
+
+Note: To run tomcat server, java should be installed.
+
+=> Tomcat server is used to run Java Web Applications
+
+=> Tomcat is free and open source software
+
+=> Tomcat supports multiple operating systems
+
+=> Tomcat server runs on 8080 port number (we can change it)
+
+
+================================
+Tomcat Server folder structure
+================================
+
+bin: It contains files to start & stop server  (windows : bat , Linux : sh)
+
+		 windows: startup.bat & shutdown.bat
+		 Linux : statup.sh & shutdown.sh
+
+conf : It contains configuration files
+
+		Ex: server.xml , tomcat-users.xml
+
+webapps : It is called as deployment folder. We will keep war files here.
+
+lib : It contains libraries required for server (jars)
+
+logs : Server log messages will be stored here
+
+temp : Temporary files will be created here (We can delete them)
+
+
+
+=============
+Tomcat Setup
+=============
+
+=> Create Linux VM using Amazon Linux AMI in AWS Cloud
+
+=> Connect to Linux VM using mobaxterm
+
+=> Install Java software
+
+	$ sudo yum install java
+
+=> We can download tomcat software from its offical website
+
+	URL : https://tomcat.apache.org/download-90.cgi
+
+=> Download tomcat server tar file
+
+	$ wget <url>
+
+=> Extract tar file
+
+	$ tar -xvf <tar-file-name>
+
+=> Go inside tomcat server bin directory and execute below command
+
+	$ sh startup.sh
+
+=> Upload project war file in webapps folder
+
+=> Enable tomcat server port in security group inbound rules (8080)
+
+=> Access our web application in browser
+
+	URL : http://ec2-public-ip:8080/war-file-name
+
+
+==================================
+*Lab Task To Peform On Linux VM*
+==================================
+
+1) Clone Git Repository which contains Maven Web Application
+
+2) Perform Maven Build 
+
+3) Copy war file into tomcat server webapps folder from target
+
+4) Access application url in windows machine browser
+
+
+
+
+
+============================
+Tomcat Admin Console Access
+==============================
+
+=> By default the Host Manager is only accessible from a browser running on the same machine as Tomcat. If you wish to modify this restriction, you'll need to edit the Host Manager's context.xml file.
+
+=> File Location : <tomcat-folder>/webapps/manager/META-INF/context.xml
+
+=> In Manager context.xml file, change <Valve> section like below (allow attribute value changed)
+
+<Context antiResourceLocking="false" privileged="true" >
+     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow=".*" />
+</Context>
+
+
+============================================================================
+Add tomact users in "<tomact-folder>/conf/tomact-users.xml" file like below 
+============================================================================
+
+<role rolename="manager-gui" />
+<role rolename="manager-script" />
+<role rolename="admin-gui" />
+
+<user username="tomcat" password="tomcat" roles="manager-gui" />
+<user username="admin" password="admin" roles="manager-gui,admin-gui,manager-script"/>
+
+-> Stop the tomact server and start it
+
+
+================================================================================
+We can change tomcat server default port in tomact/conf/server.xml file 
+================================================================================
+
+-> When we change tomact port number in server.xml file then we have to enable that port in Security Group which is associated with our EC2 instance.
+
+
+
+
+
+
+
+
+
+

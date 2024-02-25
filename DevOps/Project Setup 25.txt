@@ -1,0 +1,416 @@
+
+################################
+Project Setup using below tools
+################################
+
+1) Maven
+2) Git Hub
+3) Jenkins
+4) Docker
+5) Kubernetes
+
+######## Step-1 : Jenkins Server Setup ########
+
+1) Create Ubuntu VM using AWS EC2
+
+2) Install Java & Jenkins using below commands
+
+$ sudo apt-get update
+
+$ sudo apt-get install default-jdk
+
+$ wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+$ sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+$ sudo apt-get update
+
+$ sudo apt-get install jenkins
+
+$ sudo systemctl status jenkins
+
+# Copy jenkins admin pwd
+$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# Open jenkins server in browser using VM public ip
+
+URL : http://public-ip:8080/
+
+-> Create Admin Account & Install Required Plugins in Jenkins
+
+
+
+####### Step - 2 : Install Maven & Git in Jenkins ######
+
+$ sudo apt install maven -y
+
+$ sudo apt install git -y
+
+####### Step - 3 : Setup Docker in Jenkins ######
+
+# install docker 
+$ curl -fsSL get.docker.com | /bin/bash
+
+# Add Jenkins user to docker group
+$ sudo usermod -aG docker jenkins 
+
+# Restart Jenkins 
+$ sudo systemctl restart jenkins
+
+
+###### Step-4 :: Create EKS Management Host in AWS ######
+
+1) Launch new EC2 VM ( Ubuntu )
+	  
+2) Connect to machine and install kubectl using below commands
+
+$ curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+
+$ chmod +x ./kubectl
+
+$ sudo mv ./kubectl /usr/local/bin 
+
+$ kubectl version --short --client
+
+3) Install AWS CLI latest version using below commands
+
+$ sudo apt install unzip
+$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+$ unzip awscliv2.zip
+$ sudo ./aws/install
+$ aws --version 
+
+4) Install eksctl using below commands
+
+$ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+$ sudo mv /tmp/eksctl /usr/local/bin
+
+$ eksctl version
+
+
+###### Step-5 :: Create IAM role & attach to EKS Management Host ######
+
+1) Create New Role using IAM service
+
+	usecase - ec2 
+	
+2) Add permissions 
+
+		IAM - fullaccess
+		VPC - fullaccess 
+		ec2 - fullaccess 
+		cloudfomration - fullaccess 
+		administrator - acces 
+		
+3) Enter Role Name (eksroleec2)
+
+4) Attach created role to EKS Management Host
+
+	(Select EC2 => Click on -> Security -> attach IAM role we have created)
+
+
+###### Step-6 :: Create EKS Cluster using eksctl ######
+
+
+Syntax: 
+
+eksctl create cluster --name cluster-name  \
+--region region-name \
+--node-type instance-type \
+--nodes-min 2 \
+--nodes-max 2 \ 
+--zones <AZ-1>,<AZ-2>
+
+example:
+
+$ eksctl create cluster --name ashokit-cluster1 --region us-east-1 --node-type t2.medium  --zones us-east-1a,us-east-1b
+
+
+Note: Cluster creation will take 5 to 10 mins of time (we have to wait)
+
+$ kubectl get nodes
+
+
+###### Step-7 :: Install AWS CLI in JENKINS Server ######
+
+URL : https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+$ unzip awscliv2.zip
+$ sudo ./aws/install
+$ aws --version 
+
+###### Step-8 :: Install Kubectl in JENKINS Server ######
+
+$ curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+
+$ chmod +x ./kubectl
+
+$ sudo mv ./kubectl /usr/local/bin 
+
+$ kubectl version --short --client
+
+
+###### Step-9 :: Update EKS Cluster Config File in Jenkins Server ######
+
+Note: Execute below command in Eks Management host & copy kube config file data
+
+$ cat .kube/config 
+
+=> Execute below commands in Jenkins Server and paste kube config file
+
+$ cd /var/lib/jenkins 
+$ sudo mkdir .kube 
+$ sudo vi .kube/config 
+
+# check eks nodes 
+$ kubectl get nodes 
+
+Note: We should be able to see EKS cluster nodes here.
+
+
+#####################################################
+######## Step-10 : Create Jenkins Pipeline ######
+#####################################################
+
+->  Create jenkins declarative pipeline script
+
+#########################
+stage-1 : git clone 
+#########################
+
+-> generate pipeline syntax for git clone with credentials
+
+git credentialsId: 'c87aff7e-f5f1-4756-978f-3379694978e6', url: 'https://github.com/ashokitschool/maven-web-app.git'
+
+stage('Clone Repo') {
+    steps {
+		git credentialsId: 'GIT-Credentials', url: 'https://github.com/ashokitschool/maven-web-app.git'
+    }
+}
+
+#########################
+stage-2 : mvn clean build
+#########################
+
+stage('Build'){
+    steps{
+       sh 'mvn clean package'
+    }
+}
+
+
+##################################################
+stage-3 : build  docker image 
+##################################################
+
+stage ('Build Docker Image'){
+    steps{
+      sh "docker build -t ashokit/app1 ."
+    }
+}
+
+##################################################
+Stage-4 : Push docker image into docker hub
+##################################################
+
+-> push docker image into docker hub using secret text
+
+-> Use pipeline syntax to generate secret for docker hub account
+
+
+ stage ('Docker Push'){
+            steps{
+             withCredentials([string(credentialsId: 'Docker-Acc-Pwd', variable: 'dockerpwd')]) {
+                    sh "docker login -u ashokit -p ${dockerpwd}"
+                    sh "docker push ashokit/mavenwebapp"
+                }
+            }
+  }
+
+
+##########################
+Step-5 : Deploy in k8s
+#########################
+
+stage ('Deploy'){
+    steps{
+	  sh 'kubectl delete deployment mavenwebappdeployment'
+       sh 'kubectl apply -f maven-web-app-deploy.yml'
+    }
+}
+
+
+######################### Final Script ##############################
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Clone') {
+            steps {
+                git credentialsId: 'GIT_Credentials', url: 'https://github.com/ashokitschool/maven-web-app.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                 sh 'mvn clean package'
+            }
+        }
+        stage('Create Image') {
+            steps {
+                sh "docker build -t ashokit/mavenwebapp ."
+            }
+        }
+        
+        stage ('Docker Push'){
+            steps{
+                withCredentials([string(credentialsId: 'Docker-Acc-Pwd', variable: 'dockerpwd')]) {
+                    sh "docker login -u ashokit -p ${dockerpwd}"
+                    sh "docker push ashokit/mavenwebapp"
+                }
+            }
+        }
+        stage ('Deploy'){
+            steps{
+                sh 'kubectl delete deployment mavenwebappdeployment'
+                sh 'kubectl apply -f maven-web-app-deploy.yml'
+        }
+}
+    }
+}
+
+
+
+======================================
+Create SonarQube stage
+======================================
+
+
+### Run Sonar Using Docker
+
+$ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:lts-community
+
+## Enable 9000 port number in security group
+
+-> Login into Sonar Server & Generate Sonar Token 
+
+Ex: sqa_a7e9c43d3a8649618b53d79e203013c25dbe3e3e
+
+-> Add Sonar Token in 'Jenkins Credentials' as Secret Text
+
+			-> Manager Jenkins 
+			-> Credentials 
+			-> Add Credentials 
+			-> Select Secret text
+			-> Enter Sonar Token as secret text 
+
+-> Manage Jenkins -> Plugins -> Available -> Sonar Qube Scanner Plugin -> Install it
+
+-> Manage Jenkins -> Configure System -> Sonar Qube Servers -> Add Sonar Qube Server 
+		
+				- Name : Sonar-Server-7.8
+				- Server URL : http://52.66.247.11:9000/   (Give your sonar server url here)
+				- Add Sonar Server Token			
+
+-> Once above steps are completed, then add below stage in the pipeline
+
+stage('SonarQube analysis') {
+			withSonarQubeEnv('sonar-9.9.3') {
+			def mavenHome = tool name: "Maven-3.9.6", type: "maven"
+			def mavenCMD = "${mavenHome}/bin/mvn"
+			sh "${mavenCMD} sonar:sonar"
+    	}
+}
+
+====================================
+# Step-4 : Create Nexus Stage
+====================================
+
+# Run nexus using docker container 
+
+$ docker run -d -p 8081:8081 --name nexus sonatype/nexus3
+
+## Enable 8081 port number in security group inbound rule
+
+## login into nexus server 
+
+-> Create Nexus Repository 
+
+	Repo  : http://3.108.63.133:8081/repository/ashokit-snapshot-repo/
+
+-> Install Nexus Repository Plugin using Manage Plugins   ( Plugin Name : Nexus Artifact Uploader)
+
+-> Generate Nexus Pipeline Syntax
+
+stage ('Nexus Upload'){
+nexusArtifactUploader artifacts: [[artifactId: 'Maven-Web-App', classifier: '', file: 'target/maven-web-app.war', type: 'war']], credentialsId: 'Nexus-Credentials', groupId: 'in.ashokit', nexusUrl: '13.127.185.241:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'ashokit-snapshot-repository', version: '1.0-SNAPSHOT'
+}
+
+
+
+# install docker 
+$ curl -fsSL get.docker.com | /bin/bash
+
+# Add Jenkins user to docker group
+$ sudo usermod -aG docker ubuntu 
+
+==================
+Final Pipeline 
+==================
+
+
+pipeline {
+    agent any
+    
+    tools{
+        maven "Maven-3.9.6"
+    }
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/ashokitschool/maven-web-app.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+               sh 'mvn clean package'
+            }
+        }
+        
+        stage('Code Review') {
+            steps{
+                withSonarQubeEnv('sonar-9.9.3') {
+        		   sh "mvn sonar:sonar"
+        	    }
+            }
+        }
+        
+        stage("Nexus Upload"){
+            steps{
+                nexusArtifactUploader artifacts: [[artifactId: '01-maven-web-app', classifier: '', file: 'target/maven-web-app.war', type: 'war']], credentialsId: 'nexus-server', groupId: 'in.ashokit', nexusUrl: '3.108.63.133:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'ashokit-snapshot-repo', version: '3.0-SNAPSHOT'
+            }
+        }
+        
+        stage('Docker Image') {
+            steps {
+               sh 'docker build -t ashokit/mavenwebapp .'
+            }
+        }
+        stage('Image Push') {
+            steps {
+                withCredentials([string(credentialsId: 'docker-acc-pwd-id', variable: 'dockerpwd')]) {
+                    sh "docker login -u ashokit -p ${dockerpwd}"
+                	sh "docker push ashokit/mavenwebapp"
+                }
+            }
+        }
+        
+        stage('K8S Deploy') {
+            steps {
+               sh 'kubectl apply -f maven-web-app-deploy.yml'
+            }
+        }
+    }
+}

@@ -1,0 +1,274 @@
+
+===========
+Sonar Qube
+===========
+
+=> Code Quality Checking Tool
+
+=> Using SonarQube we can perform code review to identify developers mistakes in the code
+
+=> SonarQube s/w developed by using Java Language
+
+=> SonarQube supports 30+ Programming Languages to perform Code Review
+
+=> Using SonarQube we can generate Code Review Report 
+
+=> DevOps team is responsible to generate Project Code Review Report and share it with Development team.
+
+Note: Development is responsible to fix sonar issues.
+
+Note: Code Review is part of project build process.
+
+====================
+Sonar Issues
+====================
+
+=> SonarQube server will identify below types of issues in the project
+
+	=> Bugs (It will harm our code execution)
+
+	=> Vulnerabilities (security hot spots)
+
+	=> Code Smells (not danger but week design in program)
+
+	=> Duplicate Code Blocks (Repeated code)
+
+	=> Code Coverage (how many lines of code is tested in unit testing)
+
+========================
+Sonar Quality Profiles
+========================
+
+Quality Profile : Set of rules to perform code review
+
+=> In SonarQube, for every language one Quaylity Profile is available with set of rules to perform code review.
+
+=> When we perform code review using sonar then it will identify our project developed using which language based on that it will execute that language specific quality profile to perform code review.
+
+		Java Project --------> Java Quality Profile ---> Java Rules
+
+		Python Project -------> Python Quality Profile ---> Python Rules
+
+		PHP Project ----------> PHP Quality Profile ---> PHP Rules
+
+
+Note: We can create our Quality Profiles to customize code review for our projects.
+
+====================
+Sonar Quality Gate
+====================
+
+=> Quality Gate Represents overall project code quality is Passed or Failed
+
+		Ex - 1 : Duplicate Code > 10 %  :: Failed
+
+		Ex - 2 : Bugs > 5 %  :: Failed
+
+
+Note: If Code Quality Gate is Failed, we should not deploy that code.
+
+=======================
+SonarQube Server Setup
+=======================
+
+Minimum RAM Required For SonarSetup is 2 GB
+
+So Take t2.medium instance type which will provide 4 GB RAM
+
+===============================
+SonarServer  Setup in Linux
+===============================
+
+-> Create EC2 instance with 4 GB RAM (t2.medium)  (Amazon Linux AMI)
+
+-> Connect with EC2 instance using MobaXterm
+
+-> Install Java software
+
+	$ sudo yum install java-1.8.0-amazon-corretto
+	$ java -version
+
+-> Execute below commands to run sonar
+
+$ sudo su
+$ cd /opt
+$ wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
+$ unzip sonarqube-7.8.zip
+
+
+**** Note: SonarQube server will not run with root user **************************
+
+-> Create new user
+
+	$ useradd sonar
+
+-> open sudoers file with below command
+
+	$ visudo
+
+-> Configure sonar user without pwd in suderos file
+
+	sonar ALL=(ALL) NOPASSWD: ALL
+
+# Change ownership & permissions for sonar directory
+
+$ chown -R sonar:sonar /opt/sonarqube-7.8/
+$ chmod -R 775 /opt/sonarqube-7.8
+
+# Switch to sonar user
+$ su - sonar
+
+-> Go to sonar bin directory then goto linux directory and run sonar server 
+
+$ cd /opt/sonarqube-7.8/bin/linux-x86-64
+
+$ sh sonar.sh start
+
+-> Check sonar server status 
+
+$ sh sonar.sh status
+
+Note: Sonar Server runs on 9000 port number by default
+
+
+Note: We can change default port of sonar server ( conf/sonar.properties)
+
+Ex:   sonar.web.port=6000
+
+
+-> Enable Sonar port number in EC2 VM - Security Group
+
+-> Access Sonar Server in Browser 
+
+		URL : http://EC2-VM-IP:9000/
+
+-> Default Credentials of Sonar User is admin & admin 
+
+-> After login, we can go to Security and we can enable Force Authentication.
+
+Note: Once your work got completed then stop your EC2 instance because we have t2.medium so bill be generated.
+
+$ sh sonar.sh status 
+
+Note: If sonar not started, then go to log file and see 
+
+$ sudo rm -rf /opt/sonar-folder/temp/
+
+$ cd ../bin/
+
+$ sh sonar.sh start
+
+$ sh sonar.sh status
+
+-> Access sonar server in browser and login into that
+
+
+================================================
+Integrate Sonar server with Java Maven App
+=================================================
+
+-> Clone git repository : https://github.com/ashokitschool/SB-REST-H2-DB-APP
+
+-> Configure Sonar Properties under <properties/> tag in "pom.xml"
+
+  <properties>
+	<sonar.host.url>http://15.207.221.244:9000/</sonar.host.url>
+	<sonar.login>admin</sonar.login>
+	<sonar.password>admin</sonar.password>
+  </properties>
+	
+-> Go to project pom.xml file location and execute below goal
+
+			$ mvn sonar:sonar
+
+-> After build success, goto sonar dashboard and verify the results
+
+Note: Instead of username and pwd we can configure sonar token in pom.xml
+
+
+==========================
+Working with Sonar Token
+==========================
+
+-> Go to Sonar Server Dashboard -> Login -> Click on profile -> My Account -> Security -> Generate Token 
+
+-> Copy the token and configure that token in pom.xml file like below
+	
+	<sonar.host.url>http://15.207.221.244:9000/</sonar.host.url>
+	<sonar.login>8114ea8a4a594824e1ff08aa192b59befbbae96e</sonar.login>
+
+-> Then build the project using "mvn sonar:sonar" goal
+
+
+
+=================
+Quality Profile
+=================
+
+-> For each programming language sonar qube provided one quality profile with set of rules
+
+-> Quality Profile means set of rules to perform code review
+
+-> We can create our own quality profile based on project requirement
+
+-> Create One Quality Profile
+
+			- Name : SBI_Project_QP
+			- Language: Java
+			- Parent : None
+
+Note: We can make our quality profile as default one then it will be applicable for all the projects which gets reviewed under this sonar server.
+
+Note: If we have any common ruleset for all projects then we can create one quality profile and we can use that as parent quality profile for other projects.
+
+-> We can configure custom quality profile to a specific project using below steps
+
+			- Click on project name
+			- Go to administration
+			- Click on quality profile
+			- Select profile required
+
+==============
+Quality Gate
+==============
+
+-> Quality Gate represents set of metrics to identify project quality is Passed or Failed
+
+-> Every Project Quality Gate should be passed
+
+-> In Sonar We have default Quality Gate
+
+-> If required, we can create our own Quality Gate also
+
+
+===========
+Conclusion
+===========
+
+-> If project quality gate is failed then we should not accept that code for deployment.
+
+-> If project is having Sonar issues then development team is responsible to fix those issues
+
+-> As a DevOps engineer, we will perform Code Review and we will send Code Review report to Development team (we will send sonar server URL to development team)
+
+
+
+=========
+Summary
+=========
+
+1) What is SonarQube
+
+2) What is Code Review
+
+3) Sonar Server setup in Linux Machine
+
+4) Sonar Server Integration in Maven Project
+
+5) Sonar Token Generation
+
+6) Sonar Server Issue Types
+
+7) Quality Profiles
+
+8) Quality Gates

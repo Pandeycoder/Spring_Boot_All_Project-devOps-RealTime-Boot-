@@ -1,0 +1,271 @@
+=========
+Git Hub
+=========
+
+-> Git Hub is a platform which is used to store project related files/code
+
+-> In git hub we can create source code repository
+
+-> source code repository is used to store project source code
+
+Note: For every project one repository will be available
+
+-> All the developers can connect to project repository to store all the source code (Code Integration will become easy)
+
+-> Git Hub repository will monitor all code changes
+
+		 - who modified
+		 - when modified
+	         - what modified
+		 - why modified
+
+
+===================
+Environment Setup
+===================
+
+1) Create account in www.github.com
+
+2) Install git client software
+
+3) Open Git bash and configure your name and email
+
+	$ git config --global user.name "your-name"
+
+	$ git config --global user.email "your-email"
+
+
+Note: Configuring name and email is just one time process.
+
+
+===============================
+What is Git Hub Repository ?
+===============================
+
+=> Repository is a place where we can store project source code / files
+
+=> For every project one repository will be created
+
+=> Every repository will have an URL like below
+
+	### Git Repo URL : https://github.com/ashokitschool/devops_14_app.git
+
+=> Project team members will connect with git repository using its URL.
+
+=> We can create 2 types of repositories
+
+	1) Public Repo (anybody can see & you choose who can commit)
+
+	2) Private Repo (you choose who can see & commit)
+
+
+====================
+Git Bash Commands
+====================
+
+git config : To configure name & email
+
+git init : To initialize working tree
+
+git add : To add files to staging area
+
+git status : To check working tree status
+
+git commit : To commit files from staging to local repo
+
+git remote add : To add remote repo to working tree
+
+git push : To send files from local repo to remote repo
+
+git restore : To unstage the files & to discard changes made in files
+
+git log : To see commit history
+
+git rm : To remove files from local & remote
+
+git clone : To clone remote repo to local machine
+
+git pull : To take latest changes from remote repo to local repo
+
+
+===============
+Git Branches
+===============
+
+=> Branches are used to maintain multiple code bases in the single repository
+
+=> In general people will create below branches in git repository
+
+1) main (default)
+2) develop
+3) feature
+4) qa
+5) uat
+6) release
+
+Note: We can create any no.of branches in single repository.
+
+=> If we have branches in git repo then multiple teams can work paralelly without effecting other teams code.
+
+Note: When we execute 'git clone' command then we will get code from default branch which is 'main'.
+
+=> In git bash we can switch from one branch to another branch is 'git checkout' command
+
+===========================
+What is Branch Merging ?
+===========================
+
+=> Merging changes from one branch to another branch is called as Branch merging.
+
+=> We will use 'Pull Request' to perform branch merging.
+
+====================
+Git Branches Task
+====================
+
+1) Create branches in git hub repository
+
+2) Clone git hub repo
+
+3) Switch from main branch to develop branch using 'git checkout'
+
+4) Create file + Add to staging + commit + push that file 
+
+5) Create pull request to merge develop branch changes to main branch
+
+==========================
+What is .gitignore file ?
+==========================
+
+=> .gitignore is used to exclude files & folders from our commits
+
+Ex: In maven project,  we should n't commit target folder to git repository hence we can give this info to git using .gitignore file.
+
+========================
+What is git Conflict ?
+========================
+
+=> When two people making changes in same file and same line then we will get conflicts problem.
+
+=> When conflict occurs we have to resolve them.
+
+=> Conflict can occur in two scenarios
+
+	1) When we execute git pull command 
+	2) When we are merging branches
+
+
+============================================
+1) How to remove git local commits ?
+
+	$ git reset HEAD~1
+
+2) How to revert git commits from remote repo?
+
+	$ git revert <commit-id>
+
+Note: After executing git revert we have to execute git push also
+
+3) what is git stash ?
+
+=> It is used to save working tree changes to temporary area and make working tree clean.
+
+		$ git stash
+
+=> We can get stashed changes back using 'git stash apply'
+
+4) Git merge vs Git rebase ?
+
+=> merge & rebase commands are used for branch merging from CLI
+
+merge : It preserve commit history
+
+rebase : It won't preseve commit history
+
+
+5) What is tag in git ?
+
+=> tags are used to make stage level commits
+
+# Creating tag
+$ git tag <tag-name>
+
+# Display all tags
+$ git tag
+
+# Push tags to remote repo
+$ git push origin --tags
+
+
+================================
+
+1) git config
+2) git init
+3) git status
+4) git add
+5) git commit
+6) git push
+7) git log
+8) git rm
+9) git clone
+10) git branch
+11) git checkout
+12) git pull
+13) git restore
+14) git reset
+15) git revert
+16) git merge
+17) git stash
+18) git stash apply
+
+==========================
+
+1) What is Git Hub
+2) Git Hub Account Creation
+3) Git Client installation 
+4) Git Repo creation
+5) Git Architecture
+6) Git Bash Commands
+7) Pushing Maven project to git repo
+8) Git Branches
+9) Branch Merging
+10) Pull Request
+11) .gitignore file
+12) Git Conflicts
+13) Working with Bitbucket
+14) Working with tags
+
+===================================
+
+
+🔥 *Git Hub Lab Task* 🔥
+
+1) Create Maven Web Application
+2) Package maven project as war file
+3) Create repository in github / bitbucket (public repo)
+4) Push maven project into repo using gitbash
+   (target folder shouldn't be commited, add this in .gitignore file)
+5) Make changes in pom.xml and push changes to repo using git bash
+6) Make code changes in index.jsp file and push to central repo
+7) Create 'feature' branch in git repo from main branch
+8) Switch to feature branch from git bash
+9) Make changes in 'feature' branch pom.xml file 
+10) Push changes to feature branch
+11) Create pull request and merge 'feature' branch changes to 'main' branch
+
+
+===========================
+Realtime Work Process
+===========================
+
+1) Developers will send request for DevOps team to create git repository for the project with manager approval.
+
+2) DevOps team will provide Repo Access for team members (RBAC)
+
+3) DevOps team will create git repo and will share that repo URL with Dev Team.
+
+4) Dev team will push their code into git repo and Dev Team will create required branches also
+
+Note: DevOps team will decide Branching strategy for the project.
+
+5) DevOps team will clone git repo for build and deployment process

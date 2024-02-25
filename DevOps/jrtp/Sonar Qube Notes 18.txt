@@ -1,0 +1,94 @@
+==========
+SonarQube
+==========
+
+=> SonarQube is used for code quality checking
+
+=> Using SonarQube we can perform Code Review
+
+=> SonarQube will identify developers mistakes in source code
+
+=> SonarQube software developed using Java Language
+
+=> Using SonarQube we can perform code review for 30+ languages
+
+	Ex: java, python, c#, JS, SQL etc......
+
+Note: We can use SonarQube community edition for practice purpose. In companies we will use Enterprise Edition.
+
+=> In SonarQube for every language rules are configured to check code quality.
+
+Note: We need to make sure our project code quality gate is passed. If project code quality gate is failed then we shouldn't deploy that application.
+
+===========================================
+What kind of issues sonar will identify
+===========================================
+
+1) Bugs (Ex: NullPointerException)
+
+2) Vulnerabilities (Ex: exposing password, pin etc...)
+
+3) Code Smells (Ex: Unused imports, unused variables, unused private methods...)
+
+4) Duplicate Code Blocks
+
+5) Code Coverage (Unit testing coverage)
+
+
+## Assingment : Perform 02-Mini Project code review using SonarCloud.
+
+========================
+SonarQube Server Setup
+========================
+
+1) We can install in windows directley
+
+2) We can install in Linux directley
+
+3) We can setup Sonar using Docker Image (below is the document for that)
+
+Git Repo : https://github.com/ashokitschool/DevOps-Documents/blob/main/Sonar-Setup-Docker.md
+
+4) We can use Sonar Cloud also (no need of any installation)
+
+
+===================================
+Spring Boot with Sonar Integration
+===================================
+
+1) Login into sonar server
+
+2) Generate Sonar Token (Profile -> Account -> Security -> Generate Token)
+
+3) Configure Sonar Server details in project pom.xml file
+
+	<properties>
+		<java.version>17</java.version>
+		<sonar.host.url>http://3.6.91.108:9000/</sonar.host.url>
+		<sonar.login>sqa_f45b445ca4afbd66083905d45a82551c21</sonar.login>		
+	</properties>
+
+4) Perform Maven build using sonar:sonar goal
+
+5) After build got success, then check sonar dashboard to see code review report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1042 @@
+
+=======================
+CI CD Server (Jenkins)
+=======================
+
+CI : Continuous Integration
+
+CD : Continuos Delivery
+
+
+=> CI CD is one appraoch to automate project Build & Deployment process
+
+===========================
+What is Build & Deployment
+===========================
+
+=> Take latest code from Git Hub Repo
+
+=> Build Source code using Maven
+
+=> Perform Code Review Using Sonar
+
+=> Upload Project Artifact into Nexus
+
+=> Deploy code into server.
+
+
+=> In single day multipe times code will be committed to git hub repository from Development team so multiple times we have to perform build and deployment process.
+
+Note: If we do build and deployment process manually then it is time taking process and error prone.
+
+=> To overcome above problems, we need to automate Project Build and Deployment process.
+
+=> To automate project build and deployment process we will use JENKINS.
+
+===================
+What is Jenkins ?
+===================
+
+=> Open source Software & free
+
+=> Developed by using Java Language
+
+=> It is called as CI CD Server
+
+=> It is used to automate project Build and Deployment process.
+
+=> Using Jenkins we can deploy any type of project (ex: java, python, dot net, react, angular).
+
+================
+Jenkins Setup
+================
+
+1) Create an EC2 instance with Ubuntu AMI (t2.micro instance)
+
+2) Connect to your EC2 instance using MobaXterm
+ 
+3) Install Java In Ubuntu VM with below commands
+
+$ sudo apt-get update
+
+$ sudo apt-get install default-jre
+
+4) Install Jenkins in Ubuntu VM with below commands
+
+$ curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+$ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+$ sudo apt-get update
+
+$ sudo apt-get install jenkins
+
+$ sudo systemctl status jenkins
+ 
+5) Access Jenkins Server in browser using below URL
+
+		URL : http://ec2-public-ip:8080/
+
+	Note: Enable 8080 port in security group
+ 
+6) Get the initial administrative password 
+
+	$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+	pwd : 5fe6ddcc9db244cab6aca5ccf2d6a83a
+
+-> Provide pwd which we have copied to unlock jenkins
+
+-> Select "Install Suggested Plugins" card (it will install those plugins)
+
+-> Create Admin account
+
+===============================
+Creating First Job in Jenkins 
+===============================
+
+1) Goto Jenkins Dashboard
+
+2) Click on New Item
+
+		-> Enter Item Name (Job Name)
+		-> Select Free Style Project & Click OK
+		-> Enter some description
+		-> Click on 'Build' tab
+		-> Click on 'Add Build Step' and select 'Execute Shell'
+
+3) Enter below shellscript
+
+echo "Hello Guys,"
+touch ashokit.txt
+echo "Hello Guys, Welcome to Jenkins Classes" >> ashokit.txt
+echo "Done..!!"
+
+4) Apply and Save
+
+Note: With above steps we have created JENKINS Job
+
+5) Click on 'Build Now' to start Job execution
+
+6) Click on 'Build Number' and then click on 'Console Ouput' to see job execution details.
+
+
+=> Jenkins Home Directory in EC2 : /var/lib/jenkins/workspace/
+
+		$ cd /var/lib/jenkins/workspace/
+
+7) Go to Jenkins home directory and check for the job name --> check the file created inside the job
+
+
+=========================================================
+Jenkins Job with with GIT Hub Repo + Maven - Integeration
+=========================================================
+
+Pre-Requisites : Java, Maven and Git client
+
+# Git installation In EC2 VM
+
+$ sudo apt install git -y
+
+==================================
+Maven Installation In Jenkins: 
+==================================
+
+Jenkins Dashboard -> Manage Jenkins --> Global Tools Configuration -> Add maven
+
+==================================
+Sample Git Repo URLS For Practise
+==================================
+
+Git Hub Repo URL  : https://github.com/ashokitschool/maven-web-app.git
+
+============================================================
+JOB-2 :: Steps To Create Jenkins Job with Git Repo + Maven
+============================================================
+
+1) Connect to EC2 instance in which jenkins server got installed
+
+2) Start Jenkins Server
+
+3) Access Jenkins Server Dashboard and Login with your jenkins credentials
+
+4) Create Jenkins Job with Git Hub Repo 
+
+		-> New Item
+		-> Enter Item Name (Job Name)
+		-> Select 'Free Style Project' & Click OK
+		-> Enter some description
+		-> Go to "Source Code Management" Tab and Select "Git"
+		-> Enter Project "Git Repo URL"
+		-> Go to "Build tab"
+		-> Click on Add Build Step and Select 'Inovke Top Level Maven Targets'
+		-> Select Maven and enter goals 'clean package'
+		-> Click on Apply and Save
+
+Note: With above steps we have created JENKINS Job
+
+5) Click on 'Build Now' to start Job execution
+
+6) Click on 'Build Number' and then click on 'Console Ouput' to see job execution details.
+
+=> Jenkins Home Directory in EC2 : /var/lib/jenkins/workspace/
+
+=> Go to jenkins workspace and then go to job folder then goto target folder there we see war file created.
+
+-------------------------------------------------------------------------------------------------
+
+=> Access below URL in browser to stop Jenkins Server
+
+		URL : http://EC2-VM-IP:8080/exit/
+
+		(Click on Retry using Post button)
+
+=============================================================================
+Job-3 :: Steps To Create Jenkins Job with Git Repo + Maven + Tomcat Server
+============================================================================
+
+1) Go to Jenkins Dashboard -> Manage Jenkins --> Manage Plugins -> Goto Available Tab -> Search For
+   "Deploy To Container" Plugin -> Install without restart.
+
+2) Create Jenkins Job 
+
+		-> New Item
+		-> Enter Item Name (Job Name)
+		-> Select Free Style Project & Click OK
+		-> Enter some description
+		-> Go to "Source Code Management" Tab and Select "Git"
+		-> Enter Project "Git Repo URL"
+		-> Go to "Build tab"
+		-> Click on Add Build Step and Select 'Inovke Top Level Maven Targets'
+		-> Select Maven and enter goals 'clean package'
+		-> Click on 'Post Build Action' and Select 'Deploy war/ear to container' option
+		-> Give path of war file (You can give like this also : **/*.war )
+		-> Enter Context Path (give project name Ex: java_web_app)
+		-> Click on 'Add Container' and select Tomcat version 9.x
+		-> Add Tomcat server credentials (give the username & pwd which is having manager-script role)
+		-> Enter Tomact Server URL (http://ec2-vm-ip:tomcat-server-port)
+		-> Click on Apply and Save
+
+4) Run the job now using 'Build Now' option and see see 'Console Output' of job
+
+5) Once Job Executed successfully, go to tomcat server dashboard and see application should be displayed.
+
+6) Click on the applicaton name (it should display our application)
+
+
+===================================================
+How to Create Jenkins Jobs with Build Parameters
+===================================================
+
+=> Build Parameters are used to supply dynamic inputs to run the Job. Using Build Parameters we can avoid hard coding.
+
+		Ex : We can pass branch name as build parameter.
+
+-> Create New Item
+-> Enter Item Name & Select Free Style Project
+-> Select "This Project is parameterized" in General Section
+-> Select Choice Parameter
+-> Name : BranchName
+-> Choices : Enter every branch name in nextline
+-> Branches to Build : */${BranchName}
+
+
+====================================
+User & Roles Management In Jenkins
+====================================
+
+=> In Our Project multiple teams will be available
+
+			a) Development team (10)
+			b) Testing team (5)
+			c) DevOps Team (3)
+
+=> For every Team member Jenkins login access will be provided. 
+
+Note: Every team members will have their own user account to login into jenkins.
+
+=> Operations team members are responsible to create / edit / delete / run jenkins jobs
+
+=> Dev and Testing team members are only responsible to run the jenkins job.
+
+
+================================================
+How to create users and manage user permissions
+================================================
+
+-> Go to Jenkins Dashboard
+
+-> Manage Jenkins -> Manage Users
+
+-> Create Users
+
+-> Go to Configure Global Security
+
+-> Manage Roles & Assign Roles
+
+Note: By default admin role will be available and we can create custom role based on requirement
+
+-> In Role we can configure what that Role assigned user can do in jenkins
+
+-> In Assign Roles we can add users to particular role
+
+=====================================
+Working with User Groups in Jenkins 
+=====================================
+
+## Step-1 : Install Required Plugins
+
+=> Install Role-based Authorization Strategy Plugin
+
+=> This plugin allows you to define roles and assign them to users or groups.
+
+
+## Step-2 : Configure Security
+
+=> Go to "Manage Jenkins" > "Configure Security."
+
+=> Select Authorization as "Role-Based Strategy"
+
+=> Click "Save" to apply the changes
+
+## Step-3 :  Create User Roles
+
+=> Go to "Manage Jenkins" > "Manage and Assign Roles."
+
+=> Click "Manage Roles" and define new roles based on your requirements (e.g., admin, developer, tester).
+
+=> Click "Add" to create a new role, and specify the permissions for that role.
+
+
+## Step-4 : Assign Users to Roles
+
+=> After creating roles, go to "Manage Jenkins" > "Manage Users & Roles."
+
+=> Select a user and click "Assign Roles" to add them to one or more roles.
+
+
+## Step-5 : Test the user login functionality
+
+
+
+========================================
+Jenkins - Master & Slave Architecture
+========================================
+
+
+=> If we use single machine to run Jenkins server then burden will be increased if we run multiple jobs at a time. 
+
+=> If burden increased then system can crash.
+
+=> To execute multiple jobs paralelly we will use Master & Slave Configuration
+
+=> Master & Slave configuration is used to reduce burden on Jenkins Server by distributing tasks/load.
+
+================
+Jenkins Master
+===============
+
+=> The machine which contains Jenkins Server is called as Jenkins Master machine.
+
+=> It is used to create the jobs
+
+=> It is used to schedule the jobs
+
+=> It is responsible to distribute Jobs execution to slave machines
+
+Note: We can run jobs on Jenkins Master machine directley but not recommended.
+
+==============
+Jenkins Slave
+==============
+
+=> The machine which is connected with 'Jenkins Master' machine is called as 'Jenkins-Slave' machine.
+
+=> Slave Machine will recieve task from 'Master Machine' for job execution.
+
+
+===============================
+Step-1 : Create Jenkins Master
+==============================
+
+1) Create EC2 instance
+2) Connect EC2 using Mobaxterm
+3) Install Git client
+4) Install Java Software
+5) Install jenkins server
+6) Add Git, JDK and Maven Plugins
+7) Enable Jenkins Port Number in Security Group
+8) Access Jenkins Server in Browser and Login
+
+===============================
+Step-2 : Create Jenkins Slave
+===============================
+
+1) Create EC2 instance (Ubuntu with t2.micro)
+2) Connect to EC2 using Mobaxterm
+3) Install Git client
+4) Install Java Software
+5) Create one directory in /home/ubuntu (ex: slavenode)
+
+			$ mkdir slavenode
+			
+=====================================================
+Step-3: Configure Slave Node in Jenkins Master Node
+=====================================================
+
+1) Go to Jenkins Dashboard
+2) Go to Manage Jenkins
+3) Go to Manage Nodes & Clouds
+4) Click on 'New Node' -> Enter Node Name -> Select Permanent Agent
+5) Enter Remote Root Directory ( /home/ubuntu/slavenode )
+6) Enter Label name as Slave-1
+7) Select Launch Method as 'Launch Agent Via SSH'
+8) Give Host as 'Slave VM DNS URL'
+9) Add Credentials ( Select Kind as : SSH Username with private key )
+10) Enter Username as : ubuntu
+11) Select Private Key as Enter Directley and add private key
+
+Note: Open pem file and copy content add add 
+
+12) Select Host Key Strategy as 'Manually Trusted Key Verification Strategy'
+
+13) Click on Apply and Save (We can see configured slave)
+
+
+******* With above steps Master and Slave Configuration Completed**************
+
+-> Go to Jenkins Server and Create Jenkins Job
+
+Note: Under Generation Section of Job creation process, Select "Restrict Where This Project Can Run" and enter Slave Nodel Label name and finish job creation.
+
+-> Execute the Job using 'Build Now' option
+
+Note: Job will be executed on Slave Node (Go to Job Console Ouput and verify execution details)
+
+
+=> Build & Deployment 
+=> Challenges in Manual Build & Deployment
+=> Automated Build & Deployment
+=> CI & CD
+=> Jenkins Introduction
+=> Jenkins Setup in Linux
+=> Jenkins Job Creation
+=> Jenkins Build Parameters
+=> User & Role Management in Jenkins (RBAC)
+=> Git + Maven + Tomcat + Jenkins
+=> Master & Slave Configuration
+
+=================
+Jenkins Pipeline
+=================
+
+=> In Jenkins we can create JOBS in 2 ways
+
+		a) Free Style Project (GUI)
+		b) Pipeline (Using in Realtime)
+
+=> Pipeline means set of steps to automate build & deployment process.
+
+=> Using Pipelines we can handle complex build & deployment tasks.
+
+=> We can create pipelines in 2 ways
+
+		a) Scripted Pipeline
+		b) Declarative Pipeline
+
+==============================
+Jenkins Declarative Pipeline
+==============================
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Clone') {
+            steps {
+                echo 'Cloning Repository....'
+            }
+        }
+        stage('Maven Build'){
+            steps{
+                echo 'Maven Build....'
+            }
+        }        
+        stage('Tomcat Deploy'){
+            steps{
+                echo "War deployed to tomcat"
+            }
+        }        
+    }
+}
+
+====================================
+Declarative Pipeline (Git + Maven)
+====================================
+
+pipeline {
+    agent any
+    
+    tools{
+        maven "Maven-3.9.4"
+    }
+
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/ashokitschool/maven-web-app.git'
+            }
+        }
+         stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
+
+
+
+
+==================
+Scripted Pipeline
+==================
+
+node {
+    stage('Git Clone') {
+        git credentialsId: 'GIT-Credentials', url: 'https://github.com/ashokitschool/maven-web-app.git'
+    }
+    
+    stage('Maven Build'){
+        def mavenHome = tool name:"Maven-3.9.4", type: "maven";
+        def mavenPath = "${mavenHome}/bin/mvn";
+        sh "${mavenPath} clean package"
+    }
+}
+
+##########################################
+DevOps Project Setup with CI CD Pipeline
+##########################################
+
+1) Git Hub 
+2) Maven
+3) SonarQube
+4) Nexus Repo 
+5) Tomcat
+6) Jenkins
+
+
+##################
+Pipeline creation
+##################
+
+=> Create CI CD Pipeline with below stages
+
+========================
+1) Create github stage 
+========================
+
+Git Repo : https://github.com/ashokitschool/maven-web-app.git
+
+stage('clone repo') {
+           
+        git credentialsId: 'GIT-Credentials', url: 'https://github.com/ashokitschool/maven-web-app.git'
+        
+}
+
+=========================================================
+2) Create Maven Build Stage (Add maven in global tools)
+=========================================================
+
+stage ('Maven Build'){
+        def mavenHome = tool name: "Maven-3.9.4", type: "maven"
+        def mavenCMD = "${mavenHome}/bin/mvn"
+        sh "${mavenCMD} clean package"
+}
+
+============================
+3) Create SonarQube stage
+===========================
+
+-> Start Sonar Server 
+
+-> Login into Sonar Server & Generate Sonar Token 
+
+Ex: 4b10dc9d10194f31f15d0233bdf8acc619c5ec96
+
+-> Add Sonar Token in 'Jenkins Credentials' as Secret Text
+
+			-> Manager Jenkins 
+			-> Credentials 
+			-> Add Credentials 
+			-> Select Secret text
+			-> Enter Sonar Token as secret text 
+
+-> Manage Jenkins -> Plugins -> Available -> Sonar Qube Scanner Plugin -> Install it
+
+-> Manage Jenkins -> Configure System -> Sonar Qube Servers -> Add Sonar Qube Server 
+		
+				- Name : Sonar-Server-7.8
+				- Server URL : http://52.66.247.11:9000/   (Give your sonar server url here)
+				- Add Sonar Server Token			
+
+-> Once above steps are completed, then add below stage in the pipeline
+
+stage('SonarQube analysis') {
+			withSonarQubeEnv('Sonar-Server-7.8') {
+			def mavenHome = tool name: "Maven-3.8.6", type: "maven"
+			def mavenCMD = "${mavenHome}/bin/mvn"
+			sh "${mavenCMD} sonar:sonar"
+    	}
+}
+
+=======================
+4) Create Nexus Stage
+======================
+-> Run nexus VM and create nexus repository
+
+-> Create Nexus Repository 
+
+-> Install Nexus Repository Plugin using Manage Plugins   ( Plugin Name : Nexus Artifact Uploader)
+
+-> Generate Nexus Pipeline Syntax
+
+stage ('Nexus Upload'){
+nexusArtifactUploader artifacts: [[artifactId: '01-Maven-Web-App', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus-Credentials', groupId: 'in.ashokit', nexusUrl: '13.127.185.241:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'ashokit-snapshot-repository', version: '1.0-SNAPSHOT'
+}
+
+=========================
+5) Create Deploy Stage
+=========================
+
+-> Start Tomcat Server
+
+-> Install SSH Agent plugin using Manage Plugins
+
+-> Generate SSH Agent and configure stage
+
+-> Add Tomcat Server as 'Uname with Secret Text'
+
+stage ('Deploy'){
+    sshagent(['Tomcat-Server-Agent']) {
+			sh 'scp -o StrictHostKeyChecking=no target/01-maven-web-app.war ec2-user@43.204.115.248:/home/ec2-user/apache-tomcat-9.0.80/webapps'
+	}
+}
+
+
+################
+Final Pipeline
+################
+
+node {
+   
+   stage('Git Clone'){
+       git credentialsId: 'GIT-CREDENTIALS', url: 'https://github.com/ashokitschool/maven-web-app.git'
+   }
+   
+   stage('Maven Build'){
+        def mavenHome = tool name: "Maven-3.9.4", type: "maven"
+        def mavenPath = "${mavenHome}/bin/mvn"
+        sh "${mavenPath} clean package"
+   }
+   
+   stage('Code Review') {
+	    withSonarQubeEnv('Sonar-Server-7.8') {
+	        def mavenHome = tool name: "Maven-3.9.4", type: "maven"
+	        def mavenCMD = "${mavenHome}/bin/mvn"
+	        sh "${mavenCMD} sonar:sonar"
+        }
+    }
+	
+	stage('Quality Gate') {
+		steps {
+			timeout(time: 1, unit: 'HOURS') {
+				def qg = waitForQualityGate()
+				if (qg.status != 'OK') {
+					error "Quality Gate failed: ${qg.status}"
+				}
+			}
+		}
+    }
+        
+    
+    stage('Nexus Upload'){
+       nexusArtifactUploader artifacts: [[artifactId: '01-Maven-Web-App', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus-Credentials', groupId: 'in.ashokit', nexusUrl: '3.108.217.159:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'ashokit-snapshot-repo', version: '1.0-SNAPSHOT'
+    }
+    
+    stage ('Deploy'){
+       sshagent(['Tomcat-Server-Agent']) {
+		sh 'scp -o StrictHostKeyChecking=no target/01-maven-web-app.war ec2-user@43.204.115.248:/home/ec2-user/apache-tomcat-9.0.80/webapps'
+	   }
+    }
+    
+   
+}
+
+===========================
+Pipeline Conditions
+===========================
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                // Your build steps here
+            }
+        }
+        
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('YourSonarQubeServer') {
+                    sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
+        
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Quality Gate failed: ${qg.status}"
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy') {
+            when {
+                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+            }
+            steps {
+                // Your deployment steps here
+            }
+        }
+    }
+}
+
+
+################################
+Email Notifications In Jenkins
+################################
+
+-> We can configure Email notifications in Jenkins
+
+-> With this option we can send email notification to team members after jenkins job execution completed
+
+-> We need to configure SMTP properties to send emails
+
+-> Go To Manage Jenkins 
+-> Go To System
+-> Add Email Extension Server
+-> We will add company provided SMTP server details to send emails.
+
+Note: For practise we can use GMAIL SMTP Properties
+
+SMTP Server : smtp.gmail.com
+SMTP Port : 465
+
+Note: Under Advanced section add your gmail account credential for authentication purpose.
+
+
+DL : sbiteam@tcs.com
+
+
+======================================
+Scripted Pipeline Email Notification 
+=======================================
+
+
+node {
+   stage('Demo'){
+       echo 'Hello world'
+   }
+   
+   // send to email
+  emailext (
+      subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+      to: 'ashokitschool@gmail.com',
+      attachLog: true
+    )
+}
+
+==========================================
+Declarative Pipeline Email Notification 
+==========================================
+
+pipeline {
+    agent any
+    
+    tools{
+        maven "Maven-3.9.4"
+    }
+
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/ashokitschool/maven-web-app.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+    
+   post {
+		failure {
+			emailext(
+				subject: "Build Failed: ${currentBuild.fullDisplayName}",
+				body: "The build ${currentBuild.fullDisplayName} failed. Please check the console output for more details.",
+				to: 'ashokitschool@gmail.com',
+				from: 'ashokit.classes@gmail.com',
+				attachLog: true
+			)
+		}
+		success {
+			emailext(
+				subject: "Build Successful: ${currentBuild.fullDisplayName}",
+				body: "The build ${currentBuild.fullDisplayName} was successful.",
+				to: 'ashokitschool@gmail.com',
+				from: 'ashokit.classes@gmail.com',
+				attachLog: true
+			)
+		}
+	}
+    
+}
+
+====================================
+Jenkins Job with Parallel Stages 
+====================================
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning...'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo 'Building......'
+            }
+        }       
+        
+        stage('Parallel Stage') {
+            parallel {
+            	stage('Test') {
+		            steps {
+		                echo 'Testing......'
+		            }
+        		}
+                stage('Code Review') {
+                    steps {
+                        echo 'Running tasks in parallel - code review'
+                    }
+                }
+                stage('Nexus Upload') {
+                    steps {
+                        echo 'Running tasks in parallel - nexus upload'
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}
+
+
+===========================================
+Working with Shared Libraries in Jenkins 
+===========================================
+
+=> Create git repo and push shared libraries related groovy files 
+
+		Git Repo : https://github.com/ashokitschool/my_shared_libraries.git
+
+=> Configure Shared Libraries in Jenkins (Manage Jenkins -> System -> Global Pipeline Libraries)
+
+=> Create Pipeline and use Shared Libraries 
+
+
+@Library('ashokit-shared-lib') _
+
+pipeline {
+    agent any
+    stages{
+        stage('one'){
+            steps{
+              welcome( )
+            }
+        }
+        stage('two'){
+            steps{
+              script{
+                  calculator.add(10,10)
+                  calculator.add(20,20)
+              }
+            }
+        }
+    }
+}
+
+=======================================
+Jenkins Pipeline with Shared Library
+=======================================
+
+@Library('ashokit_shared_lib') _
+
+pipeline{
+    agent any
+    
+    tools{
+        maven "Maven-3.9.4"
+    }
+    
+    stages{
+        
+        stage('Git Clone'){
+            steps{
+                gitClone('https://github.com/ashokitschool/maven-web-app.git')
+            }
+        }
+        
+        stage('Build'){
+            steps{
+              mavenBuild()
+            }
+        }
+        
+        stage('Code Review'){
+            steps{
+              sonarQube()
+            }
+        }
+    }
+}
+
+=====================
+What is Jenkinsfile
+=====================
+
+=> Jenkinsfile is used to keep project pipeline code
+
+
+======================================
+Jenins Pipeline with try-catch blocks
+======================================
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                        // Code that might throw an exception
+                        sh 'make -B'
+                    } catch (Exception e) {
+                        // Handle the exception
+                        echo "Build failed: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                script {
+                    try {
+                        // Code that might throw an exception
+                        sh 'make test'
+                    } catch (Exception e) {
+                        // Handle the exception
+                        echo "Tests failed: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo "Always i will execute"
+        }
+        success {
+            echo "Pipeline succeeded!"
+        }
+        failure {
+            echo "Pipeline failed!"
+        }
+    }
+}
+
+===========================================
+What is Multi Branch Pipeline in Jenkins ?
+===========================================
+
+=> In realtime, we will have multiple branches in git repo like below
+
+		a) main
+		b) develop
+		c) feature
+		d) release
+
+=> Creating seperate jenkins pipeline for every branch is difficult.
+
+=> We can create one pipeline and we can build the code from multiple branches at a time using "Multi Branch Pipeline" concept.
+
+=> When we create Multi Branch Pipeline, it will scan all the branches in given git repo and it will execute pipeline for all branches.
+
+
+Note: When we run mutli branch pipeline for secondtime, it will verify code changes happend in which branches and it will execute pipeline for only those branches.
+
+
+================
+Jenkins Summary
+================
+
+1) Build & Deployment process
+2) Challenges in Manual build & deployment
+3) Automated Build & Deployment
+4) What is CI CD
+5) What is Jenkins
+6) Jenkins Setup in Linux VM
+7) Freestyle Job creation (GUI)
+8) Job Parameters
+9) Jenkins User & Roles Management
+10) Master & Slave Configuration
+11) Jenkins Pipeline
+12) Declarative Vs Scripted Pipeline
+13) Jenkins Multi Stage Pipeline
+14) Jenkins Plugins
+15) Jenkins Global Tools
+16) Post Build Actions
+17) Email Notifications
+18) Jenkins Shared Libraries
+19) Parallel Stages
+20) try-catch blocks in pipeline
+21) Multi Branch Pipeline
+22) What is Jenkinsfile
+23) How to take Jenkins Backup (restore is pending)
+

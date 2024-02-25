@@ -1,0 +1,88 @@
+
+
+Project can be developed in 2 ways
+
+
+1) Monolithic Architecture
+
+2) Microservices Architecture
+
+-------------------------
+Monolithic Architecture
+-------------------------
+
+-> Monolithic Architecture means everything will be developed in single application
+
+1) Burden will be increased on server
+
+2) Single Point of failure
+
+3) Re-Deploy entire application
+
+Note: It is outdated approach in the industry
+
+----------------------------
+Microservices Architecture
+----------------------------
+
+-> Microservices architecture nothing but collection of services which are independentley deployable, executable and deliverable.
+
+Ex: makemytrip application
+
+hotels-booking
+trains-booking
+flights-booking
+cabs-booking
+
+-> Every functionality will be developed as seperate service.
+
+
+1) Loosely coupling
+
+2) No Need to re-deploy entire application
+
+3) There is no single point of failure
+
+4) Maintenence easy
+
+------------------------
+Microservices Project
+------------------------
+
+Backend app : Springboot app
+
+Git Repo : https://github.com/ashokitschool/contact_backend_app.git
+
+Frontend app : Angular App
+
+Git Repo : https://github.com/ashokitschool/contact_ui_ng_app.git
+
+-----------
+Procedure
+----------
+
+1) Create CI job for backend app
+
+2) Create CD job for backend app
+
+Note: Backend CI job should trigger backend CD job
+
+3) Run Backend CI job and test backend app functionality
+
+4) Configure backend app url in frontend app  (src/app/contact.service.ts)
+
+5) Create CI job for frontend app
+
+6) Create CD job for for frontend app
+
+Note: Frontend CI job should trigger frontend CD job
+
+7) Trigger frontend CI job and test frontend app functionality
+
+Note: Frontend app should communicate backend app
+
+
+
+
+
+

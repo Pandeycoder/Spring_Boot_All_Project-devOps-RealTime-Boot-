@@ -1,0 +1,114 @@
+=================================
+AWS S3 (Simple Storage Service)
+=================================
+
+-> S3 is a storage service in AWS cloud
+
+-> S3 supports unlimited storage
+
+-> Using S3 we can store any amount of data from anywhere
+
+-> S3 supports object based storage (files)
+
+-> We can upload & download objects (files) at any point of time using S3
+
+-> In S3, we need to create buckets to store data
+
+Note: Every bucket should have unique name
+
+-> When we create a bucket end-point url will be generated to access bucket.
+
+-> When we upload object into bucket, every object will get its own end-point url.
+
+Note: By default, buckets and objects are private (we can them as public).
+
+-> We can create multiple buckets in s3.
+
+https://ashokitbucket101.s3.ap-south-1.amazonaws.com/SB_NG_Docker_K8S_Project_Setup.pdf
+
+-> S3 is global service where buckets are regional specific.
+
+=================================
+Static Website Hosting using S3
+=================================
+
+-> Website nothing but collection of web pages
+
+-> Websites are divided into 2 types
+
+	1) Static Website
+	2) Dynamic Website
+
+-> The website which gives same response/content for all users is called as static website.
+
+-> The website which gives response based on user is called as Dynamic website.
+
+
+## Git Hub Repo : https://github.com/ashokitschool/s3_static_website_hosting.git
+
+Step-1) Create s3 bucket with unique name
+
+Step-2) Upload website files & folders into bucket with public read-access
+
+Step-3) Enable Static website hosting (in bucket properties)
+
+			index-document : index.html
+			error-document : error.html
+
+Note: After enabling static website hosting it generates end-point URL for our website
+
+Step-4) Access our website using website endpoint url.
+
+===================
+S3 Storage Classes
+===================
+
+=> Storage classes are used to specify how frequently we want to access our objects from S3.
+
+=> We have several storage classes in s3 like below..
+
+1) Standard (default) : To access object more than once in a month
+
+2) Intelligent-Tiering : Unknown access patterns
+
+3) Standard-IA : Infrequent - Access (Once in a month)
+
+4) One Zone-IA :  Stored in a single Availability Zone (Once in a month)
+
+5) Glacier Instant Retrieval : Long Lived Archive data (once in quarter) (MS)
+
+6) Glacier Flexible Retrieval (formerly Glacier) : Once in year (M - H)
+
+7) Glacier Deep Archive : Less than once in year (Hours)
+
+8) Reduced Redundency : Not Cost Effective (not recommended)
+
+============
+Versioning
+============
+
+Object Name : devops-material.pdf   (01-Sep-2023)
+
+Object name : devops-material.pdf (10-sep-2023)  --> It will override old one
+
+=> If we don't want to replace old objects from bucket then we can enable Versioning.
+
+=> Versioning we will enable at bucket level and it is applicable at object level
+
+Note: Once we enable versioning, we can't disable that but we can suspend.
+
+=======================
+What is Object Locking
+=======================
+
+-> It is used to enable the feature WORM (Write once read many times)
+
+-> At the time of bucket creation only we can enable object lock.
+
+-> Object Lock will be enabled at bucket level and it is applicable at object level.
+
+=================================
+What is Transfer Accelaration
+=================================
+
+-> It is used to speed up data transfer process in S3 bucket.

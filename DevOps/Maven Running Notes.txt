@@ -1,0 +1,401 @@
+========================
+Apache Maven
+========================
+
+1) What is Java ?
+2) Java Project Types
+3) Java Project Execution Flow
+4) Java Projects Build Process
+5) What is Build Tool
+6) Why we need tools
+7) Maven Introduction
+8) Maven Setup
+9) Maven Dependencies
+10) Maven Goals
+11) Maven Repositories
+12) Working with Maven
+
+==================
+Java Introduction
+==================
+
+=> Java is a computer programming language
+
+=> Developed by Sun Microsystem in 1991
+
+=> Using Java we can develop software projects
+
+1) Stand-alone applications
+2) Web applications
+
+=> The application which is accessible only in one computer is called as stand-alone application.
+
+	Ex: Calculator, Notepad++, Sublime text, VS Code IDE etc..
+
+=> The application which can be accessed by multiple users at a time is called as web application.
+
+	Ex: Gmail, youtube, facebook, naukri, linkedin etc...
+
+
+============================
+Java Project Execution Flow
+============================
+
+1) Developers will write source code (.java files)
+
+2) Compile source code (java compiler) => It generates byte code (.class)
+
+3) Package byte code into jar / war file for execution
+
+=> Stand-alone app will be packaged as jar file (Java Archieve)
+
+=> Web app will be packaged as war file (Web Archieve)
+
+4) If project is packaged as jar then we can execute jar file directley
+
+5) If project is packaged as war then we need to deploy war file in server (Ex: tomcat)
+
+
+=============================
+Java Project Build Process
+=============================
+
+1) Download Required Dependencies
+
+2) Add dependencies to build path
+
+3) Compile source code (.java -> .class)
+
+4) Execute Unit Test cases
+
+5) Package Project as Jar or War
+
+
+=> Earlier developers used to perform above build process manually.
+
+=> To avoid manual build process, build tools came into picture
+
+=> Using Build Tools we can automate project build process.
+
+
+############# Maven is a build tool for java applications ###########
+
+=================
+What is Maven ?
+=================
+
+=> Maven software developed by apache org
+
+=> Maven is free & open source software
+
+=> Maven s/w developed using Java Language
+
+=> Maven is called as Build Tool for Java projects
+
+=> Using Maven we can automate Java projects build process
+
+
+====================
+What Maven can do ?
+====================
+
+=> Create Project structure
+
+=> Download required libraries
+
+=> Add libraries to build path
+
+=> Compile project source code
+
+=> Execute Unit Test cases (Junits)
+
+=> Package project as jar / war file
+
+
+===============================
+Maven Setup in Windows Machine
+===============================
+
+1) Download and Install Java
+
+2) Set JAVA_HOME and Java Path
+
+3) Verify Java Installation
+
+4) Download Maven Software
+
+5) Set MAVEN_HOME and Maven Path
+
+6) Verify Maven Setup
+
+
+===================
+Maven Terminology
+==================
+
+=> ArcheType
+=> Group ID
+=> Artifact ID
+=> Version
+=> Packaging Type
+=> Maven Dependencies
+=> Maven Goals
+=> Maven Repositories
+
+
+=> ArcheType represents type of the project
+
+		quickstart => standalone application
+		web-app => web application
+
+
+=> Group ID represents company name
+
+	Ex: com.tcs, com.ibm, in.ashokit etc...
+
+
+=> Artifact ID represents Project name
+
+	Ex:  sbi-app,  flipkart-app, insta-app
+
+
+=> Version represents project version number
+
+	Ex: 0.0.1-SNAPHOST, 1.0-RELEASE
+
+
+=> Packaging type represents packaging format
+
+	Ex: jar , war
+
+
+=> Maven Dependencies are nothing but libraries required for project development
+
+	Ex: Junit, Spring-core, Hibernate etc....
+
+
+	Note: We can get maven dependencies from www.mvnrepository.com	
+
+
+=> Maven Goals are used to perform project build process
+
+	Ex: clean, compile, test, package etc...
+
+
+=> Maven Repositories are used to store maven dependencies/libraries
+
+	Ex: central repo, remote repo, local repo....		
+
+
+=========================================
+Creating Maven Stand-alone application
+=========================================
+
+=> Open command prompt and execute below command to create maven project
+
+$ mvn archetype:generate -DgroupId=in.ashokit -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+=> Inside the project we can see 'src' folder and pom.xml file
+
+	src : It is used to store project source code (.java files)
+
+	pom.xml : Project Object Model (Maven configuration file)
+
+
+=> From cmd, Go inside project directory and execute maven goals
+
+		$ cd <project-directory>
+
+		$ mvn clean package
+
+
+=> Once build got success we can see 'target' directory inside project directory. It contains byte code and our project packaged file (jar)
+
+
+====================
+Maven Dependencies
+====================
+
+=> Maven dependencies means libraries required for the project
+
+	Ex: spring-core, junit, hibernate etc..
+
+=> We can find maven dependencies in www.mvnrepository.com
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>6.0.11</version>
+	</dependency>
+
+=> Add above dependency in project pom.xml file under <dependencies/> section and execute maven goals.
+
+	$ mvn clean package
+
+
+=============
+Maven Goals
+=============
+
+=> Maven Goals are used to perform Project Build Process
+
+=> We have several maven goals like below
+
+
+	clean : To delete target folder
+
+	compile : Compile project source code ( convert .java files to .class files)
+
+	test : To execute project unit test cases (Junits)
+
+			test = compile + test
+
+	package : To package our project as jar or war file
+
+			package = compile + test + package
+
+	install : To publish our project into maven repository
+
+			install = compile + test + package + install
+
+=========================================
+Creating Maven Web application
+=========================================
+
+=> Open command prompt and execute below command to create maven web project
+
+$ mvn archetype:generate -DgroupId=in.ashokit -DartifactId=my-web-app -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+
+=> From cmd, Go inside project directory and execute maven goals
+
+		$ cd <project-directory>
+
+		$ mvn clean package
+
+
+=> Once build got success we can see 'target' directory inside project directory. It contains byte code and our project packaged file (war).
+
+
+===================
+Maven Repositories
+===================
+
+Repositoriy : It is a place where maven dependencies will be stored
+
+=> We have 3 types of repositories in maven
+
+1) Local Repository
+
+2) Cental Repository
+
+3) Remote Repository
+
+
+=> Local Repository will be created in our machine (.m2 folder)
+
+=> Central Repository will be maintained by apache organization
+
+=> Remote Repository will be maintained by our company to store shared libraries.
+
+
+Note: Only First time maven will download dependencies from central / remote repository to local repository.
+
+=> Maven project will take dependencies from local repository.
+
+
+============================
+Working with maven in linux
+============================
+
+=> Launch Linux VM in AWS cloud (Amazon Linux)
+
+=> Connect with Linux VM using MobaXterm
+
+=> Check Maven version
+
+	$ mvn -v
+
+=> Install maven using below command
+
+	$ sudo yum install maven
+
+=> Check Java & Maven versions
+
+	$ java -version
+	$ mvn -vs
+
+====================
+Maven - Summary
+===================
+
+1) What is Java 
+2) Stand-alone vs Web Application
+3) Java Project Execution Flow
+4) Java Project Build Process
+5) Build Tools
+6) What is Maven
+7) What maven can do 
+8) Maven Setup in Windows
+9) Maven Terminology
+10) Maven Project Creation
+11) What is pom.xml 
+12) Maven Dependencies
+13) Maven Goals
+14) Maven Repositories
+15) Working with Maven in Linux VM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

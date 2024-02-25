@@ -1,0 +1,291 @@
+##################
+Sonatype Nexus
+##################
+
+-> Nexus is an Open Source Software (OSS) & It is free
+
+-> It is an Artifact Repository Server
+
+-> It is used to store and retrieve build artifacts
+
+-> Nexus software developed using Java Language
+
+Note: To install Nexus s/w we need to install java first
+
+-> Currently people are using Nexus 3.x
+
+
+Java Build Artifacts: jar and war 
+
+Docker : Docker images
+
+Node JS : NPM packages
+
+
+Q) What is difference between Nexus and GitHub ?
+
+-> Github is a SCM software which is used to store source code of the project
+
+-> Nexus is Artifact Repository which is used to store build artifacts (jar / war)
+
+
+Q) When we should store project artifact into nexus ?
+
+-> After build and before deployment
+
+
+
+##################
+Nexus Setup
+##################
+
+-> Take t2.medium instance in AWS EC2 service
+
+-> Java s/w is required to install Nexus
+
+-> Connect to t2.medium instance using mobaxterm
+
+
+##########  Nexus S/w Installation Process in Amazon Linux OS #############
+
+$ sudo su -
+
+$ cd /opt
+
+# install java 1.8v 
+$ sudo yum install java-1.8.0
+
+Links to download : https://help.sonatype.com/repomanager3/product-information/download
+
+# latest version
+$ wget https://download.sonatype.com/nexus/3/nexus-3.40.1-01-unix.tar.gz
+
+$ tar -zxvf nexus-3.40.1-01-unix.tar.gz
+
+$ mv /opt/nexus-3.40.1-01 /opt/nexus
+
+
+#As a good security practice, Nexus is not advised to run nexus service as a root user, so create a new user called nexus and grant sudo access to manage nexus services as follows.
+ 
+$ useradd nexus
+
+# Give the sudo access to nexus user
+
+# execute below command to open sudoers file
+$ visudo
+
+# Add below line in suderos file (just below root user details we can add it)
+nexus ALL=(ALL) NOPASSWD: ALL
+
+# Change the owner and group permissions to /opt/nexus and /opt/sonatype-work directories.
+
+$ chown -R nexus:nexus /opt/nexus
+$ chown -R nexus:nexus /opt/sonatype-work
+$ chmod -R 775 /opt/nexus
+$ chmod -R 775 /opt/sonatype-work
+
+# Open /opt/nexus/bin/nexus.rc file and  uncomment run_as_user parameter and set as nexus user.
+
+$ vi /opt/nexus/bin/nexus.rc
+run_as_user="nexus"
+
+# Create nexus as a service
+
+$ ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
+
+# Switch as a nexus user and start the nexus service as follows.
+
+$ su - nexus
+
+# Enable the nexus services
+$ sudo systemctl enable nexus
+
+# Start the nexus service
+$ sudo systemctl start nexus
+
+# Access the Nexus server from browser.
+ 
+URL : http://IPAddess:8081/
+
+Note: Enable this 8081 port number in Security Group
+
+# Default Username
+User Name: admin
+
+# we can copy nexus password using below command
+$ sudo cat /opt/sonatype-work/nexus3/admin.password
+
+-> We can change nexus default properties 
+
+	/opt/nexus/etc/nexus-default.properties
+
+
+#################################
+Integrate Maven App with Nexus
+#################################
+
+-> Create Repositories in Nexus to store build artifacts
+
+-> We will create 2 types of repositories in Nexus
+
+	1) snapshot
+
+	2) release
+
+-> If project is under development then that project build artifacts will be stored into snapshot repository
+
+-> If project development completed and released to production then that project build artifacts will be stored to release repository
+
+-> Create Repositories by selecting "Maven 2 (Hosted)"
+
+Snanpshot Repo URL : http://15.206.128.43:8081/repository/ashokit-snapshot/
+
+Release Repo URL : http://15.206.128.43:8081/repository/ashokit-release/
+
+Note: Based on <version/> name available in project pom.xml file it will decide artifacts should be stored to which repository
+
+-> Nexus Repository details we will configure in project pom.xml  file like below
+
+
+  <distributionManagement>  
+
+	<repository>
+		<id>nexus</id>
+		<name>Ashok IT Releases Nexus Repo</name>
+		<url>http://15.206.128.43:8081/repository/ashokit-release/</url>
+	</repository>
+	
+	<snapshotRepository>
+		<id>nexus</id>
+		<name>Ashok IT Snapshots Nexus Repo</name>
+		<url>http://15.206.128.43:8081/repository/ashokit-snapshot/</url>
+	</snapshotRepository>
+	
+  </distributionManagement>
+
+-> Nexus Server Credentials will be configured in Maven "settings.xml" file
+
+-> Maven Location : C:\apache-maven-3.8.5\conf
+
+-> In settings.xml file, under <servers> tag add below <server> tag
+
+	<server>
+		<id>nexus</id>
+		<username>admin</username>
+		<password>admin</password>
+	</server>
+
+
+-> Once these details are configured then we can run below maven goal to upload build artifacts to Nexus Server
+
+	$ mvn clean deploy
+
+
+Note: When we execute maven deploy goal, internally it will execute 'compile + test + package + install + deploy' goals.
+
+
+
+
+##################
+Remote Repository 
+##################
+
+-> Remote repository used for shared libraries (common jars required for multiple projects)
+
+-> If we want to use few jar files in multiple projects in the company then we will use Remote Repository to store those jars (libraries).
+
+-> Remote repository is specific to our company projects
+
+-> Create remote repo in nexus and upload a jar file 
+
+	-> Go to Repositories
+	-> Create New Repository
+	-> Choose Maven (Hosted) Repository
+	-> Give a name for Repository (Ex: ashokit-remote-repository) & Complete the process
+			
+Note: With above steps Remote Repository got created.
+
+
+Remote Repo URL : http://13.126.20.221:8081/repository/ashokit-remote-repository/
+
+	-> Go to BrowseSection
+	-> Select Remote Repository (By default it is empty)
+	-> Click on Upload Component
+	-> Upload Jar file and give groupId, artifactId and Version		
+
+			groupId : in.ashokit
+			artifactId : pwd-utils
+			version : 1.0		
+
+-> Take dependency details of uploaded jar file and add in project pom.xml as a dependency like below
+
+<dependency>
+  <groupId>in.ashokit</groupId>
+  <artifactId>pwd-utils</artifactId>
+  <version>1.0</version>
+</dependency>
+
+-> We need to add Remote Repository Details in pom.xml above <dependencies/> tag
+
+		<repositories>
+			<repository>
+				<id>nexus</id>
+				<url>http://15.206.128.43:8081/repository/ashokit-remote-repo/</url>
+			</repository>
+		</repositories>
+
+-> After adding the remote repository details in pom.xml then execute maven package goal and see dependency is downloading from nexus repo or not.
+
+		$ mvn clean package
+
+
+=========================================
+How to resolve HTTP Mirror Block Issue ?
+=========================================
+
+=> Make below change in Maven/conf/settings.xml
+
+<mirror>
+      <id>maven-default-http-blocker</id>
+      <mirrorOf>dummy</mirrorOf>
+      <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+      <url>http://0.0.0.0/</url>
+      <blocked>false</blocked>
+</mirror>
+
+
+===============
+Nexus Summary
+===============
+
+1) What is Nexus and Why we need to go for Nexus ?
+
+2) How to setup Nexus Server in Linux 
+
+3) How to create Repositories in Nexus (snapshot & release)
+
+4) How to upload build artifacts into Nexus Repositories
+
+5) What are Shared Libraries ?
+
+6) How to create Remote Repository ?
+
+7) How to upload Shared Libraries into remote repository
+
+8) How to configure remote repository in pom.xml file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

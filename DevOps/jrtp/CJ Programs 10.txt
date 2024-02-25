@@ -1,0 +1,75 @@
+
+1) Java program to check given number is prime or not
+
+2) Print first n prime numbers where n is input from user.
+
+3) Java program to check given num is armstrong or not
+
+4) Java program to find sum of n natural numbers without loop.
+
+5) Java program to find sum of digits in given num
+
+6) Java progrm to find factorial of given num
+
+7) Java program to print fibanacci series of given number
+
+8) Java program to find duplicates in the array
+
+9) Java program to reverse array
+
+10) Java program to find second min & second max in array
+
+11) Java program to find sum of element pairs equals to given number in the array
+
+12) Java program to reverse String
+
+13) Java program to remove duplicates in String
+
+14) Java program to find vowels count in String
+
+15) Java program to remove special characters in string
+
+16) Java program to generate OTP
+
+17) Java program to remove white spaces in String
+
+18) Java program to reverse each word in the String.
+
+19) Java program to print pyramid
+
+20) Java program to seggrate 1's and 0's in array
+
+		{1,0,1,1,0,1,0, 0}
+
+
+21) Write a java program to replace a character with its occurance in given string.
+
+			ex: deloitte
+
+			ch : t
+
+			output : deloi12e
+
+22) Write a java program to find sum of numbers in given string
+
+			ex: india123abc
+			output : 6			
+
+23) Write a java program to find count of numbers, alphabets and special characters in given string
+
+		Ex : ind@ia@123@
+
+		numbers = 3
+		alphabets = 5
+		special chars = 3
+
+
+24) Find Occurance of each character in given String.
+
+25) Write a java program to rotate array by 2 positions right side
+
+
+
+
+
+

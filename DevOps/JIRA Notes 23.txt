@@ -1,0 +1,82 @@
+
+========
+Agile
+=======
+
+=> Agile Methodology is one of the most famous SDLC methodology in the market
+
+-> Planning + Design + Development + Testing + Delivery is a continuous process.
+
+=> In Agile methodology we will deliver project to client in multiple releases. They are called as Sprints.
+
+	Ex: Sprint-1, Sprint-2, Sprint-3....
+
+=> In Agile methodology everyday we will have Scrum meeting.
+
+Note: Scrum meeting is also called as Status call / standup call.
+
+===================
+Agile Terminology
+===================
+
+1) Backlog Grooming
+2) Story
+3) Story Points
+4) Backlog
+5) Sprint Planning
+6) Sprint
+8) Retrospective
+
+=> Backlog grooming is a meeting where all the team members will discuss about pending works/items in the project.
+
+=> Story means a task which we need to work on.
+
+=> Story points will represent duration to complete the story
+
+			3 points - 1 day
+
+			5 points - 2 days
+
+			8 points - 3 days
+
+=> Backlog means the stories which are pending in the project
+
+=> Sprint Planning is a meeting in which team will disucuss priority stories to complete
+
+=> Sprint represents set of stories to complete in given duration
+
+Note: Sprint duration will be 2 weeks (industry standard)
+
+=> Scrum is a meeting in which all team members will give work updates to scrum master.
+
+=> Retrospective is a meeting in which team members will discuss about sprints review.
+
+			1) what went well
+			2) what went wrong
+			3) any lessons learnt
+			4) any improvements required
+			5) new ideas....
+
+
+=======
+JIRA
+=======
+
+=> JIRA s/w developed by Atlasian company
+
+=> JIRA is called as Project Management software
+
+=> JIRA is used to manage project work.
+
+		1) Story creation
+		2) Story allocation
+		3) Reports generation etc...
+
+=> JIRA is also used for Bug Reporting....
+
+=> JIRA is a licensed s/w. We can use trial version for practice.
+
+
+
+
+

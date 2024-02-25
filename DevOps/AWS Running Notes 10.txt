@@ -1,0 +1,240 @@
+AWS Whatsapp Group : https://chat.whatsapp.com/CL52YW830eTBob1nqVJv9x
+
+===========
+AWS Cloud
+===========
+
+Pre-Requisites : Linux Basics
+
+================
+Course Content
+================
+
+=> What is Infrastructure
+=> On-Premesis Infrastructure
+=> Challenges with On-Prem infra
+=> What is Cloud Computing
+=> Advantages with Cloud
+=> Cloud Service Models (IaaS vs PaaS vs SaaS)
+
+=> AWS Introduction
+
+=> AWS Account Setup
+
+=> AWS Services Overview
+
+=> EC2 (Elastic Compute Cloud)
+
+=> EBS (Elastic Block Store) (Volumes & Snapshots)
+
+=> LBR (Load Balancer)
+
+=> ASG (Auto Scaling)
+
+=> S3 (Simple Storage Service) - Unlimited storage
+
+=> RDS (Relational Databases)
+
+=> Dynamo DB (No-SQL Database)
+
+=> EFS (Elastic File System)
+
+=> IAM (Identity & Access Management)
+
+=> AWS CLI
+
+=> VPC (Virtual Private Cloud)
+
+=> Cloud Formation (IAAC)
+
+=> Cloud Front (Content Delivery Network)
+
+=> Route 53 (DNS Mapping)
+
+=> AWS Lambdas (Serverless Computing)
+
+=> Cloud Watch
+
+=> SNS (Notification)
+
+=> Terraform (Infrastructure provising)
+
+=> Ansible (Configuration management)
+
+
+=============
+Course Info
+=============
+
+Course Name : AWS Cloud + Terraform + Ansible
+
+Duration : 45 Days
+
+Timings : 8:00 PM - 10:00 PM (IST)
+
+Notes: Softcopy material (topic wise)
+
+Videos : Backup Videos will be provided (1 year)
+
+Course Fee : 10,000 INR
+
+
+
+
+
+=====================
+Cloud Service Models
+=====================
+
+a) IAAS (Infrastructure as a service)
+
+b) PAAS (Platform as a service)
+
+c) SAAS (Software as a service)
+
+=============
+What is AWS 
+============
+
+-> Since 2006 aws providing IT resources over internet
+
+-> Pay as you go model
+
+-> 190+ contries using
+
+-> Having Global infrastructure
+
+
+=================
+Regions & AZ's
+=================
+
+Region -> Geographical location (32 regions)
+
+Availability Zone -> Data Center (server room) -> 102 Az's
+
+==================
+AWS Account Setup
+==================
+
+-> We can create free account in aws cloud (free tier)
+
+-> 1 year free access (limited services access)
+
+-> Credit Card required (2 rs for account verification)
+
+Note: No Auto Debits
+
+======================
+AWS Services Overview
+======================
+
+-> AWS providing 200+ services
+
+1) IAM : Identity & Access management (RBAC)
+
+2) EC2 : Elastic Compute Cloud (Virtual Machines)
+
+3) S3 : Simple Storage Service (Unlimited Storage)
+
+4) RDS : Relational Database Service (Ex: Oracle, MySQL)
+
+5) Route 53 : Domain Name System (DNS) (ex: www.ashokit.in)
+
+6) Elastic Bean stack : PaaS (To run web applications)
+
+7) VPC : Virtual Private Cloud (isolated network for the resources)
+
+8) Cloud Watch : Monitoring resources in AWS
+
+9) SNS : Simple Notification Service
+
+10) CloudFormation : Infrastructure as a code
+
+11) EFS : Elastic File System (share files with multiple EC2 instances)
+
+12) ECS : Elastic Container Service (to run docker containers)
+
+13) ECR : Elastic Container Registry (to store our images)
+
+14) EKS : Elastic K8S Service (K8s control plane)
+
+15) Cloud Front : To configure Edge locations
+
+16) AWS Lambdas : To implement serverless computing
+
+17) AWS CLI : Command line interface
+
+18) Dynamo DB : No-SQL database
+
+
+
+==========================================
+How to create infrastrucutre in aws cloud
+==========================================
+
+1) Web console (gui)
+
+2) AWS CLI
+
+3) Cloud Formation (YML / JSON)
+
+4) Terraform (supports multiple clouds)
+
+
+=================================
+AWS S3 (Simple Storage Service)
+=================================
+
+-> S3 is a storage service in AWS cloud
+
+-> S3 supports unlimited storage
+
+-> Using S3 we can store any amount of data from anywhere
+
+-> S3 supports object based storage (files)
+
+-> We can upload & download objects (files) at any point of time using S3
+
+-> In S3, we need to create buckets to store data
+
+Note: Every bucket should have unique name
+
+-> When we create a bucket end-point url will be generated to access bucket.
+
+-> When we upload object into bucket, every object will get its own end-point url.
+
+Note: By default, buckets and objects are private (we can them as public).
+
+-> We can create multiple buckets in s3.
+
+https://ashokitbucket101.s3.ap-south-1.amazonaws.com/SB_NG_Docker_K8S_Project_Setup.pdf
+
+=================================
+Static Website Hosting using S3
+=================================
+
+## Git Hub Repo : https://github.com/ashokitschool/s3_static_website_hosting.git
+
+Step-1) Create s3 bucket with unique name
+
+Step-2) Upload website files & folders into bucket with public read-access
+
+Step-3) Enable Static website hosting (in bucket properties)
+
+			index-document : index.html
+			error-document : error.html
+
+Note: After enabling static website hosting it generates end-point URL for our website
+
+Step-4) Access our website using website endpoint url.
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,113 @@
+
+====================================
+IAM : Identity & Access Management
+====================================
+
+=> 2 Types of accounts we can see in AWS
+
+	1) Root Account (Super account) - will have access for everything in AWS
+
+	2) IAM Account (we can manage permissions)
+
+=> We shouldn't use root account for our daily activities.
+
+=> For daily activities we are going to use IAM accounts.
+
+Note: Every team member will get IAM account to perform daily activities.
+
+=> In IAM account we can give permissions to access particular services in AWS cloud.
+
+
+Note: IAM is free service.
+
+
+===================================
+Multi Factor Authentication (MFA)
+===================================
+
+-> It is used to provide additional security for root account.
+
+-> Enable MFA for root account using Google Authenticator app
+
+-> After enabling MFA, logout and login into root account and check behaviour
+
+===============
+Best Practices
+===============
+- When we login AWS using 'email' and 'password',  that has complete access to all AWS services and resources in   the account (Root account).
+
+- Strongly recommended that you do not use the "root user" for your everyday tasks, even the administrative ones. 
+
+- Instead, adhere to the best practice of using the root user only to create your first IAM user. Then securely lock away the root user credentials and use them to perform only a few account and service management tasks. 
+
+- IAM user is truely global, i.e, once IAM user is created it can be accessible in all the regions in AWS.
+
+
+1. Main things in IAM is 
+	-Roles
+	-Users
+	-Policies / Permissions
+	-Groups
+
+2. IAM users can be accessible by the following 3 ways.
+	-through AWS console
+	-CLI (Command Line Interface)
+	-API 
+
+3. In MNCs , permissions will not be provided for individual users. Create the Groups and add the users into it.
+    Users & Groups are for the users.
+    Roles are for the AWS Services.
+
+
+
+============
+IAM Account
+============
+
+1) Create IAM account and attach policies (RDSFullAcces, S3FullAccess)
+
+2) Login into IAM account and EC2 service (can't access because no permission)
+
+=================
+IAM User Group
+=================
+
+1) Create User Group 
+
+2) Attach Policies to group
+
+3) Add Users to group
+
+
+=====================
+Create Custom Policy
+=====================
+
+1) Create policy and add to user group
+
+
+================
+Create IAM role
+=================
+
+1) Create IAM role and attach to ec2 vm
+
+
+===============
+IAM Summary
+===============
+
+1) What is IAM ?
+2) What is Root Account ?
+3) How to enable MFA for root account
+
+4) What is IAM account
+5) How to create IAM account
+6) Programmatic Access Vs Console Access
+7) Attaching Policies to User
+8) Creating Custom Policy
+9) Creating User Group
+10) Adding Users to Group
+11) Adding Policies to User Group
+12) Working with IAM Role
+

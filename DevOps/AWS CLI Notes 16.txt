@@ -1,0 +1,160 @@
+==========
+AWS CLI 
+==========
+
+AWS provides two ways of infrastructure configurations
+
+1) AWS Management Web Console
+
+2) AWS CLI (Command Line Interface)
+
+===========================
+Using the AWS web console: 
+===========================
+
+It is a graphical method to connect to various AWS resources, their configuration, modification, etc. It is simple to use and does not require knowledge of scripting.
+
+============================
+AWS Command Line Interface: 
+============================
+
+Usually, the script provides you with the flexibility to manage multiple AWS resources, infrastructures effectively. 
+
+For example, we can use the script to deploy multiple resources without the need to go through a complete configuration wizard each time.
+
+============================
+Configuring AWS CLI
+=============================
+
+1) Create AWS Account: In order to configure AWS CLI.
+
+2) Create IAM user with Security Credentials and note down Access Keys
+
+	Access Key : AKIASAEUF6C7FBPQIPUU
+	Secret Key : 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
+
+3) Install AWS CLI: AWS CLI is available for Windows, MAC and Linux distribution of OS.
+
+	a) For windows : https://awscli.amazonaws.com/AWSCLIV2.msi (download and install)	
+		
+	b) MAC and Linux: Please follow these steps (execute below commands)
+
+			$ sudo apt-get install -y python-dev python-pip
+			$ sudo pip install awscli			
+
+3) Once Installation completed then execute below commands
+
+	$ aws --version (It should give AWS CLI version)
+	$ aws configure (To connect with AWS Cloud)
+
+Note: AWS configure command will ask for access key, secret access key, region and output format.
+
+#########  CLI Documentation : https://docs.aws.amazon.com/cli/latest/reference/  ##########
+
+
+================================================
+Working with AWS S3 Service using AWS CLI
+================================================
+Step-1: In this case, we will be using AWS S3 (Simple Storage Service) as an example.
+
+In brief, AWS S3 is an object storage service.
+
+Step-2: Next, we are going to run “aws s3 ls" (to display bucket lis)
+
+		$ aws s3 ls
+		
+Step-3: After listing out the content of the existing bucket, let us try to create a new s3 bucket using AWS CLI
+
+		$ aws s3 mb s3://ashokitbucket1004
+
+Step-4: As a result of the command execution, the bucket should be created
+
+Step-5: After the command has been executed, let us check, if the bucket has been created and what is the region of the bucket.
+
+
+Step-6: Delete bucket
+
+		$ aws s3 rb s3://ashokitbucket1004
+
+
+===========================
+List out all ec2 instances 
+===========================
+$ aws ec2 describe-instances
+
+Note : It will list down all the data in JSON format
+
+# For example, we can search for instances with a given type
+$ aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro
+
+or a tag key:
+
+$ aws ec2 describe-instances --filters "Name=tag-key,Values="EC2VM-2"
+
+
+=========================================
+Create a New Key Pair for EC2 Instances
+=========================================
+
+-> Before launching a new EC2 instance we’ll need an SSH key pair that we’ll use to connect to it securely.
+
+$ aws ec2 create-key-pair --key-name ashokitkey --output text > ashokitkey.pem
+
+The above command will create a new key in the AWS named ashokitkey and pipe the secret key directly to the location we specify, in this case, ashokitkey.pem.
+
+
+==========================
+Launch New EC2 Instances
+==========================
+$ aws ec2 run-instances --image-id ami-0a5ac53f63249fba0 --instance-type t2.micro --key-name ashokitkeypair
+
+
+=================================
+Stop and Start an EC2 Instance
+=================================
+
+$ aws ec2 stop-instances --instance-ids <instance-id>
+
+Ex: aws ec2 stop-instances --instance-ids i-003788b5ba504825f
+
+And start again:
+
+$ aws ec2 start-instances --instance-ids <instance-id>
+
+Ex: $ aws ec2 start-instances --instance-ids i-003788b5ba504825f
+
+========================
+Terminate an Instance
+========================
+$ aws ec2 terminate-instances --instance-ids <instance-id>
+
+Ex: $ aws ec2 terminate-instances --instance-ids i-003788b5ba504825f
+
+================================
+Creating Security Group in EC2
+================================
+$ aws ec2 create-security-group --group-name MySecurityGroup --description "My security group"
+
+
+=============================
+Creating RDS instance (MySQL)
+=============================
+
+$ aws rds create-db-instance --db-instance-identifier test-mysql-instance --db-instance-class db.t3.micro --engine mysql  --master-username admin --master-user-password secret99 --allocated-storage 20
+
+
+========================
+Delete RDS Instance (MySQL)
+========================
+$ aws rds delete-db-instance ^
+    --db-instance-identifier test-mysql-instance ^
+    --skip-final-snapshot ^
+    --no-delete-automated-backups
+
+
+
+
+
+
+
+

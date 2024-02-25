@@ -1,0 +1,50 @@
+========================
+Serverless Computing
+========================
+
+-> Serverless computing means run the application without thinking about servers
+
+-> AWS will take care of servers required to run our application
+
+-> AWS lambdas are used to implement serverless computing
+
+=============
+AWS Lambdas
+=============
+AWS Lambda is a way to run code without creating, managing, or paying for servers. 
+
+You supply AWS with the code required to run your function, and you pay for the time AWS runs it, and nothing more.
+
+Your code can access any other AWS service, or it can run on its own. While some rules about how long a function has to respond to a request, there’s almost no limit to what your Lambda can do.
+
+The real power, though, comes from the scalability that Lambda offers you. 
+
+AWS will scale your code for you, depending on the number of requests it receives. Not having to build and pay for servers is nice. Not having to build and pay for them when your application suddenly goes viral can mean the difference between survival and virtual death.
+
+
+==================================
+Running Java Code with AWS Lambda
+==================================
+
+1) Create Lambda Function with 'java 11' runtime
+
+2) Upload jar file in 'Code Source'
+
+3) Configure Handler in Runtime
+
+Class Name : in.ashokit.LambdaHandler
+
+Method Name : handleRequest
+
+Handler Syntax : className :: methodName
+
+Ex: in.ashokit.LambdaHandler::handleRequest
+
+
+
+
+
+
+
+
+

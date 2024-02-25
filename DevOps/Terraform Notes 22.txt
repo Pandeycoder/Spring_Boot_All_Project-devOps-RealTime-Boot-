@@ -1,0 +1,419 @@
+
+===========
+Terraform 
+===========
+
+=> It is free and open source software developed by HashiCorp.
+
+=> Terraform is used to create/provision infrastructure in cloud platform.
+
+=> Terraform is called as IAAC software
+
+============  IAAC : Infrastructure as a code ================
+
+=> Instead of creating infrastructure manually using GUI, we can write the code to create infrastructure
+
+=> Terraform supports almost all cloud platforms.
+
+	Ex: AWS, Azure, GCP etc...
+
+
+=> We will use HCL (Hashicorp Configuration Language) to write the infrastructure code.	
+
+
+==============================
+Terraform Vs Cloud Formation
+==============================
+
+=> Cloud Formation is used to create infrastructure only in AWS cloud.
+
+=> Terraform supports almost all cloud platforms available in the market.
+
+======================
+Terraform Vs Ansible
+======================
+
+=> Terraform is used for infrastructure provisioning.
+
+Ex : 
+
+1) Create EC2 VM
+2) Create S3 Bucket
+3) Create RDS instance
+4) Create IAM user  etc....
+
+=> Ansible is used for configuration management.
+
+Ex:
+
+1) Install a software in multiple machines
+2) Restart Services
+3) Copy Files etc...
+
+========================
+Terraform Installation
+========================
+
+1) Create Linux VM in AWs Cloud
+
+2) Connect with Linux VM using MobaXterm
+
+3) Execute below commands to setup Terraform
+
+$ sudo yum install -y yum-utils shadow-utils
+
+$ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+$ sudo yum -y install terraform
+
+4) Verify terraform installation
+
+$ terraform -v
+
+=======================
+Terraform Architecture
+=======================
+
+=> Write terraform script using HCL and save it with .tf extension.
+
+=> Execute Terraform commands
+
+
+terraform init : Initialize terraform
+
+terraform fmt : Format terraform script indent spacing (optional)
+
+terraform validate: Verify terraform script syntax is valid or not
+
+terraform plan : Create Execution plan for the terraform script
+
+terraform apply : Create actual resource in cloud based on given plan
+
+terraform destory : It is used to delete the resources created with our terraform script.
+
+
+
+============================
+Terraform Script Syntax
+============================
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AKIASAEUF6C7IADBKTM3"
+  secret_key = "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"
+}
+
+
+resource "aws_instance" "linux-vm"{	
+	ami = "ami-02e94b011299ef128"
+	instance_type = "t2.micro"
+	key_name = "ashokitkeypair"
+	security_groups = ["default"]
+	tags = {
+		Name = "AshokIT-Linux-VM"
+	}
+}
+
+
+
+====================================
+Creating Multiple EC2 Instances
+====================================
+
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AKIASAEUF6C7B54ZV3WH"
+  secret_key = "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"
+}
+
+
+resource "aws_instance" "linux-vm"{
+	count = "2"
+	ami = "ami-02e94b011299ef128"
+	instance_type = "t2.micro"
+	key_name = "ashokitkeypair"
+	security_groups = ["default"]
+	tags = {
+		Name = "AshokIT-Linux-VM"
+	}
+
+}
+
+======================================
+Dealing with Access Key & Secret key
+======================================
+
+=> Instead of configuring access key & secret in terraform script file we can configure them as environment variables.
+
+
+$ export AWS_ACCESS_KEY_ID="AKIASAEUF6C7IADBKTM3"
+
+$ export AWS_SECRET_ACCESS_KEY="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"
+
+
+=> Verify environment variable values
+
+$ echo $AWS_ACCESS_KEY_ID
+
+$ echo $AWS_SECRET_ACCESS_KEY
+
+
+==================================
+Working with User Data in EC2 VM
+==================================
+
+// create script file
+$ vi installHttpd.sh
+
+#! /bin/bash
+
+sudo su
+yum intall httpd -y
+cd /var/www/html
+echo "<h1>Welcome To Ashok IT</h1>" > index.html
+service httpd start
+
+// Give Executio permission
+$ chmod u+x installHttpd.sh
+
+
+// create resource script
+
+resource "aws_instance" "linux-vm" {
+  ami             = "ami-02e94b011299ef128"
+  instance_type   = "t2.micro"
+  key_name        = "ashokitkeypair"
+  security_groups = ["default"]
+  user_data       = file("installHttpd.sh")
+  tags = {
+    Name = "AshokIT-Linux-VM"
+  }
+}
+
+========================
+Variables in Terraform
+=======================
+
+=> Variables are used to store the data in key-value format
+
+	Ex:  
+			id = 101
+			name = ashok
+
+=> We can remove hard coded values from terraform resource script using Variables.
+
+=> We will maintain variables in seperate tf file
+
+$ vi vars.tf
+
+variable "ami" {	
+	description = "Amazon Machine AMI Value"
+	default = "ami-02e94b011299ef128"
+}
+
+variable "instance_type"{	
+	description = "Represents Instance Type"
+	default = "t2.micro"
+}
+
+$ vi main.tf
+
+resource "aws_instance" "linux-vm" {
+  ami             = "${var.ami}"
+  instance_type   = "${var.instance_type}"
+  key_name        = "ashokitkeypair"
+  security_groups = ["default"]
+  user_data       = file("installHttpd.sh")
+  tags = {
+    Name = "AshokIT-Linux-VM"
+  }
+}
+
+
+==========================================
+Create S3 Bucket Using Terraform Script
+==========================================
+
+provider "aws"{
+	region = "ap-south-1"
+}
+
+resource "aws_s3_bucket" "ashokits3bucket" {
+
+	bucket = "ashokits3001"
+	acl = "private"
+
+	versioning {
+		enabled = true
+	}
+}
+
+=====================================================
+Create RDS Instance (MySQL) Using Terraform Script
+======================================================
+
+provider "aws"{
+	region = "ap-south-1"
+	access_key = "AKIASAEUF6C7IADBKTM3"
+    secret_key = "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"
+}
+
+resource "aws_db_instance"  "ashokitrds" {
+	
+	allocated_storage = 100
+	engine = "mysql"
+	engine_version = "5.7"
+	instance_class = "db.t3.micro"
+	identifier = "mydb"
+	username="ashokit"
+	password="ashokit123"
+	parameter_group_name = "default.mysql5.7"
+	skip_final_snapshot = true
+
+}
+
+
+
+
+==========================
+Ex - 1 : Output Variables
+==========================
+
+// create provider info in provider.tf file 
+provider "aws"{
+	region = "ap-south-1"
+}
+
+// create variable in inputs.tf file
+variable "iam_user_name" {
+ description="IAM User name declared here"
+ default = "my_iam_user_raju"
+}
+
+// create resource in main.tf file 
+resource "aws_iam_user" "my_iam_user" {
+    name = "${var.iam_user_name}"
+}
+
+// create output in outputs.tf file
+output "my_iam_user_complete_details" {
+    value = aws_iam_user.my_iam_user
+}
+
+==========================
+Ex - 2 : Output Variables
+==========================
+
+// create provider info in provider.tf file 
+provider "aws"{
+	region = "ap-south-1"
+}
+
+
+// create variable in inputs.tf file
+variable "ami" {
+ description="Amazon Machine Image value"
+ default = "ami-057752b3f1d6c4d6c"
+}
+
+variable "instance_type"{
+   description="Amazon Instance Type"
+   default = "t2.micro"
+}
+
+// create resource in main.tf file 
+resource "aws_instance" "ec2_vm" {
+  ami = "${var.ami}"
+  instance_type = "${var.instance_type}"
+  key_name = "ashokitkeypair"
+  security_groups = ["default"]
+  tags = {
+   Name = "EC2 VM - ${count.index}"
+  }
+}
+
+// create output in outputs.tf file
+output "ec2_vm_info_complete_info" {
+    value = aws_instance.ec2_vm
+}
+
+output "ec2_vm_public_ip" {
+    value = aws_instance.ec2_vm.public_ip
+}
+
+
+
+=====================================
+Input Variables & Output Variables
+=====================================
+
+Input Variables are used to supply values to terraform script
+
+Output Variables are used to get values from terraform after script got executed.
+
+
+Ex-1: After IAM user got created, print user details as output
+
+Ex-2: After EC2 VM got created, print EC2 VM public ip
+
+Ex-3: After S3 bucket got created, print S3 bucket info
+
+Ex-4: After RDS DB got created, print DB endpoint 
+
+===================
+Terraform Modules
+===================
+
+=> A Terraform module is a set of Terraform configuration files in a single directory
+
+=> Terraform modules are used to seperate resource wise configuration
+
+=> If we use modules concept then managing terraform scripts will become easy
+
+
+
+
+
+=========
+main.tf
+========
+
+module "my_ec2_vm" {
+	
+	source = "/modules/ec2"
+
+}
+
+module "my_iam_user" {
+	
+	source = "/modules/iam_user"
+}
+
+
+=============
+Summary
+=============
+
+1) What is Infrastructure as a code (IAAC)
+2) What is Terraform 
+3) Terraform Vs Cloud Formation
+4) Terraform Vs Ansible
+5) Terraform Setup
+6) Terraform Architecture
+7) Terraform Commands (init, validate, fmt, plan, apply, destory)
+8) Terraform State File
+9) How to seperate provider & resource (provider.tf & main.tf)
+10) Configure Access Keys as Environment Variables
+11) Variables in Terraform
+12) Create EC2 instance using Terraform Script
+13) Working With User Data in Terraform
+14) Create S3 bucket using Terraform
+15) Create RDS Instance using Terraform
+16) IAM User creation
+17) VPC with EC2
+18) Output Variables
+19) Terraform Modules
+
+
+Git Repo :: https://github.com/ashokitschool/Terraform_Projects.git
