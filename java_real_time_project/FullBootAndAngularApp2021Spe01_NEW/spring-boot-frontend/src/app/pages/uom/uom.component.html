@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-header bg-primary text-white text-center">
+        <h3>UOM DATA PAGE</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <tr class="bg-info text-white">
+                <th>ID</th>
+                <th>TYPE</th>
+                <th>CODE</th>
+                <th>DESCRIPTION</th>
+                <th>OPERATIONS</th>
+            </tr>
+            <tr *ngFor="let uom of uoms">
+                <td>{{uom.id}}</td>
+                <td>{{uom.uomType}}</td>
+                <td>{{uom.uomCode}}</td>
+                <td>{{uom.uomDesc}}</td>
+                <td>
+                    <a class="btn btn-danger" (click)="deleteUom(uom.id)">DELETE</a> &nbsp;
+                    <a class="btn btn-warning" (click)="editUom(uom.id)">EDIT</a> 
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="card-footer bg-white text-danger text-center" *ngIf="message">
+      <strong>{{message}} </strong> 
+    </div>
+
+</div>

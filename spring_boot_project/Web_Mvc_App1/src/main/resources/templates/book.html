@@ -1,0 +1,41 @@
+<html xmlns="https://www.thymeleaf.org">
+	<head>
+		<title>Explore Journey  Book</title>
+		
+	</head>
+	
+	<body>
+		<h1>Welcome to our Book Store....</h1>
+		
+		<table border="red">
+			<caption>Book Data</caption>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr>
+					<td><p th:text="${id}"></p></td>
+				     
+				     <td><p th:text="${name}"></p></td>
+				    
+				     <td>
+			            <h3 th:text="${price}"></h3></td>
+			
+				</tr>
+				
+			</tbody>
+			<tfoot>
+				
+			</tfoot>
+		</table>
+		<a href="/welcome">return home</a>
+		
+		
+		
+	</body>
+</html>

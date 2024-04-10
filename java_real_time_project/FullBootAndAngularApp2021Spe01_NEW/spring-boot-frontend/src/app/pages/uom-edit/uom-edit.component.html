@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-header bg-primary text-white text-center">
+        <h3>UOM EDIT PAGE</h3>
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="updateUom()">
+            ID : <input name="id" id="id" class="form-control" [(ngModel)]="uom.id" readonly />
+            TYPE : <select name="uomType" id="uomType" class="form-control" [(ngModel)]="uom.uomType">
+                <option value="PACKING">PACKING</option>
+                <option value="NO PACKING">NO PACKING</option>
+                <option value="NA">NA</option>
+            </select>
+            CODE : <input type="text" name="uomCode" id="uomCode" class="form-control" [(ngModel)]="uom.uomCode" />
+            NOTE : <textarea name="uomDesc" id="uomDesc" class="form-control" [(ngModel)]="uom.uomDesc"></textarea>
+            <input type="submit" value="Upate Uom" class="btn btn-info" />
+        </form>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<h3>User Register Form</h3>
+<form
+  *ngIf="!isSuccessful"
+  name="form"
+  (ngSubmit)="registerForm.form.valid && onSubmit()"
+  #registerForm="ngForm"
+>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      name="username"
+      [(ngModel)]="user.username"
+      required
+      minlength="3"
+      maxlength="20"
+      #username="ngModel"
+    />
+    <div
+      class="alert-danger"
+      *ngIf="username.errors && (username.touched || registerForm.submitted)"
+    >
+      <div *ngIf="username.errors.required">Username is required</div>
+      <div *ngIf="username.errors.minlength">
+        Username must be at least 3 characters
+      </div>
+      <div *ngIf="username.errors.maxlength">
+        Username must be at most 20 characters
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      [(ngModel)]="user.email"
+      required
+      email
+      #email="ngModel"
+    />
+    <div
+      class="alert-danger"
+      *ngIf="email.invalid && (email.touched || registerForm.submitted)"
+    >
+      <div *ngIf="email.errors?.required">Email is required</div>
+      <div *ngIf="email.errors?.email">Email must be a valid email address</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      [(ngModel)]="user.password"
+      required
+      minlength="6"
+      #password="ngModel"
+    />
+    <div
+      class="alert-danger"
+      *ngIf="password.invalid && (password.touched || registerForm.submitted)"
+    >
+      <div *ngIf="password.errors?.required">Password is required</div>
+      <div *ngIf="password.errors?.minlength">
+        Password must be at least 6 characters
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button
+      [disabled]="!registerForm.form.valid"
+      class="btn btn-success btn-block"
+    >
+      Sign Up
+    </button>
+  </div>
+  <div
+    class="alert alert-warning"
+    *ngIf="registerForm.submitted && !isSuccessful && message != ''"
+  >
+    {{ message }}
+  </div>
+</form>
+<div class="alert alert-success" *ngIf="isSuccessful">{{ message }}</div>

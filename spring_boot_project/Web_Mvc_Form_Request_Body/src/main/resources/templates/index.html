@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Form Users</title>
+	</head>
+	
+	
+	<body>
+	
+	<h3>User Registration Form</h3>
+		<h5 th:text="${msg}"></h5>	
+		<form th:action="@{/user}" th:object="${user}" method="post">
+			
+			<table>
+				<tr>
+					<td>Name :</td>
+					<td><input type="text" th:field="*{name}"  ></td>
+				</tr>
+				
+				<tr>
+					<td>Email :</td>
+					<td><input type="email" th:field="*{email}" ></td>
+				</tr>
+				
+				
+				<tr>
+					<td>Phno</td>
+					<td><input type="number" th:field="*{phno}" ></td>
+				</tr>
+				
+				
+				<tr>
+					<td></td>
+					<td><input type="submit" value="submit"/></td>
+				</tr>
+			</table>
+		</form>
+		<h3><a href="">View Users</a></h3>
+	</body>
+</html>
