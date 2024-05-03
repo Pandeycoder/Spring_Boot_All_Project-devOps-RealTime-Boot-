@@ -21,7 +21,7 @@ public class TicketRestController {
 	@Autowired
 	private TicketService service;
 
-	@PostMapping(value = "/ticket", consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/ticket", consumes = {"application/xml","application/json"}, produces = {"application/json","application/xml"})
 	public ResponseEntity<Ticket> bookTicket(@RequestBody Passanger passanger) {
 
 		Ticket ticket = service.bookTicket(passanger);
@@ -30,7 +30,7 @@ public class TicketRestController {
 	}
 
 	
-	@GetMapping(value = "/ticket/{ticketNum}", produces = "application/json")
+	@GetMapping(path = "/ticket/{ticketNum}", produces = {"application/xml","application/json"})
 	public ResponseEntity<Ticket> getTicket(@PathVariable("ticketNum") Integer ticketNum) {
 
 		Ticket ticket = service.getTicket(ticketNum);
@@ -41,7 +41,7 @@ public class TicketRestController {
 	
 	
 
-	@GetMapping(value = "/tickets", produces = "application/json")
+	@GetMapping(path= "/tickets", produces = { "application/xml","application/json"})
 	public ResponseEntity<List<Ticket>> getAllTicket() {
 
 		
