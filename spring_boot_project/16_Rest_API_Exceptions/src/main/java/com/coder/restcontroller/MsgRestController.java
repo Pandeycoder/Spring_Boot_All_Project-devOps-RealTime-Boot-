@@ -21,12 +21,12 @@ public class MsgRestController {
 		return "<h1>Welcome to Our page</h1>";
 	}
 	
-	@ExceptionHandler(value=Exception.class)
-	public ResponseEntity<ExInfo> handleEx(Exception e)
-	{
-		
-		ExInfo info=new ExInfo("Ex001", e.getMessage(), LocalDate.now());
-		
-		return new ResponseEntity<>(info,HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+//	@ExceptionHandler(value=Exception.class)
+//	public ResponseEntity<ExInfo> handleEx(Exception e)
+//	{
+//		
+//		ExInfo info=new ExInfo("Ex001", e.getMessage(), LocalDate.now());
+//		
+//		return new ResponseEntity<>(info,HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
 }

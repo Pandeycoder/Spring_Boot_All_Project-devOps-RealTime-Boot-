@@ -1,0 +1,15 @@
+server:
+  port: 81
+  
+spring:
+  application:
+    name: 17_Rest_API
+  datasource:
+    driver-class-name: org.h2
+    password: coder
+    url: jdbc:mem:app1
+    username: pandey
+  mvc:
+    view:
+      prefix: .jsp
+      suffix: /views
