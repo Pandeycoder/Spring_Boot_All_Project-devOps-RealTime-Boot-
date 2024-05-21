@@ -1,0 +1,391 @@
+ ======================================
+       Collections........ 
+=======================================
+
+
+-> Why we need to go for collections 
+
+-> What is Collections Fraemwork
+
+-> Collections Hierarchy
+
+-> List interface & impleementations
+
+-> Set interface & impleementations
+
+-> Queue interface & impleementations
+
+-> Map interface & impleementations
+
+-> Cursors 
+
+-> Collections Sorting
+
+
+
+============================ Approach - 1
+  Variable
+============================
+         It is container that store the data
+
+Data type : 
+          Type of data that we can store in variable.
+
+          1) Primitive(byte ,short,int ,long)
+
+          2) Referenced data types(Array,String Class etc..)
+
+          int a = 10;
+
+          int b = 20;
+
+I want to store 1000 value ?......1000 variable we .
+
+I want to store 1 lakh values ?... 1 lakh variables
+
+
+================== Approach - 2
+    Arrays
+==================
+
+-> We can store group of values in single variable.
+
+   int[] a=new int[500];
+   a[0]=100;
+   a[1]=200;
+   a[2]=300;
+   ....
+   a[499]=7799;
+
+-----------------
+ Limitations
+----------------
+
+-> Array size is fixed.
+
+-> We can store homogenious values (same type of value).
+
+
+   Student s[] = new Student[100];
+
+   s[0] = new Student(10, "Raju"); //valid
+
+   s[1]=new Student[11,"Rani"]; //valid
+
+   s[2] = new Employee(101,"Ramesh")//invalid
+   ....
+   s[99]=new Student(99,"john"); //valid
+
+
+====================== Approach - 3
+ Object Array
+======================
+
+-> Object[] a=new Object[100];
+
+  a[0] = new Student(101,"Raju");
+  a[1] = new Student(102,"Rani");
+
+  a[2]= new Employee(101,"Raju",100.00);
+  a[3]= new Employee(102,"Rani",200.00);  
+
+  a[4]=new customer(101,"Raju",100.00);
+  a[5]= new Customer(102,"Rani",200.00);  
+
+
+
+=========================
+      Collections
+=========================
+
+-> Colections are used to store group of object / values.
+
+-> Collections are growable in nature.
+(dynamically collections size can be inc or decre based on data)
+
+
+-> We can store any type of data in collection.
+(homegeneuous & heterogeneuous )
+
+-> Collections providing predefiend methods to insert , Update , delete , retieve , sort
+
+
+-> Collections is a entity / container which is used to store group of object.
+
+Collections ---> Collections Framework
+
+--> Famework means ready made software.
+
+ollections is called as framework beacuse it is providing innterface , classes and methods to performs operations on data.
+
+8848749933
+
+Collections.sort(num);
+
+===================================
+ 
+List : It is used to store group of objects.
+     
+      ->  dupilcate are allowed
+
+set : It is used to store group of objects.
+
+       -> Duplicates are not allowed.
+
+
+Queue: It is used to store group of objects.
+
+        --> FIFO
+
+map: It is used to store group of objects.
+
+      --> Key - Value Pair....
+
+======================
+Collections Interface
+======================
+
+--> it is super interface for list , set and queue.
+ 
+ 1) add ( Object obj) :
+
+  -- it is used to store one obj.
+
+ 2) get (int index) : get obj
+
+ 3) remove (int index) : remove obj
+
+ 4) set (int index , Object obj) :insert obj using index
+
+ 5) indexOf(Object obj): first occurance of obj
+
+ 6) lastIndexOf(Object obj) : last occurance of obj
+
+ 7) listIterator() : to iterate collection obj
+
+  
+  Collection c=new Collection();
+
+  c.add(100);
+
+======================
+Collections Interface
+======================
+
+--> it is super interface for list , set and queue.
+ 
+ 1) add ( Object obj) :
+
+  -- it is used to store one obj.
+
+ 2) get (int index) : get obj
+
+ 3) remove (int index) : remove obj
+
+ 4) set (int index , Object obj) :insert obj using index
+
+ 5) indexOf(Object obj): first occurance of obj
+
+ 6) lastIndexOf(Object obj) : last occurance of obj
+
+ 7) listIterator() : to iterate collection obj
+
+  
+  Collection c=new Collection();
+
+  c.add(100);
+
+
+
+==============
+LIst Interface:
+===============
+
+-> It is chlid element  of collection inteface.
+
+-> Extending from collection interface.
+
+-> Allow duplicate objects.
+
+->it will maintain object in innsertion order.
+
+
+-> List interface having 4 implemntation.
+
+  1) ArrayList
+  2) LinkedList 
+  3) Vector 
+  4) Stack
+
+   List l = new List();// In-valid we can't create obj for 
+
+   ArrayList al=new ArrayList(); //valid 
+
+   List l=new ArrayList(); //valid
+
+   List l1=new LinkList(); //valid
+
+
+//02- class 
+================================
+
+Cursors: --> Cursors are used to iterator colletions.
+
+      1) Iterator
+      2)ListIterator
+      3)Enumerqations.
+
+--> Collections frameworks related classes & interface are part of java.util.package.
+
+
+
+---------------
+ArrayList class
+---------------
+
+-> Implementation class of list interface.
+
+-> duplicate object are allow 
+
+-> Insertion order preserved 
+
+-> null  value accepted.
+
+-> Internal datastructure of arrayList is growable array.
+
+  ArrayList a1=new ArrayList();
+
+-> defacult capacity is 10.
+
+  a1.add(1);
+  a1.add(2);
+  ....
+  a1.add(11);  // 
+
+---------------------
+ArrayList Contractor
+---------------------
+
+1) ArrayList a1=new ArrayList();  //10
+
+2) ArrayList a1=new ArrayList(int capacity);
+
+3) ArrayList a1=new ArrayList(Collection c);
+
+Method of ArrayList
+--------------------
+
+1) add (Object obj)
+
+2) addAll(Collection c)
+
+3) remove(int index)
+
+4) remove(Object obj)
+
+5) get(int index)
+
+6) contain(Obect obj)
+
+7) clear()
+
+8) isEmpty()
+
+9) retainAll(collection c)
+
+10) indexOf(Object obj)
+
+11) lastIndexOf(Object obj)
+
+12) set(int index ,Object obj)
+
+13) iterator() -> forward direction
+
+14) listIterator()-> forward & backward
+
+
+//ArrayList is not used for insertion(suffeling problem)
+
+
+=================================
+03-class
+=================================
+
+LinkList
+--------------------
+
+-> Imprlrmrntation of List interface.
+
+-> Internal data structure is double linked list 
+
+-> insertation order preserved.
+
+-> duplicate objects are allowed .
+
+-> null object also allowed 
+
+-> homognious & hetereogenious data we can store.
+
+===================
+Vector
+===================
+
+-> Implementation class of listInterface.
+
+-> Internall data structure is growallble array.
+
+-> duplicates are allowed .
+
+-> insertion order preserved.
+
+-> This is synchronized.
+
+-> vector is called as legacy class (jdk version 1.0)
+
+-> To traverse vector we can you use Enumeration as a cursor .
+
+-> Enumeration is called as Legacy Cursor(jdk 1.0v).
+
+===========
+Stack
+===========
+
+-> Implementation class of List interface.
+
+-> Extending from Vector class.
+
+-> data Structure of Stack is LIFO (last in first out)
+
+-> push() --> to insert object 
+
+-> peek() --> to get last element 
+
+-> pop() --> to remove last element.
+
+================
+    04-class
+================
+
+Set
+-------------------
+
+-> Set is a interface available in java.util.package
+
+-> Set interface extending from Collection interface.
+
+-> Set is used to store group of objects .
+
+-> Duplicate objects are not allowed.
+
+-> Supports homogenoius & hetero genoius.
+
+=====================================
+Set interface Implementation classes
+=====================================
+
+-> HashSet
+
+-> LinkedHashSet
+
+-> TreeSet
+
