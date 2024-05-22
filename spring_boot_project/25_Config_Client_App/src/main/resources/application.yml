@@ -1,0 +1,10 @@
+server:
+  port: 9090
+spring:
+  config:
+    import: optional:configserver:http://localhost:8085
+  application:
+    name: welcome
+  
+  profiles:
+    active: SIT Enviroment

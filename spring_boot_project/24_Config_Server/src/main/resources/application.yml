@@ -1,0 +1,16 @@
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Pandeycoder/configuration_properties
+          clone-on-start: true
+management:
+  security:
+    enabled: false
+
+# if we want to search than we can use   ctrl + space   ..........
+
+server:
+  port: 8085
