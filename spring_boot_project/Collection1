@@ -107,7 +107,7 @@ I want to store 1 lakh values ?... 1 lakh variables
 -> We can store any type of data in collection.
 (homegeneuous & heterogeneuous )
 
--> Collections providing predefiend methods to insert , Update , delete , retieve , sort
+-> Collections providing predefiend methods to insert , Update , delete , retrieve , sort.
 
 
 -> Collections is a entity / container which is used to store group of object.
@@ -116,7 +116,7 @@ Collections ---> Collections Framework
 
 --> Famework means ready made software.
 
-ollections is called as framework beacuse it is providing innterface , classes and methods to performs operations on data.
+collections is called as framework beacuse it is providing interface , classes and methods to performs operations on data.
 
 8848749933
 
@@ -168,34 +168,6 @@ Collections Interface
 
   c.add(100);
 
-======================
-Collections Interface
-======================
-
---> it is super interface for list , set and queue.
- 
- 1) add ( Object obj) :
-
-  -- it is used to store one obj.
-
- 2) get (int index) : get obj
-
- 3) remove (int index) : remove obj
-
- 4) set (int index , Object obj) :insert obj using index
-
- 5) indexOf(Object obj): first occurance of obj
-
- 6) lastIndexOf(Object obj) : last occurance of obj
-
- 7) listIterator() : to iterate collection obj
-
-  
-  Collection c=new Collection();
-
-  c.add(100);
-
-
 
 ==============
 LIst Interface:
@@ -207,7 +179,7 @@ LIst Interface:
 
 -> Allow duplicate objects.
 
-->it will maintain object in innsertion order.
+->it will maintain object in insertion order.
 
 
 -> List interface having 4 implemntation.
@@ -275,17 +247,27 @@ ArrayList Contractor
 Method of ArrayList
 --------------------
 
-1) add (Object obj)
+1) add (Object obj) 
+           --> add object at end of the collection
+
 
 2) addAll(Collection c)
+          --> to add collection of object at end of the collection
+          
+15) add(int index,Object) 
+           --> add object at given index         
 
 3) remove(int index)
-
+         --> to remove object based on given index 
+          
 4) remove(Object obj)
+          --> to remove given object
 
 5) get(int index)
+       --> to get object based on index
 
 6) contain(Obect obj)
+       --> 
 
 7) clear()
 
@@ -311,10 +293,10 @@ Method of ArrayList
 03-class
 =================================
 
-LinkList
+LinkedList
 --------------------
 
--> Imprlrmrntation of List interface.
+-> Implementation of List interface.
 
 -> Internal data structure is double linked list 
 
@@ -332,7 +314,7 @@ Vector
 
 -> Implementation class of listInterface.
 
--> Internall data structure is growallble array.
+-> Internal data structure is growallble array.
 
 -> duplicates are allowed .
 
@@ -389,3 +371,62 @@ Set interface Implementation classes
 
 -> TreeSet
 
+
+------------------------------------------------
+1) Iterator --> forward dirr (List & set)
+
+2) ListIterator --> forward & backward (List iml classes)
+
+3) Enumeration --> forward & support for legacy collection
+------------------------------------------------------
+
+
+
+HashSet
+-----------------------------------------
+-> Implementation clas of set interface.
+
+-> Duplicate are not allowed
+
+-> Null is allowed
+
+-> Insertion order will not maintain
+
+-> initial capacity is 16 or 16 bucket create internally. 
+
+-> Load factor 0.75
+
+-> Internal Datastructure is Hashtable.
+
+
+LinkedHashSet
+---------------------------
+
+-> Implementation class for set interface.
+
+-> Duplicates are not allowed.
+
+-> Insertion order will be preserved.
+
+-> internal Data structure is Hash table + Double linked list.
+
+-> Load factor 0.75
+
+-> initial capacity is 16.
+
+TreeSet
+---------------------------------
+
+-> implementation class for set interface.
+
+-> it is maintain natural sorting order.
+
+-> null not allowed 
+
+-> it follow binary tree.
+
+-> it allow only Homongenious Values.
+
+-> Internal datastructure is BinaryTree.
+
+-> It is not synchronized.
