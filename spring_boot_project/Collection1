@@ -436,3 +436,72 @@ TreeSet
 
 -> TreeSet should perform sorting so always it will compare new added object with old object .In order compare object shuld be of same type.
 
+
+---------------------
+     Map
+---------------------
+
+-> map is an interface available in java.util.package.
+
+-> Map is used to store the data in key-value format.
+
+-> One key-value is called as one Entry.
+
+-> One Map can object have multiple entries.
+
+-> key should be unique and value can be duplicate.
+
+Map<K,V> ====> Map<Object,Object
+
+-> if we try to store duplicate in map then it will replace old key data with new key data.
+
+Map interface having several implementation classes.
+
+1) HashMap 
+2) LinkedHashMap
+3) TreeMap
+4) HashTable
+5) IdentityHashMap
+6) WeakHashMap
+
+1) Put() -- to store one etry in map object
+
+2) get(k) -- to get value on key
+
+3) reomove(k)-- to remove one entry based on key
+
+4) containskey(k)-- to check of entry based on key.
+
+5) keySet()-- To get all key of map.
+
+6) values()-- to get all values of the map
+
+7) entrySet()-- to get all entries
+
+8) clear()-- to remove all the entry of map
+
+9) isEmpty() -- to check weather map obj empty or not.
+
+----------------
+HashMap
+----------------
+
+-> It is impl class for Map interface .
+
+-> Used to store data in key-value format.
+
+-> Default capacity is 16.
+
+-> Load factor is 0.75.
+
+-> Underlying datastrucutre is hashtable.
+
+-> Insertion Order will not maintain hashmap.
+
+---------------
+LinkedHashMap
+---------------
+
+---------
+TreeMap
+-----------
