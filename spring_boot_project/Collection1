@@ -98,7 +98,7 @@ I want to store 1 lakh values ?... 1 lakh variables
       Collections
 =========================
 
--> Colections are used to store group of object / values.
+-> Colections is container which is  used to store the group of object / values.
 
 -> Collections are growable in nature.
 (dynamically collections size can be inc or decre based on data)
@@ -398,7 +398,7 @@ HashSet
 
 -> Internal Datastructure is Hashtable.
 
-
+---------------------------
 LinkedHashSet
 ---------------------------
 
@@ -414,6 +414,7 @@ LinkedHashSet
 
 -> initial capacity is 16.
 
+---------------------------------
 TreeSet
 ---------------------------------
 
@@ -421,7 +422,7 @@ TreeSet
 
 -> it is maintain natural sorting order.
 
--> null not allowed 
+-> null not allowed .
 
 -> it follow binary tree.
 
@@ -430,3 +431,8 @@ TreeSet
 -> Internal datastructure is BinaryTree.
 
 -> It is not synchronized.
+
+-> Duplicate are not allow.
+
+-> TreeSet should perform sorting so always it will compare new added object with old object .In order compare object shuld be of same type.
+
