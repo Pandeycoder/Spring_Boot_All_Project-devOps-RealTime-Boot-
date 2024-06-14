@@ -204,8 +204,8 @@ LIst Interface:
 Cursors: --> Cursors are used to iterator colletions.
 
       1) Iterator
-      2)ListIterator
-      3)Enumerqations.
+      2) ListIterator
+      3) Enumerqations.
 
 --> Collections frameworks related classes & interface are part of java.util.package.
 
@@ -505,3 +505,4 @@ LinkedHashMap
 ---------
 TreeMap
 -----------
+spring

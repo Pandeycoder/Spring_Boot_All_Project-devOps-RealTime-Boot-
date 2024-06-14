@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Barcode Generator</title>
+</head>
+<body>
+    <h1>Generated Barcode</h1>
+    <img th:src="'data:image/png;base64,' + ${barcodeImage}" alt="Barcode"/>
+</body>
+</html>

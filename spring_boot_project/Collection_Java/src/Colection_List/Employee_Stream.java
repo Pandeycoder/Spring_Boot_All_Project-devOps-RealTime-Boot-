@@ -20,8 +20,7 @@ public class Employee_Stream {
 				 s.filter(emps->emps.sal>4000)
 				.map(emps->emps.name)
 				.forEach(emps->System.out.println(emps));
-				
-		
+					
 	}
 
 }
