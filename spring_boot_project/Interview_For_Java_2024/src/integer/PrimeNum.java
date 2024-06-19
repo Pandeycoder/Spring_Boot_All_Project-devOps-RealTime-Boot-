@@ -13,6 +13,7 @@ public class PrimeNum {
 		System.out.println(b);
 
 		System.out.println(primeNum1(n));
+		System.out.println(primeNum4(n));
 	}
 
 	public static boolean primeNum(int n) { // root n
@@ -25,6 +26,17 @@ public class PrimeNum {
 		for(int i=5;i*i<=n;i=i+6)
 		{
 			if(n%i==0 || n%(i+2)==0)
+				return false;
+		}
+		return true;
+	}
+	public static boolean primeNum4(int n)
+	{
+		if(n<=1)
+			return false;
+		for(int i=2;i*i<=n;i++)
+		{
+			if(n%i==0)
 				return false;
 		}
 		return true;
