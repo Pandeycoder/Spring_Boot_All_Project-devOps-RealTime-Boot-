@@ -5,6 +5,7 @@ public class FloorLog {
 		
 		System.out.println(fun(31));
 	}
+	// floor log base 2 16 
 	static int fun(int n)
 	{
 		if(n==1)
