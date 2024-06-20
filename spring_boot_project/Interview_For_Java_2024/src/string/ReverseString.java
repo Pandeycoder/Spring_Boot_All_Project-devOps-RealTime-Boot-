@@ -8,6 +8,8 @@ public class ReverseString {
 	
 	//public static String revString(String name)
 	{
+	//	StringBuilder b=new StringBuilder(name);
+		
 		
 	}
 
