@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class PowNum {
 	
 	public static int powNum(int x,int n)
-	{ //x=3pow4 n=4
+	{ //x=3pow4 n=4  2 3  x=2 n=3
 		if(n==0)
 			return 1;
 		
 		int pow=1;
 		for(int i=1;i<=n;i++)
 		{
-			pow=pow*x; //1*2 =2 2*2=
+			pow=pow*x; //1*2=2  //2*2=4 // 4*2=8 
 		}
 		return pow;
 	}
@@ -45,7 +45,8 @@ public class PowNum {
 		int pow=sc.nextInt();
 	   // System.out.println(power(num,pow));
 		
-	    System.out.println(power(num,pow));
+	    //System.out.println(power(num,pow));
+	    System.out.println(powNum(num,pow));
 		
 	    
 	}
