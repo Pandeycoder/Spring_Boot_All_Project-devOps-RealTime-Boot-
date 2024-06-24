@@ -18,23 +18,20 @@ public class PowNum {
 	}
 	
 	//Efficient solution
-	public static int power(int x,int n)
+	public static int power(int num,int pow)
 	{
-		if(n==0)
+		if(pow==0)
 			return 1;
-		
-		int temp=power(x,n/2); // x=3 n=4// 3^2 //3^1 //3^0
-		
-         // 5 6 //5^3 //5^1 //5^0=125
-		
-		System.out.println(temp); //9
+		int temp=power(num,pow/2); // x=3 n=4// 3^2 //3^1 //3^0
+	
+		//System.out.println(temp); //9
 		
 		temp=temp*temp; //125*125//15625
 		
-		if(n%2==0)
+		if(pow%2==0)
 			return temp;
 		else
-			return temp*x;
+			return temp*num;
 		
 	}
 	public static void main(String[] args) {
@@ -46,9 +43,16 @@ public class PowNum {
 	   // System.out.println(power(num,pow));
 		
 	    //System.out.println(power(num,pow));
-	    System.out.println(powNum(num,pow));
+	    System.out.println(power(num,pow));
 		
+	    System.out.println(printNos(10));
 	    
 	}
-
+	public static int printNos(int N)
+    {
+        if(N==0)
+        	return 1;
+        return printNos(N-1);
+    }
+    
 }

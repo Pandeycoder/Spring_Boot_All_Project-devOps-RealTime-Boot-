@@ -1,5 +1,7 @@
 package string;
 
+import java.util.Collections;
+
 public class SUbString {
 	public static void main(String[] args) {
 		
@@ -16,6 +18,8 @@ public class SUbString {
 		}
 		subSets(s,curr,i+1);
 		subSets(s,curr+s.charAt(i),i+1);
+		
+	
 	}
 
 }

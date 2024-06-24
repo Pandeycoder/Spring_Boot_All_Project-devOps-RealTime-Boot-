@@ -22,20 +22,4 @@ public class Remove {
 
 	}
 
-	static void dup11(String s) {
-		char ch[] = s.toCharArray();
-		String s1 = "";
-		for(int i=0;i<s.length();i++)
-		{
-			for(int j=i+1;i<s.length();i++)
-			{
-				if(ch[i]==ch[j])
-				{
-					
-				}
-			}
-		}
-		
-
-	}
 }
