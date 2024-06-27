@@ -16,45 +16,57 @@ public class LargestSmallest {
 
 	}
 
-	private static void largest(int ar[]) {
-		int smallest = ar[0];
-
-		for (int i = 0; i < ar.length; i++) {
-			if (ar[i] < smallest) {
-				smallest = ar[i];
+	private static int largest(int ar[]) {
+		int largest=ar[0];
+		for(int i=0;i<ar.length;i++)
+		{
+			if(ar[i]>largest)
+			{
+				largest=ar[i];
 			}
 		}
-		System.out.println(smallest);
-
+		System.out.println("Largest No :"+largest);
+		return largest;
 	}
 
 	private static void smallest(int arr[]) {
-		int largest = arr[0];
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] > largest) {
-				largest = arr[i];
+		
+		int smallest=arr[0];
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]<smallest)
+			{
+				smallest=arr[i];
 			}
 		}
-		System.out.println(largest);
-
+		System.out.println("smallest No :"+smallest);
 	}
 
 	private static void second(int arr[]) {
-		for (int i = 0; i < arr.length; i++) {
-			int temp;
-			for (int j = i + 1; j < arr.length; j++) {
-				if (arr[i] < arr[j]) {
-					temp = arr[i];
-					arr[i] = arr[j];
-					arr[j] = temp;
-				}
-			}
+		
+		int largest=largest(arr);//100
+		System.out.println("largest "+largest);
+		
+		int res=-1;
+		
+		for(int i=0;i<arr.length;i++)
+		{
+		  if(arr[i]!=largest) 
+		  {
+			  if(res==-1)
+			  {
+				  res=i;
+			  }
+			  else if(arr[i]>arr[res])
+			  {
+				  res=i;
+			  }
+				  
+		  }
+			
 		}
-		System.out.println("second : " + arr[1]);
-		for (int arr1 : arr) {
-			System.out.println(arr1);
-		}
-
+		System.out.println("Second " +arr[res]);
+		
 	}
 
 	private static void occur(int arr[]) {
