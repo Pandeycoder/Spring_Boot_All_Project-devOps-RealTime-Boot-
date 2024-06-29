@@ -70,15 +70,16 @@ public class LargestSmallest {
 	}
 
 	private static void occur(int arr[]) {
-		ArrayList<Integer> l = new ArrayList<>();
+	
 
 		HashMap<Integer, Integer> map = new HashMap<>();
 
-		for (int i : arr) {
-			if (map.containsKey(i)) {
-				map.put(i, map.get(i) + 1);
+		for (int arr1 : arr) {
+			if (map.containsKey(arr1)) {
+				map.put(arr1, map.get(arr1) + 1);
+				System.out.print("key "+map.get(arr1));
 			} else {
-				map.put(i, 1);
+				map.put(arr1, 1);
 			}
 		}
 		Set<Integer> keySet = map.keySet();
@@ -87,16 +88,7 @@ public class LargestSmallest {
 			System.out.println(map.get(key));
 		}
 
-		for (int i = 0; i < arr.length; i++) {
-			int count = 0;
-			for (int j = 0; j < arr.length; j++) {
-				if (arr[i] == arr[j]) {
-					count++;
-				}
-			}
-			l.add(count);
-
-		}
+	
 	}
 
 }
