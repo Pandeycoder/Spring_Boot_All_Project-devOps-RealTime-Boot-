@@ -28,7 +28,7 @@ public class BinaryNumber {
 				 }
 				 sum=sum+pow;
 		   }
-		   count--;
+		   count--; 
 	   }
 	   System.out.println(sum);
    }

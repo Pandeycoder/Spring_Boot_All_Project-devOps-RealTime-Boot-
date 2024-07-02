@@ -9,8 +9,6 @@ public class SUbString {
 	}
 	private static void subSets(String s, String curr,int i)
 	{
-		
-		
 		if(i==s.length())
 		{
 			System.out.println(curr);
