@@ -4,7 +4,7 @@ public class Customer {
 	int pin;
 	String adhar;
 	String pan;
-	Customer(String name, int pin, String adhar, String pan) {
+	Customer() {
 		this.name = name;
 		this.pin = pin;
 		this.adhar = adhar;
