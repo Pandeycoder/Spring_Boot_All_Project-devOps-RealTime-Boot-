@@ -16,7 +16,7 @@ public class MakeMyTripImpl implements MakeMyTripService {
 	@Override
 	public Ticket bookTicket(Passanger passanger) {
 
-		String apiUrl = "http://3.95.231.66:8080/ticket";
+		String apiUrl = "http://localhost:8089/ticket";
 
 		// sending post request , requBodyData ,responseBodyType
 		RestTemplate rt = new RestTemplate();
@@ -32,7 +32,7 @@ public class MakeMyTripImpl implements MakeMyTripService {
 	public List<Ticket> getAllTicket() {
 		// TODO Auto-generated method stub
 
-		String apiUrl = "http://3.95.231.66:8080/tickets";
+		String apiUrl = "http://localhost:8089/tickets";
 
 		// sending post request , requBodyData ,responseBodyType
 		RestTemplate rt = new RestTemplate();
@@ -49,7 +49,7 @@ public class MakeMyTripImpl implements MakeMyTripService {
 	@Override
 	public Ticket findTicket(Integer ticketNum) {
 
-		String apiUrl = "http://3.95.231.66:8080/ticket/{ticketNum}";
+		String apiUrl = "http://localhost:8089/ticket/{ticketNum}";
 
 		// sending post request , requBodyData ,responseBodyType
 		RestTemplate rt = new RestTemplate();
