@@ -22,7 +22,7 @@ public class RemoveDup {
 				res++;
 			}
 		}
-		for(int i=0;i<res;i++)
+		for(int i=0;i<arr.length;i++)
 		{
 			arr[i]=temp[i];
 			System.out.print(" "+arr[i]);
@@ -31,3 +31,4 @@ public class RemoveDup {
 		
 	}
 }
+
