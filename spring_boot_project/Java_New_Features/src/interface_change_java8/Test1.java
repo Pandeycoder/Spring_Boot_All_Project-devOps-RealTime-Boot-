@@ -10,4 +10,9 @@ public interface Test1 {
 	}
 	
 	//Backward compatibility problem
+	
+	static void display()
+	{
+		System.out.println("Dipslay from interface");
+	}
 }
