@@ -4,7 +4,7 @@ public class Example_New_Feature {
 	public static void main(String[] args) {
 
 		Test t = () -> {
-			System.out.println("Hello display");
+			System.out.println("Hello display ");
 		};
 
 		t.display(); // calling without object

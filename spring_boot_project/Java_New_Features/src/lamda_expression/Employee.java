@@ -45,7 +45,7 @@ public class Employee {
 	
 	public String toString()
 	{
-		return " empName empId "+empName+" "+empId;
+		return " "+empName+" "+empId;
 	}
 	
 

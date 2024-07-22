@@ -53,29 +53,65 @@ public class ForEachExample {
 		});
 
 		// empList.remove(1);
+//
+//		empList.removeIf((p) -> {
+//			if (p.getEmpName().equals("Ravi")) {
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		});
 
-		empList.removeIf((p) -> {
-			if (p.getEmpName().equals("Ravi")) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		
-		empList.removeIf((p1)->p1.getEmpName().equals("Ravi"));
+		empList.removeIf((p1) -> p1.getEmpName().equals("Ravi"));
 
-		
-		
-		List<Integer> l2=new ArrayList<>();
+		List<Integer> l2 = new ArrayList<>();
 		l2.add(10);
 		l2.add(0);
 		l2.add(1);
 		l2.add(100);
 		Collections.sort(l2);
+		System.out.println(l2);
 		
-		//Collections.sort(empList); //error.....
+		// Collections.sort(empList); //error.....
+        
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		for (int i = 0; i < empList.size(); i++) {
+//			Employee e = empList.get(i);
+//			if (validate(e.getEmpName())) {
+//				empList.remove(e);
+//			}
+//		}
+//		System.out.println(empList);
+//		
+//		empList.removeIf((p1)->{
+//			if(p1.getEmpName().equals("Ravi"))
+//			{
+//				return true;
+//			}
+//			else
+//			{
+//				return false;
+//			}
+//		});
+		empList.removeIf((p2)->p2.getEmpName().equals("Ravi"));
+
+		System.out.println(empList);
 	}
 
 	public static boolean validate(String s) {

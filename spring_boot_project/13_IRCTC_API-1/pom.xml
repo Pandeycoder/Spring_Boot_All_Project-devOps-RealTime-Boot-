@@ -61,7 +61,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>irctc-api1</finalName>
+		<finalName>IRCTC-API</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
