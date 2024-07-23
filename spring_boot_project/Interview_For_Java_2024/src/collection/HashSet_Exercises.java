@@ -64,13 +64,17 @@ public class HashSet_Exercises {
 	
 	System.err.println(emp);
 	System.err.println(emp1);
+	System.out.println();
 	//HashSet<String> res=new HashSet<String>();
 	for(String element:emp)
 	{
-		System.out.println(emp1.contains(element)?"yes":"No");
+		System.out.print(emp1.contains(element)?"yes":"No");
 	}
 	
 	
+	emp.retainAll(emp1);
+	System.out.println();
+	System.out.println(emp);
 	
 	
 	
@@ -78,10 +82,10 @@ public class HashSet_Exercises {
 	
 	
 	
-	
-	System.err.println(emp.isEmpty());
-	emp.removeAll(emp);
-	System.err.println(emp.isEmpty());
+//	
+//	System.err.println(emp.isEmpty());
+//	emp.removeAll(emp);
+//	System.err.println(emp.isEmpty());
 	
 	}
 

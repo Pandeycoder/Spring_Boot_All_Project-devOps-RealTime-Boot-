@@ -16,12 +16,11 @@ public class StreamImpl {
 
 		
 		List<Employee> empList = new ArrayList<>();
+		empList.add(new Employee("Ashok", 123,10000));
+		empList.add(new Employee("Ravi", 456,2000));
+		empList.add(new Employee("Pragati", 789,45672));
+		empList.add(new Employee("pragya", 222,60000));
 
-		empList.add(new Employee("Ashok", 123));
-		empList.add(new Employee("Ravi", 456));
-		empList.add(new Employee("Pragati", 789));
-		empList.add(new Employee("Pragya", 222));
-		
 		//write a program to print employee name whose name is starting with k
 	
 		for(int i=0;i<empList.size();i++)

@@ -29,10 +29,12 @@ public class ForEachExample {
 
 		List<Employee> empList = new ArrayList<>();
 
-		empList.add(new Employee("Ashok", 123));
-		empList.add(new Employee("Ravi", 456));
-		empList.add(new Employee("Pragati", 789));
-		empList.add(new Employee("pragya", 222));
+		empList.add(new Employee("Ashok", 123, 10000));
+		empList.add(new Employee("Ravi", 456, 2000));
+		empList.add(new Employee("Bijeta", 216, 20000));
+		empList.add(new Employee("Soni", 456, 30000));
+		empList.add(new Employee("Pragati", 789, 45672));
+		empList.add(new Employee("pragya", 222, 60000));
 
 		for (int i = 0; i < empList.size(); i++) {
 			System.out.println(empList.get(i));
@@ -71,9 +73,19 @@ public class ForEachExample {
 		l2.add(100);
 		Collections.sort(l2);
 		System.out.println(l2);
-		
+
 		// Collections.sort(empList); //error.....
-        
+
+
+		// Write a program to sort employee list
+
+		//generally think that sort the emp by emp id
+		
+		Collections.sort(empList);
+		System.out.println(empList);
+
+// Suppose sir, write a program to sort employee list- generally think that sort the employee by salary ascending	
+		
 		
 		
 		
@@ -109,9 +121,13 @@ public class ForEachExample {
 //				return false;
 //			}
 //		});
-		empList.removeIf((p2)->p2.getEmpName().equals("Ravi"));
+		empList.removeIf((p2) -> p2.getEmpName().equals("Ravi"));
 
 		System.out.println(empList);
+		
+		
+		
+		
 	}
 
 	public static boolean validate(String s) {
