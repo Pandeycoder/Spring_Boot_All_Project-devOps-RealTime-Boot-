@@ -82,14 +82,16 @@ public class ForEachExample {
 		//generally think that sort the emp by emp id
 		
 		Collections.sort(empList);
+		System.out.println("==================");
 		System.out.println(empList);
 
-// Suppose sir, write a program to sort employee list- generally think that sort the employee by salary ascending	
+ // Suppose sir, write a program to sort employee list- generally think that sort the employee by salary ascending	
 		
+		Collections.sort(empList,new EmployeeSalaryComperator());
+		System.out.println("===============");
+		//System.out.println(empList);
 		
-		
-		
-		
+		//Collections.sort(empList,o1);
 		
 		
 		
