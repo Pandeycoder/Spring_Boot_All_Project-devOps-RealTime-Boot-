@@ -28,6 +28,4 @@ public class DemoController {
 	{
 		return "welcome to greet";
 	}
-	
-	
 }

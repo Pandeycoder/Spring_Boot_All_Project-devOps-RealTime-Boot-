@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: login-page
+  datasource:
+    dbcp2:
+      driver: org.h2.Driver
+    password: coder1
+    url: jdbc:h2:mem:IrctcDb
+    username: pandey
+  jpa:
+    hibernate:
+      ddl-auto: update

@@ -93,6 +93,8 @@ public class ForEachExample {
 		
 		//Collections.sort(empList,o1);
 		
+		//Collections.sort(empList,(o1,o2)->o1.getEmpName().compareTo(o2.getEmpName()));
+		
 		
 		
 		

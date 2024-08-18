@@ -43,7 +43,6 @@ public class TicketRestController {
 
 	@GetMapping(path= "/show-tickets", produces = { "application/xml","application/json"})
 	public ResponseEntity<List<Ticket>> getAllTicket() {
-
 		
 		List<Ticket> ticket = service.getAllTickets();
 		

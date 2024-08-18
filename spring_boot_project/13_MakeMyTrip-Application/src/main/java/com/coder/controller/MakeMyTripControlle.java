@@ -66,9 +66,6 @@ public class MakeMyTripControlle {
 	{
 		
 		     List<Ticket> tickets=service.getAllTicket();
-		
-		
-		
 				model.addAttribute("tickets", tickets);
 		
 		return "data";	

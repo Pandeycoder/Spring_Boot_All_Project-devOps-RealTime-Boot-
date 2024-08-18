@@ -1,0 +1,13 @@
+server:
+  port: 8089
+spring:
+  datasource:
+    dbcp2:
+      driver: org.h2.Driver
+    password: coder1
+    url: jdbc:h2:mem:employee
+    username: pandey
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

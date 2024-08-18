@@ -4,7 +4,8 @@ spring:
   application:
     name: 13_IRCTC_API-1
   datasource:
-    driver: org.h2.Driver
+    dbcp2:
+      driver: org.h2.Driver
     password: coder1
     url: jdbc:h2:mem:IrctcDb
     username: pandey
