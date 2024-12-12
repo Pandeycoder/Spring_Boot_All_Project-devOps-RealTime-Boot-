@@ -32,7 +32,7 @@ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:lts-community
 ```
 
 # UBUNTU------------------------------------------------------------------------------------
-## Step 1: Setup Linux VM (Ubuntu)
+## Step 1: Setup  (Ubuntu)
 Login to AWS Cloud account.
 Launch an Ubuntu VM using EC2 service:
 AMI: Ubuntu Server 20.04 LTS (or a newer version).
@@ -71,10 +71,11 @@ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:lts-community
 In the AWS Management Console:
 
 Go to EC2 > Security Groups.
+```
 Edit the Inbound Rules for the security group attached to your EC2 instance.
 Add a rule to allow HTTP traffic on port 9000 from 0.0.0.0/0 (or a specific IP range).
 Save the changes.
-
+```
 ## Step 7: Access SonarQube
 Open a browser and navigate to:
 http://<public-ip>:9000/
