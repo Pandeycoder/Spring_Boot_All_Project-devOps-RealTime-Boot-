@@ -1,0 +1,77 @@
+
+==============
+Major Project 
+==============
+
+Project Name : RI-IES (Integrated Eligibilty System)
+
+Domain : Helath & Insurance
+
+Client : Rhode Island State Govt (USA)
+
+Description : To provide health & insurance plans for RI State Citizens who are needy. As part of this application govt offering below plans
+
+    SNAP : Food Stamp Program (Supplement Nutrition Assistance Program)
+
+    CCAP : Child Care Program (Chid Care Assistance Program)
+
+    Medicaid : Helath Plan
+
+    Medicare : Health Plan for senior citizens (65 yrs)
+
+    RIW : Un-Employment Plan (Rhode Island Works)
+
+Note: Every plan will have some eligibility conditions. Citizens who are needy can apply for above plans in RI - IES application. Based on plan eligibility rules and citizen data, RI - IES system will decide citizen eligibility for the plan.
+
+=> Citizens may get approved/denied for the applied plan based on plan conditions.
+
+=> If citizen data matching with plan conditions then citizen will get approval for the plan.
+
+=> If citizen data not-matching with plan conditions then citizen will get denial for the plan.
+
+=> Approved citizens will get benefit amount from state govt on monthly basis.
+
+#### Note: RI - IES application plans are applicable only for RI State Citizens ###
+
+============
+IES Modules
+============
+
+1) Admin    : To manage plans + case workers in our application
+
+2) User		: Registration + Login + Forgot Pwd + Dashboard
+
+3) AR (Application Registration) : To create citizen application
+
+4) DC (Data Collection) : To collect citizen plan and required info
+
+5) ED (Eligibility Determination) : To verify citizen eligibility for the plan
+
+6) CO (Correspondence) : To send notices to citizens
+
+7) BI (Benefit Issuance) : To send benefit amount to approved citizens
+
+8) Reports : To generate reports (excel & pdf) (plan wise, status wise , monthly...)
+
+
+====================
+Today's Assignment
+====================
+
+Develop SSA-API to provide citizen details based on ssn.
+
+input : name,dob,gender,ssn
+
+output : name,dob,gender,ssn,state-name
+
+Conditions:
+
+SSN starts with 1 - New Jersey
+SSN Starts with 2 - Ohio
+SSN Starts with 3 - Texas
+SSn Starts with 4 - California
+SSn Starts with 5 - Rhode Island
+SSN starts with 6 - Kentucky
+SSN Starts with 7 or 8 or 9 - Invalid SSN
+
+Note: Add swagger documentation and deploy in AWS cloud.

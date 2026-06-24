@@ -1,0 +1,501 @@
+
+Whatsapp Group Link : https://chat.whatsapp.com/HyQItzMkHh04ABmjH6lAyd
+
+
+Welcome to Ashok IT...!!
+
+##### Java Real-time Project (fullstack) ( 24 - JRTP ) #####
+
+Trainer : Mr. Ashok
+
+IT Exp : 10+ Years Exp 
+
+Role : Tech lead
+
+Training Exp : 7 Years 
+
+Note: Ashok IT started in 2020
+
+=========================
+Course Name : 24 - JRTP 
+=========================
+
+1) Pre-Requisites for attending 24-JRTP
+2) Who can attend this course
+3) Course Content
+4) What Projects we are going to develop
+5) How this course will help
+6) Course Info (duration + timings + fees)
+
+===============
+Pre-Requisites
+===============
+
+1) Core Java (jdk 17)
+2) Adv Java (JDBC + Servlets)
+3) Database (SQL)
+4) Spring Boot
+5) REST APIs
+6) Data JPA (ORM)
+
+7) HTML & CSS
+8) Java Script
+9) Bootstrap
+
+=============================
+Who can attend this course ?
+=============================
+
+1) Java Freshers
+
+2) Career Gap
+
+3) Employees
+
+========================
+24-JRTP Course Content
+========================
+
+Module-1 : Software Industry Details
+
+Module-2 : Realtime Tools (20+ Tools)
+
+1) Maven
+2) Gradle
+3) Git Hub & BitBucket
+4) Log4J & SLF4J
+5) Log Monitoring (ELK)
+6) Junit & Mocking
+7) Jacocco
+8) SonarQube
+9) JMETER
+10) Jenkins
+11) Docker
+12) Kubernetes
+13) Apache Kafka
+14) Redis
+15) PostMan
+16) Swagger
+17) JIRA
+
+=========================
+Module-3 : Mini Projects 
+=========================
+
+1) Functional Design Document  (FDD)
+2) Requirements Analysis
+3) Database Analysis
+4) Java Classes Analysis
+5) How to improve Coding Skills
+6) How to become independent developer
+7) 3 Mini Projects Development
+
+Note: 2 mini projects will be developed in class from scratch. 1 Mini project is assignment for the students.
+
+=========================
+Module-4: Major Project 
+=========================
+
+1) Requirements Analysis 
+2) Project Introduction
+3) Project Architecture
+4) Project Modules 
+5) Project Backend Development (Microservices)
+
+Note: 7 Modules will be available. I will develop 4 modules in class. 3 Modules you have to develop.
+
+=================================
+Module-5 : Front end development
+=================================
+
+1) Angular
+2) Frontend Development for Major Project
+
+======================
+Module - 6: AWS Cloud 
+======================
+
+1) Linux OS 
+2) AWS Cloud Services
+  
+===========================
+Module-7 : Interview Guide
+===========================
+
+1) Resume Preparation
+2) Mock Interviews 
+3) FAQs
+4) HR Discussion
+5) Do's & Don'ts
+6) Joining Formalities
+7) Exit Formalities 
+
+=============
+Course Info 
+=============
+
+Name : 24-JRTP 
+
+Start Date: 17-Aug
+
+Timings: 9:00 AM - 10:30 AM (IST) (Mon-Sat)
+
+Duration: 3 to 4 months
+
+Course Fee :
+
+	Plan-1 : 8000 (Live classes + soft copy notes)
+
+	Plan-2 : 12,000 (Live classes + soft copy notes + backup videos - 1 year access)
+
+Noe: You can attend 5 classes for free
+
+
+===============================================
+
+Module-1 : Software Industry Info 
+
+Module-2 : Realtime Tools 
+
+Module-3 : Mini Projects 
+
+Module-4 : Major Project 
+
+Module-5 : Angular Development 
+
+Module-6 : Linux + AWS Cloud 
+
+Module-7 : Interview Guide 
+
+
+
+====================
+What is Project ?
+====================
+
+Collection of programs is called as Project.
+
+===========================================
+Why we need to develop Software Projects ?
+============================================
+
+=> To simplify humans life
+
+=> To automate the work
+
+Ex: Netbanking, Tickets Booking, Online shopping etc...
+
+============================
+Types of software projects
+============================
+
+1) Scratch Development Projects (Brand New)
+
+2) Maintenence Projects (CR, Enhancements, Bug Fixes)
+
+3) Migration Projects (conversion)
+
+==========================
+Types Software Companies
+==========================
+
+1) Product Based
+
+2) Service Based
+
+3) Outsourcing
+
+
+=> Product Based companies will develop projets and they will sell in the market
+
+	Ex: Oracle, IBM, Microsoft, Google, facebook, Apple etc....
+
+
+	Skills : DSA, Problem Solving, System Design, Design Patterns.....
+
+	Pakage : Exp * 8 lakhs
+
+
+=> Service Based companies will develop projects based on client requirments
+
+	Ex: TCS, Infy, HCL, Capgemeni, CTS, TechM, Wipro, Deloitte, Accenture...
+
+	Skills : Fullstack (frontend + backend + DB + Cloud + DevOps)
+
+	Package: Exp * 4 Lakhs
+
+
+=> Outsourcing companies will do resource staffing 
+   (they will send employees to other companies on contract basis)
+
+
+========================
+Types of Software Job ?
+========================
+
+1) Permanent Job
+
+			=> Selected for Deloitte as permenent
+			=> Deloitte is your payroll
+
+
+2) Contract Job
+
+			Selected For HCL as permanent employee
+			Deployed in Microsoft as Contract Employee
+
+			HCL is your Payroll company
+			Microsoft is your client company
+
+
+CodeBuster Infotech : Providing Exp documents to cover gap
+
+In resume we mentioned working for TCS
+
+TCS : Client
+CodeBuster : Payroll
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=> Types of companies
+
+=> Types of projects
+
+=> Interview Process
+
+=> Package Structure
+
+=> Types of Jobs
+
+=> Payroll & Client
+
+=> How to cover gap as experience
+
+
+
+================
+Realtime Tools
+===============
+
+=> In Realtime environment, we will use several tools as part of our SDLC.
+
+
+####### Maven & Gradle : Build Tools #########
+
+-> Maven/Gradle are used to automate project build process
+-> Create Project Structure
+-> Download required libraries (ex: springboot, jpa, junit....)
+-> Compile Source Code
+-> Execute Unit Test cases (Junit)
+-> Package our project as a jar/war file
+
+########### Nexus / JFrog : Artifactory servers ###############
+
+-> To maintain remote repositories
+-> To store shared libraries
+
+######## Junit & Mocking : Unit Testing Tool #########
+
+-> To perform Unit testing
+-> To identify bugs in code
+-> We can improve code quality
+
+######### Jacocco : Code Coverage Tool ########
+
+-> To generate code coverage report
+-> To identify unit testing statistics
+	(how many lines tested & not tested)
+
+
+######### Log4J : Logging Tool ##############
+
+-> To generate log messages
+-> We can see application execution flow
+-> We can see exceptions occured in project
+-> We can undertand run-time behaviour of our application
+
+########## ELK / Splunk : Log monitoring tools #######
+
+-> To get applications logs from log files
+-> To troubleshoot application exceptions
+-> ELK (Elastic Search + Log Stash + Kibana) - Open source products
+-> Splunk is licensed software
+
+
+######### SonarQube : Code Review Tool ########
+
+-> To perform code review
+-> To identify developers mistakes in coding
+-> We can identify bugs in code
+-> We can identity duplicate code blocks
+-> We can identify vulnerabilities (security issues)
+
+
+########### Postman : API Testing Tool ##########
+
+-> To test rest api functionality
+-> To test backend application behaviour
+
+########### JMETER : Performance Testing Tool ########
+
+-> Test application stability
+-> Test application responsiveness
+-> To identify bottleneck of the application
+
+##########  Docker : Containerization  #########
+
+-> Run the application in container
+-> We can isolate app execution from our machine
+-> We can make our application portable
+
+########### Kubernetes : Orchestration #########
+
+-> To manage docker containers
+-> Auto Scaling 
+-> Load Balancing
+-> Rolling Updates & Rollbacks
+-> Deployment activities
+
+########## JENKINS : CI CD tool ###########
+
+-> To automate build & deployment process
+-> To achieve CI & CD
+
+
+########### Git Hub & BitBucket :: Version Control Tools ############
+
+-> To maintain project source code
+-> Code Integration at one place
+-> Code Monitoring Access (who/when/why/what)
+
+########### JIRA :: Project Management ##########
+
+-> Project tasks creation
+-> Task assignment for team members
+-> Bug Reporting by testing team
+-> Bug Assignmen to developers
+-> Generate report of project tasks pending/completed
+
+
+########### Swagger : Documentation ############
+
+-> To generate REST API documentation
+-> To test Rest API through user interface
+
+
+########## Kafka & Redis #############
+
+-> Kafka is used for message broker (b 2 b)
+-> Redis is used for cache implementation
+
+
+
+==================================
+Every Java Developer Should Know
+=================================
+
+1) Backend Development (SpringBoot + Rest API + Microservices)
+
+2) Frontend Development (Angular / React JS)
+
+3) DevOps Tools (Maven, Git, sonar, jenkins, docker, k8s....)
+
+4) Linux Commands
+
+5) Cloud Computing (AWS/Azure/GCP)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,115 @@
+
+
+=====================================
+DB Table Name : CITIZEN_PLANS_INFO
+=====================================
+
+CITIZEN_ID			INT			PRIMARY KEY
+NAME                VARCHAR
+EMAIL				VARCHAR
+PHNO				INT
+GENDER				VARCHAR
+SSN					INT
+PLAN_NAME			VARCHAR
+PLAN_STATUS			VARCHAR
+PLAN_START_DATE		DATE
+PLAN_END_DATE		DATE
+CREATE_DATE			DATE
+UPDATE_DATE			DATE
+
+=================
+Java Components
+=================
+
+CitizenPlan.java (c) // Entity
+
+CitizenPlanRepo.java (I) // Repository
+	
+	   @Query("select distinct(planName) from CitizenPlan")
+	   public List<String> getUniquePlanNames( );
+
+	   @Query("select distinct(planStatus) from CitizenPlan")
+	   public List<String> getUniquePlanStatus( );
+
+DataLoader.java (c) => To insert data into db table (Runner)
+
+SearchCriteria.java => To get search form data (binding)
+
+CitizenPlanService.java (I)
+CitizenPlanServiceImpl.java (c)
+
+	a) public List<String> getPlanNames( )
+	b) public List<String> getPlanStatus( )
+	c) public List<CitizenPlan> searchCitizens(SearchCriteria criteria)
+	d) public void generateExcel(HttpServletResponse response)
+	e) public void generatePdf(HttpServletResponse response)
+
+CitizenPlanController.java (c)
+
+	a) public String index(Model model); // GET
+	b) public String search(CitizenPlan req, Model model); // POST
+	c) public void downloadExcel(HttpServletResponse response); //GET
+	c) public void downloadPdf(HttpServletResponse response); //GET
+
+EmailUtils.java (c)
+
+	a) public boolean sendEmail (File file);
+
+
+==========
+DB Setup
+==========
+
+1) Install MySQL DB server
+2) install mysql workbench (client)
+3) Connect with DB server using workbench
+4) Create database using below queries
+
+create database jrtp24;
+use jrtp24;
+show tables;
+
+=============
+Development
+=============
+
+Step-1) Create Spring starter project with below dependencies
+
+		a) web-starter
+		b) data-jpa
+		c) mysql-driver
+		d) thymeleaf
+		e) apache-poi
+		f) open-pdf
+		g) mail-starter
+		h) devtools
+
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.librepdf</groupId>
+			<artifactId>openpdf</artifactId>
+			<version>1.3.8</version>
+		</dependency>
+
+
+Step-2) Configure data source properies in application.propertie file
+
+Step-3) Create Entity class & Repository interface
+
+Step-4) Create DataLoader class as Runner to populate data into DB table
+
+Step-5) Create SearchCriteria class to map search form data
+
+Step-6) Create Service interface & Impl class
+
+Step-7) Create Controller class
+
+Step-8) Create View File (src/main/resources/templates)
+
+Step-9) Develop presentation logic with thymeleaf + bootstrap

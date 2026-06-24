@@ -1,0 +1,26 @@
+
+==========================
+Eligibility Determination
+==========================
+
+-> After Data Collection completed, then Eligibility Determination module execution will start.
+
+-> ED module is responsible to determine citizen is eligble for the applied plan or not based on plan conditions and citizen data
+
+-> If citizen data matching with plan rules then citizen will be approved for the plan
+
+-> If citizen data not-matching with plan rules then citizen will be denied for the plan
+
+======================
+Plan wise Conditions
+======================
+
+SNAP Condition : If employment_income <=300$ then citizen is eligible for SNAP
+
+CCAP Condition : If employment_income <=300$ and kids count > 0 and each kid age <=16 then eligible for CCAP
+
+Medicaid : If employment_income <=300$ and Property Income + Rent Income is 0 then eligible for Medicaid
+
+Medicare : If citizen age is >=65 then eligible for Medicare
+
+RIW : If citizen is un-employed and graduated then eligible for RIW

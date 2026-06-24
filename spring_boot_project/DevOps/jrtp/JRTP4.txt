@@ -1,0 +1,152 @@
+
+=> What is SDLC ?
+
+=> SDLC Phases
+
+=> Waterfall Model
+
+=> Agile model
+
+=> Agile terminology
+
+=> Working with JIRA
+
+
+
+
+=============
+What is SDLC 
+=============
+
+=> Software development life cycle
+
+=> It represents end to end process invovled in software development and delivery process
+
+=> We have several phases in SDLC
+
+	a) Requirements Gathering
+	b) Requirements Analysis
+	c) Design / Planning
+	d) Development
+	e) Testing
+	f) Deployment
+	g) Delivery
+	h) Maintenence (SLA)
+
+
+=> There are several SDLC methodologies available in the market
+
+	Ex: Waterfall model, Agile model
+
+================
+Waterfall Model
+================
+
+=> Waterfall is the first SDLC methodology came into market
+
+=> Waterfall model is a sequential / linear model
+
+=> In waterfall model after one stage is completed then only we can go for next stage
+
+=> In waterfall model we will move only in forward direction
+
+=> Requirements are fixed and budget is also fixed
+
+=> Client involment is very less in waterfall model
+
+=> Client will see the project only at the end
+
+Note: If client is not happy with our project develivery then it is time waste and money waste process.
+
+
+==============
+Agile Model
+==============
+
+=> Agile is an iterative approach to develop and deliver application to client
+
+=> In Agile methodology, planning + development + testing + deployment is a continuos process
+
+=> Application will be delivered to client in multiple releases (Sprints)
+
+=> For every release we will take client feedback.
+
+=> Client involvment is very high in Agile methodology
+
+=> Requirements, Duration and Budget is not fixed
+
+==================
+Agile team
+==================
+
+a) Product Owner : Responsible for project deliverables
+
+b) Scrum Master : Responsible to manage Agile team members work
+
+c) Tech Lead : Seniour resource to solve technical challenges
+
+d) Team Members : Developers + Testers will be there
+
+==================
+Agile Terminology
+==================
+
+a) backlog grooming : A meeting to identify pending tasks in the project
+
+b) story : A task that we have to work on (every story will have story-id)
+
+c) story points : Represents duration to complete the story
+	
+			3 points: 1 day
+			5 points : 2 days
+			8 points : 3 days
+
+d) sprint planning : A meeting to pritorize the backlog stories to work in next sprint based on team band width.
+
+e) sprint : Fixed set of stories that we agreed to complete in sprint duration.
+
+	Sprint Duration  : 2 weeks (Industry standard)
+
+f) scrum : Daily meeting to provide work updates to scrum master.
+
+			a) What are you working on ?
+			b) When it will complete ?
+			c) Do you have any issues ?
+			d) Do you need any help ?
+
+g) Retrospective : Review meeting to discuss what went well, what went wrong, lessons learnt, improvements and new ideas....
+
+	Note: Retrospective will happen monthly once.
+
+=======
+JIRA
+=======
+
+=> Jira software developed by Atlasian company
+
+=> JIRA will be used as project management tool
+
+=> Using JIRA we can perform below activities
+
+	a) Creating tasks (Stories)
+	b) Assigning tasks
+	c) Bug Reporting
+	d) Project Status reports etc...
+
+=> We can practice JIRA using trail version.
+
+
+
+
+
+
+
+
+
+
+Each Team Member should give 3 points per day
+
+10 days sprint * 3 points = 30 points for each member
+
+total_team_size (10) * 30 = 300 points (Sprint goal)
+

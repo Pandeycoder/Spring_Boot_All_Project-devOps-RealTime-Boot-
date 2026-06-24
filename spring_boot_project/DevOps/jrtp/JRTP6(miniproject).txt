@@ -1,0 +1,160 @@
+
+
+1) Maven
+
+2) Git Bub
+
+3) Bit Bucket
+
+5) Agile methodology
+
+6) JIRA
+
+
+Module-1 : Software Industry Details
+
+Module-2 : Realtime Tools (20+)
+
+Module-3 : Mini Projects (do it and learn from that)
+
+
+1) To analyze requirements
+2) To improve analysis skills
+3) To improve coding skills
+4) To become independent programmer
+5) To understand realtime development process
+6) To get practical knowledge on SDLC phases
+
+
+Approach-1 : Trainer should complete first then students will do
+
+Approach-2 : Student should try first and then trainer will do
+
+
+
+*Spring Boot Crash Course* : youtube.com/watch?v=aNS9G5fyj5Y
+
+*Eclipce Shortcuts* : youtube.com/watch?v=TvYMey5SYa8
+
+*Debugging* : youtube.com/watch?v=2WxsClYhreE
+
+
+=========================================================
+01 - Mini Project (User Accounts Management - CRUD Ops)
+=========================================================
+
+1) Read FDD Document
+2) Design DB Table
+3) Design Java Classes with required methods
+
+==========================
+DB Table : USER_ACCOUNTS
+===========================
+
+USER_ID  		NUMBER	PK
+FULL_NAME		VARCHAR
+EMAIL			VARCHAR
+PHNO			NUMBER
+GENDER			VARCHAR
+DOB				DATE
+SSN				NUMBER
+ACTIVE_SW		VARCHAR
+CREATE_DATE		TIMESTAMP
+UPDATE_DATE		TIMESTAMP
+
+====================
+Java Components
+====================
+
+a) UserAccount.java (C) (Entity & Binding)
+b) UserAccountRepo.java (I)
+
+c) UserService.java (I)
+		
+		1) public String saveOrUpdateUserAcc(UserAccount userAcc)
+
+		2) public List<UserAcccount> getAllUserAccounts( )
+
+		3) public UserAccount getUserAcc(Integer userId)
+
+		4) public boolean deleteUserAcc(Integer userId)
+
+		5) public boolean updateUserAccStatus(Integer userId, String status)
+
+
+d) UserServiceImpl.java (C)
+
+e) UserController.java (C)
+
+		1) public String index(Model model)
+
+		2) public String handleSubmitBtn(UserAccount userAcc, Model model)
+		
+		3) public String viewUsers(Model model)
+		
+		4) public String editUser(Integer userId, Model model)
+		
+		5) public String deleteUser(Integer userId, Model model)
+		
+		6) public String changeAccStatus(Integer userId, String status)
+
+
+==============
+UI Components
+==============
+
+a) index.html
+b) view-users.html
+
+
+=================================
+Today's Task : 01-Mini Project
+=================================
+
+1) Create Project structure
+2) Create Required packages
+3) Create Java Components with Required variables & methods
+4) Implement Service Class Methods
+
+=========================
+Development Procedure
+=========================
+
+Step-1 : Create Spring starter project with below dependencies
+
+		a) web-starter
+		b) data-jpa starter
+		c) h2 
+		d) thymeleaf starter
+		e) devtools
+
+Step-2 : Configure datasource properties in application.properties
+
+	spring.datasource.url=jdbc:h2:mem:jrtpdb
+	spring.datasource.username=ashokit
+	spring.datasource.password=ashokit
+	spring.datasource.driver-class-name=org.h2.Driver
+
+Step-3 : Run the application and verify H2 Database console
+
+	URL : http://localhost:8080/h2-console
+
+
+Note: Spring Boot Web app will run using apache tomcat as default embedded container. It will use 8080 as default port number.	
+
+
+Step-4 : Create Entity class and Repository interface (data jpa)
+
+
+Step-5 : Create Service interface and impl class
+
+===================
+Today's Assignment
+===================
+1) Create Project structure
+2) Create Required packages
+3) Create Java Components with Required variables & methods
+4) Implement Service Class Methods
+5) Create Controller class with required methods
+6) Create HTML pages with presentation logic
+7) Test application functionality

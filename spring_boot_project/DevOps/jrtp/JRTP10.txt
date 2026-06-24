@@ -1,0 +1,59 @@
+==========
+SonarQube
+==========
+
+=> SonarQube is used for code quality checking
+
+=> Using SonarQube we can perform Code Review
+
+=> SonarQube will identify developers mistakes in source code
+
+=> SonarQube software developed using Java Language
+
+=> Using SonarQube we can perform code review for 30+ languages
+
+	Ex: java, python, c#, JS, SQL etc......
+
+Note: We can use SonarQube community edition for practice purpose. In companies we will use Enterprise Edition.
+
+=> In SonarQube for every language rules are configured to check code quality.
+
+Note: We need to make sure our project code quality gate is passed. If project code quality gate is failed then we shouldn't deploy that application.
+
+===========================================
+What kind of issues sonar will identify
+===========================================
+
+1) Bugs (Ex: NullPointerException)
+
+2) Vulnerabilities (Ex: exposing password, pin etc...)
+
+3) Code Smells (Ex: Unused imports, unused variables, unused private methods...)
+
+4) Duplicate Code Blocks
+
+5) Code Coverage (Unit testing coverage)
+
+
+## Assingment : Perform 02-Mini Project code review using SonarCloud.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
